@@ -1,0 +1,50 @@
+﻿<Window x:Class="Wpf.Views.Main.MainControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf.Views.Main"
+        mc:Ignorable="d"
+        Height="450" Width="600" 
+        Title="Zither Harp Music: Televison - Control Panel"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <WrapPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+            <Label Content="Chế độ"/>
+        </WrapPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <ComboBox Name="mVisibleWindow">
+                <ComboBoxItem Name="Horizontal" 
+                              IsSelected="True">
+                    <StackPanel Orientation="Horizontal">
+                        <Canvas Background="Red" />
+                        <TextBlock Text="Ngang" 
+                                   Foreground="Red" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Canvas Background="Green" />
+                        <TextBlock Text="Dọc" 
+                                   Foreground="Green" />
+                    </StackPanel>
+                </ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+
+        <Button Grid.Row="1" Grid.Column="1"
+                x:Name="mStart" 
+                Content="Bắt đầu"
+                Padding="10"
+                HorizontalAlignment="Right"/>
+    </Grid>
+</Window>

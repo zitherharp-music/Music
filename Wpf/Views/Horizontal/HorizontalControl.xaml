@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="Wpf.Views.Horizontal.HorizontalControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewmodels="clr-namespace:Wpf.ViewModels" 
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:HorizontalViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <system:Uri x:Key="LogoUrl">
+            https://yt3.ggpht.com/1fwMo61LyshbHPBaSdEdGJFJMnVi0a2p5aizMya3gCxhdBLS7itbEVbV21iRp3sD_sgD-RTSlg
+        </system:Uri>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4.5*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <!-- Playing song image -->
+        <Image Stretch="UniformToFill" 
+               Source="{Binding PlayingSongImage,
+               Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Channel logo -->
+        <Image Margin="0 30 75 0" 
+               Width="100" Height="100"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Right" 
+               Source="{Binding AbsoluteUri, Mode=OneWay, Source={StaticResource LogoUrl}}"/>
+        <!--<Image Stretch="Fill" Margin="1050 10 180 475" HorizontalAlignment="Right" VerticalAlignment="Top"
+               Source="D:\Youtube\Zither Harp TV\Background\Christmas\hat3-removebg-preview.png" />-->
+        <TextBlock Text="SD" 
+                   FontSize="35" 
+                   Margin="0 20 20 0"
+                   FontWeight="Bold" 
+                   Foreground="White"
+                   ClipToBounds="True"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top" />
+        <!-- Playing song -->
+        <TextBlock x:Name="mPlayingSongDetail"
+                   FontSize="30" 
+                   Background="Black"
+                   Foreground="White"
+                   Margin="40 0 40 60" 
+                   Padding="10 0 10 5"
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Left"
+                   Text="{Binding PlayingSongDetail,
+                   Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+        <!-- Information -->
+        <TextBlock x:Name="mInformation"
+                   FontSize="25" 
+                   Margin="700 0 300 10" 
+                   VerticalAlignment="Bottom" />
+        <!-- Vote syntax -->
+        <TextBlock FontSize="25" 
+                   Margin="10 10 10 10" 
+                   Name="mVoteSyntax" 
+                   Foreground="White"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Bottom" />
+        <!-- Song bar -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.15*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!-- Theme -->
+            <Image Grid.Row="1" 
+                   Grid.ColumnSpan="2" 
+                   Stretch="UniformToFill" 
+                   Source="https://thiep.top/uploads/worigin/2021/01/08/hinhanhchuctetnammoi202135ff7e4216d241_8732c78008b1cbd18746cf38450f94b1.jpg" />
+            <!-- Logo -->
+            <Button 
+                Grid.Row="0" 
+                Name="mBottomLogo" 
+                BorderBrush="Transparent"
+                Click="Button_Click">
+                <Button.Background>
+                    <ImageBrush 
+                        Stretch="Uniform" 
+                        ImageSource="{Binding AbsoluteUri, Mode=OneWay, 
+                        Source={StaticResource LogoUrl}}"/>
+                </Button.Background>
+            </Button>
+            <!--<Image 
+                Source="D:\Youtube\Zither Harp TV\Background\Christmas\5bbc0811de645-removebg-preview.png" 
+                Stretch="Fill" />-->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="0.5*" />
+                </Grid.RowDefinitions>
+                <!-- Playlist -->
+                <TextBlock 
+                    Grid.Row="1" 
+                    Name="mPlaylist"
+                    Style="{StaticResource Playlist}" 
+                    Text="{Binding PlaylistString,
+                    Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Song 1 -->
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <ProgressBar 
+                            Style="{StaticResource ProgressBar}"
+                            Value="{Binding SongVote1,
+                            Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock 
+                            Grid.Row="1"                                  
+                            Style="{StaticResource Song}"    
+                            Text="{Binding SongName1, 
+                            Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <!-- Song 2 -->
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <ProgressBar 
+                            Style="{StaticResource ProgressBar}"
+                            Value="{Binding SongVote2,
+                            Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock 
+                            Grid.Row="1" 
+                            Style="{StaticResource Song}"
+                            Text="{Binding SongName2, 
+                            Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <!-- Song 3 -->
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <ProgressBar 
+                            Style="{StaticResource ProgressBar}"
+                            Value="{Binding SongVote3,
+                            Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock 
+                            Grid.Row="1" 
+                            Style="{StaticResource Song}"
+                            Text="{Binding SongName3, 
+                            Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

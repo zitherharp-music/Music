@@ -1,0 +1,16 @@
+﻿<Window x:Class="Wpf.Views.Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf.Views.Main"
+        xmlns:viewmodels="clr-namespace:Wpf.ViewModels" 
+        xmlns:horizontal="clr-namespace:Wpf.Views.Horizontal"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+        mc:Ignorable="d"
+        Title="Zither Harp Music: Television" WindowState="Maximized">
+    <Grid>
+        <horizontal:HorizontalControl x:Name="mHorizontalWindow"  />
+        <WebBrowser x:Name="mPlayerView" Visibility="Hidden" />
+    </Grid>
+</Window>
