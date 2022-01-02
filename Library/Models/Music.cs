@@ -12,7 +12,7 @@ public class Music
 
     public string? Id => id;
 
-    public Music SetName(Language language, string name)
+    public void SetName(Language language, string name)
     {
         switch (language)
         {
@@ -21,10 +21,9 @@ public class Music
             case Language.TraditionalChinese: traditionalChineseName = name; break;
             case Language.Pinyin: pinyinName = name; break;
         }    
-        return this;
     }
 
-    public Music SetDescription(Language language, string description)
+    public void SetDescription(Language language, string description)
     {
         switch (language)
         {
@@ -32,7 +31,6 @@ public class Music
             case Language.SimplifiedChinese: simplifiedChineseDescription = description; break;
             case Language.TraditionalChinese: traditionalChineseDescription = description; break;
         }
-        return this;
     }
 
     public string? GetName(Language language)
@@ -53,7 +51,8 @@ public class Music
         {
             Language.SimplifiedChinese => simplifiedChineseDescription,
             Language.TraditionalChinese => traditionalChineseDescription,
-            _ => vietnameseDescription
+            Language.Vietnamese => vietnameseDescription,
+            _ => throw new NotImplementedException(),
         }; 
     }
 

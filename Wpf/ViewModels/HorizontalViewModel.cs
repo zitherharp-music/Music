@@ -1,8 +1,7 @@
-﻿namespace Wpf.ViewModels
+﻿namespace Wpf.ViewModels;
+
+internal class HorizontalViewModel : MainViewModel
 {
-    internal class HorizontalViewModel : MainViewModel
-    {
-        private static HorizontalViewModel? instance;
-        public static HorizontalViewModel Instance => instance ??= new(); 
-    }
+    private static HorizontalViewModel? instance;
+    public static HorizontalViewModel Instance => instance ??= new();
 }

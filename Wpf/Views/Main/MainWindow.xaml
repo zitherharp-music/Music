@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf.Views.Main"
         xmlns:viewmodels="clr-namespace:Wpf.ViewModels" 
+        xmlns:basic="clr-namespace:Wpf.Views.Basic"
         xmlns:horizontal="clr-namespace:Wpf.Views.Horizontal"
         d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         Title="Zither Harp Music: Television" WindowState="Maximized">
     <Grid>
-        <horizontal:HorizontalControl x:Name="mHorizontalWindow"  />
-        <WebBrowser x:Name="mPlayerView" Visibility="Hidden" />
+        <basic:BasicScreen x:Name="mBasicScreen" Visibility="Hidden"/>
+        <horizontal:HorizontalScreen x:Name="mHorizontalScreen" Visibility="Hidden"/>
+        <WebBrowser x:Name="mPlayerView" Visibility="Hidden"/>
     </Grid>
 </Window>

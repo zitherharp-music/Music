@@ -22,13 +22,20 @@
             <Label Content="Chế độ"/>
         </WrapPanel>
         <StackPanel Grid.Row="0" Grid.Column="1">
-            <ComboBox Name="mVisibleWindow">
-                <ComboBoxItem Name="Horizontal" 
+            <ComboBox Name="mVisibleScreen">
+                <ComboBoxItem Name="Basic" 
                               IsSelected="True">
                     <StackPanel Orientation="Horizontal">
                         <Canvas Background="Red" />
-                        <TextBlock Text="Ngang" 
+                        <TextBlock Text="Cơ bản (không có giao diện)" 
                                    Foreground="Red" />
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Name="Horizontal">
+                    <StackPanel Orientation="Horizontal">
+                        <Canvas Background="Blue" />
+                        <TextBlock Text="Ngang" 
+                                   Foreground="Blue" />
                     </StackPanel>
                 </ComboBoxItem>
                 <ComboBoxItem Name="Vertical">

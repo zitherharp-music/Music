@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 namespace Wpf.ViewModels;
 
-public class BaseViewModel : IViewModel, INotifyPropertyChanged
+public class BaseViewModel : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
@@ -33,7 +33,7 @@ public class BaseViewModel : IViewModel, INotifyPropertyChanged
         PlayingSong = Songs.GetRandom();
     }
     
-    protected void Fill()
+    protected virtual void Fill()
     {
         Song song;
         while (Playlist.Count < 15)

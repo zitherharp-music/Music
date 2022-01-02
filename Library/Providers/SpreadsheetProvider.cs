@@ -43,10 +43,10 @@ public partial class Provider
                     if (values.Count == 0) continue;
                     song = new(GetString(values[PrimaryId]),
                         GetString(values[ReferenceId]), GetInt32(values[Duration]));
-                    song.SetName(Language.Vietnamese, GetString(values[VietnameseName]))
-                        .SetName(Language.SimplifiedChinese, GetString(values[SimplifiedChineseName]))
-                        .SetName(Language.TraditionalChinese, GetString(values[TraditionalChineseName]))
-                        .SetName(Language.Pinyin, GetString(values[PinyinName]));
+                    song.SetName(Language.Vietnamese, GetString(values[VietnameseName]));
+                    song.SetName(Language.SimplifiedChinese, GetString(values[SimplifiedChineseName]));
+                    song.SetName(Language.TraditionalChinese, GetString(values[TraditionalChineseName]));
+                    song.SetName(Language.Pinyin, GetString(values[PinyinName]));
                     songs.Add(song);
                 }
             }
@@ -67,10 +67,10 @@ public partial class Provider
                 {
                     if (values.Count == 0) continue;
                     artist = new(GetString(values[PrimaryId]));
-                    artist.SetName(Language.Vietnamese, GetString(values[VietnameseName]))
-                        .SetName(Language.SimplifiedChinese, GetString(values[SimplifiedChineseName]))
-                        .SetName(Language.TraditionalChinese, GetString(values[TraditionalChineseName]))
-                        .SetName(Language.Pinyin, GetString(values[PinyinName]));
+                    artist.SetName(Language.Vietnamese, GetString(values[VietnameseName]));
+                    artist.SetName(Language.SimplifiedChinese, GetString(values[SimplifiedChineseName]));
+                    artist.SetName(Language.TraditionalChinese, GetString(values[TraditionalChineseName]));
+                    artist.SetName(Language.Pinyin, GetString(values[PinyinName]));
                     artists.Add(artist);
 
                 }
