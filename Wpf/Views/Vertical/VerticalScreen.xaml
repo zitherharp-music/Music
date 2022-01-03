@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="Wpf.Views.Vertical.VerticalScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:viewmodels="clr-namespace:Wpf.ViewModels" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance Type=viewmodels:VerticalViewModel}">
+    <UserControl.Resources>
+        <system:Uri x:Key="LogoUrl">
+            https://yt3.ggpht.com/1fwMo61LyshbHPBaSdEdGJFJMnVi0a2p5aizMya3gCxhdBLS7itbEVbV21iRp3sD_sgD-RTSlg
+        </system:Uri>
+    </UserControl.Resources>
+    <UserControl.Background>
+        <ImageBrush TileMode="None" 
+                    Stretch="Fill"
+                    ImageSource="https://channel.mediacdn.vn/2021/11/5/photo-1-163608307263029708067.jpg"/>
+    </UserControl.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" 
+              Grid.Column="0" 
+              Margin="40 20 10 10"
+              Background="Black">
+            <!-- Playing song image -->
+            <Image Stretch="UniformToFill" 
+                   Source="{Binding PlayingSongImage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+            <!--<Image x:Name="imgFrame" Source="C:\Users\Asus\Downloads\istockphoto-1080953840-1024x1024-removebg-preview.png" Margin="0 0 0 0" Stretch="Fill"></Image>-->
+            <!--- Playing song detail -->
+            <TextBlock FontSize="25" 
+                   Background="Black"
+                   Foreground="White" 
+                   Margin="40 0 80 40" 
+                   Padding="10 0 10 5" 
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Left"
+                   Text="{Binding PlayingSongDetail, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <!-- Channel logo -->
+            <Image Margin="0 30 75 0" 
+                   Width="100" Height="100"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Right" 
+                   Source="{Binding AbsoluteUri, Mode=OneWay, Source={StaticResource LogoUrl}}"/>
+            <!-- Channel label -->
+            <TextBlock Text="SD" 
+                   FontSize="35" 
+                   Margin="0 20 20 0"
+                   FontWeight="Bold" 
+                   Foreground="White"
+                   ClipToBounds="True"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.75*"/>
+                <RowDefinition Height="4.5*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!-- Song 1 -->
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="0.25*"/>
+                    </Grid.RowDefinitions>
+                    <ProgressBar Grid.Column="0" Grid.ColumnSpan="2"
+                                 Style="{StaticResource VerticalProgressBar}"
+                                 Value="{Binding SongVote1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Rectangle Grid.Column="1">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="{Binding SongImage1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                                        Stretch="UniformToFill"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" Grid.Row="1" 
+                               Style="{StaticResource VerticalSongName}"
+                               Text="{Binding SongName1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+                <!-- Song 2 -->
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="0.25*"/>
+                    </Grid.RowDefinitions>
+                    <ProgressBar Grid.Column="0" Grid.ColumnSpan="2"
+                                 Style="{StaticResource VerticalProgressBar}"
+                                 Value="{Binding SongVote2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Rectangle Grid.Column="1">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="{Binding SongImage2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                                        Stretch="UniformToFill"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" Grid.Row="1" 
+                               Style="{StaticResource VerticalSongName}"
+                               Text="{Binding SongName2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+                <!-- Song 3 -->
+                <Grid Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="0.25*"/>
+                    </Grid.RowDefinitions>
+                    <ProgressBar Grid.Column="0" Grid.ColumnSpan="2"
+                                 Style="{StaticResource VerticalProgressBar}"
+                                 Value="{Binding SongVote3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Rectangle Grid.Column="1">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="{Binding SongImage3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                                        Stretch="UniformToFill"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Grid.Column="1" Grid.Row="1" 
+                               Style="{StaticResource VerticalSongName}"
+                               Text="{Binding SongName3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+                <!-- Vote syntax -->
+                <Button Grid.Column="7" 
+                        x:Name="mVoteSyntax"                         
+                        Width="180" Height="180" 
+                        VerticalAlignment="Top" 
+                        BorderBrush="Transparent">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding AbsoluteUri, Mode=OneWay, Source={StaticResource LogoUrl}}"
+                                    Stretch="Fill"/>
+                    </Button.Background>
+                    <Button.Content>
+                        <TextBlock Foreground="Black" TextAlignment="Center" FontWeight="Bold"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <!-- Information -->
+            <Grid Grid.Row="0">
+                <TextBlock x:Name="mInformation"
+                           Style="{StaticResource VerticalPlaylist}" />
+            </Grid>
+            <!-- Playlist -->
+            <Grid Grid.Row="2">
+                <TextBlock Name="mPlaylist"
+                           Style="{StaticResource VerticalPlaylist}"
+                           Text="{Binding PlaylistString, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

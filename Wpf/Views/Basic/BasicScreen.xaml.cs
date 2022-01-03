@@ -1,12 +1,11 @@
 ﻿using System.Windows.Controls;
 
-namespace Wpf.Views.Basic
+namespace Wpf.Views.Basic;
+
+public partial class BasicScreen : UserControl
 {
-    public partial class BasicScreen : UserControl
+    public BasicScreen()
     {
-        public BasicScreen()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

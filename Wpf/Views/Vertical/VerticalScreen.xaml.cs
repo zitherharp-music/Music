@@ -5,18 +5,18 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using Wpf.ViewModels;
 
-namespace Wpf.Views.Horizontal;
+namespace Wpf.Views.Vertical;
 
-public partial class HorizontalScreen : UserControl
+public partial class VerticalScreen : UserControl
 {
-    public HorizontalScreen()
+    public VerticalScreen()
     {
         InitializeComponent();
         Loaded += delegate
         {
             // TODO: Initialize the data
             DataContext = Window.GetWindow(this).DataContext;
-            var viewModel = DataContext as HorizontalViewModel;
+            var viewModel = DataContext as VerticalViewModel;
 
             // TODO: Initialize the timers
             DispatcherTimer timer;
@@ -25,7 +25,7 @@ public partial class HorizontalScreen : UserControl
             timer = new() { Interval = TimeSpan.FromSeconds(2) };
             timer.Tick += delegate
             {
-                mVoteSyntax.Text = viewModel?.Songs.GetVoteSyntax(viewModel.Language);
+                mVoteSyntax.Content = viewModel?.Songs.GetVoteSyntax(viewModel.Language);
             };
             timer.Start();
 
@@ -51,7 +51,7 @@ public partial class HorizontalScreen : UserControl
             timer.Start();
 
             // TODO: Delegate the buttons
-            mControlPanel.Click += delegate { new HorizontalControl().ShowDialog(); };
+            mVoteSyntax.Click += delegate {  };
         };
     }
 }

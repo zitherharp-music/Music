@@ -11,16 +11,19 @@ public partial class MainControl : Window
         InitializeComponent();
         mStart.Click += delegate
         {
-            var selectedScreen = mVisibleScreen.SelectedItem as ComboBoxItem;
-            if (selectedScreen is not null)
+            var visibleScreen = mVisibleScreen.SelectedItem as ComboBoxItem;
+            if (visibleScreen is not null)
             {
                 var mainWindow = new MainWindow();
-                mainWindow.Title += " - " + selectedScreen.Name;
-                switch (selectedScreen.Name)
+                mainWindow.Title += " - " + visibleScreen.Name;                
+                switch (visibleScreen.Name)
                 {
                     case "Basic":
-                        mainWindow.DataContext = BasicViewModel.Instance;
                         mainWindow.mBasicScreen.Visibility = Visibility.Visible;
+                        break;
+                    case "Vertical":
+                        mainWindow.DataContext = VerticalViewModel.Instance;
+                        mainWindow.mVerticalScreen.Visibility = Visibility.Visible;
                         break;
                     case "Horizontal":
                         mainWindow.DataContext = HorizontalViewModel.Instance;

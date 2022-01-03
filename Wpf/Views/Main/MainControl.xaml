@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Wpf.Views.Main"
         mc:Ignorable="d"
         Height="450" Width="600" 
         Title="Zither Harp Music: Televison - Control Panel"
@@ -26,16 +25,9 @@
                 <ComboBoxItem Name="Basic" 
                               IsSelected="True">
                     <StackPanel Orientation="Horizontal">
-                        <Canvas Background="Red" />
-                        <TextBlock Text="Cơ bản (không có giao diện)" 
+                        <Canvas Background="Yellow" />
+                        <TextBlock Text="Cơ bản" 
                                    Foreground="Red" />
-                    </StackPanel>
-                </ComboBoxItem>
-                <ComboBoxItem Name="Horizontal">
-                    <StackPanel Orientation="Horizontal">
-                        <Canvas Background="Blue" />
-                        <TextBlock Text="Ngang" 
-                                   Foreground="Blue" />
                     </StackPanel>
                 </ComboBoxItem>
                 <ComboBoxItem Name="Vertical">
@@ -45,9 +37,15 @@
                                    Foreground="Green" />
                     </StackPanel>
                 </ComboBoxItem>
+                <ComboBoxItem Name="Horizontal">
+                    <StackPanel Orientation="Horizontal">
+                        <Canvas Background="Blue" />
+                        <TextBlock Text="Ngang" 
+                                   Foreground="Blue" />
+                    </StackPanel>
+                </ComboBoxItem>
             </ComboBox>
         </StackPanel>
-
         <Button Grid.Row="1" Grid.Column="1"
                 x:Name="mStart" 
                 Content="Bắt đầu"
