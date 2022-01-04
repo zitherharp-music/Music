@@ -18,8 +18,9 @@ public partial class MainControl : Window
                 mainWindow.Title += " - " + visibleScreen.Name;                
                 switch (visibleScreen.Name)
                 {
-                    case "Basic":
-                        mainWindow.mBasicScreen.Visibility = Visibility.Visible;
+                    case "Main":
+                        mainWindow.DataContext = MainViewModel.Instance;
+                        mainWindow.mMainScreen.Visibility = Visibility.Visible;
                         break;
                     case "Vertical":
                         mainWindow.DataContext = VerticalViewModel.Instance;

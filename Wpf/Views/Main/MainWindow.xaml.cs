@@ -18,7 +18,7 @@ public partial class MainWindow : Window
             // TODO: Initialize the timer
             var tick = 0;
             var timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
-            if (mBasicScreen.IsVisible)
+            if (mMainScreen.IsVisible)
             {
                 timer.Tick += delegate
                 {

@@ -7,19 +7,19 @@ namespace Wpf.ViewModels;
 public class VerticalViewModel : MainViewModel
 {
     private static VerticalViewModel? instance;
-    public static VerticalViewModel Instance => instance ??= new();
+    public static new VerticalViewModel Instance => instance ??= new();
 
     public string SongImage1 => Playlist[0].GetPhotoUrl(PhotoQuality.MQDefault);
     public string SongImage2 => Playlist[1].GetPhotoUrl(PhotoQuality.MQDefault);
     public string SongImage3 => Playlist[2].GetPhotoUrl(PhotoQuality.MQDefault);
 
-    public string VoteSyntax
+    public string? VoteSyntax
     {
         get
         {
             return Language switch
             {
-                Language.Vietnamese => $"Soạn tin:\nZHM\n{ Songs.GetRandom().Id }",
+                Language.Vietnamese => Songs.GetRandom().Id.GetNumberId(),
                 _ => throw new NotImplementedException()
             };
         }

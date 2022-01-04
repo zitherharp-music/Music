@@ -25,7 +25,7 @@ public partial class HorizontalScreen : UserControl
             timer = new() { Interval = TimeSpan.FromSeconds(2) };
             timer.Tick += delegate
             {
-                mVoteSyntax.Text = viewModel?.Songs.GetVoteSyntax(viewModel.Language);
+                mVoteSyntax.Text = viewModel?.VoteSyntax;
             };
             timer.Start();
 

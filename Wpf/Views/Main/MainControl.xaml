@@ -22,11 +22,11 @@
         </WrapPanel>
         <StackPanel Grid.Row="0" Grid.Column="1">
             <ComboBox Name="mVisibleScreen">
-                <ComboBoxItem Name="Basic" 
+                <ComboBoxItem Name="Main" 
                               IsSelected="True">
                     <StackPanel Orientation="Horizontal">
                         <Canvas Background="Yellow" />
-                        <TextBlock Text="Cơ bản" 
+                        <TextBlock Text="Gốc" 
                                    Foreground="Red" />
                     </StackPanel>
                 </ComboBoxItem>

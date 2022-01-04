@@ -6,7 +6,7 @@ namespace Library.Models;
 
 public class Song : Music
 {
-    public List<User> Users { get; set; } = new();
+    public List<User> Users { get; } = new();
 
     private readonly string artistIds;
     private List<Artist>? artists;

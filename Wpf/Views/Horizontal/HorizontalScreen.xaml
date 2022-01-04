@@ -4,15 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewmodels="clr-namespace:Wpf.ViewModels" 
-             xmlns:system="clr-namespace:System;assembly=netstandard"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewmodels:HorizontalViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <system:Uri x:Key="LogoUrl">
-            https://yt3.ggpht.com/1fwMo61LyshbHPBaSdEdGJFJMnVi0a2p5aizMya3gCxhdBLS7itbEVbV21iRp3sD_sgD-RTSlg
-        </system:Uri>
-    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4.5*" />
@@ -22,29 +16,11 @@
         <Image Stretch="UniformToFill" 
                Source="{Binding PlayingSongImage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
         <!-- Channel logo -->
-        <Image Margin="0 30 75 0" 
-               Width="100" Height="100"
-               VerticalAlignment="Top"
-               HorizontalAlignment="Right" 
-               Source="{Binding AbsoluteUri, Mode=OneWay, Source={StaticResource LogoUrl}}"/>
+        <Image Style="{StaticResource ChannelLogo}"
+               Source="{Binding AbsoluteUri, Mode=OneWay, Source={StaticResource LogoUri}}"/>
         <!--<Image Stretch="Fill" Margin="1050 10 180 475" HorizontalAlignment="Right" VerticalAlignment="Top" Source="" />-->
-        <!-- Channel label -->
-        <TextBlock Text="SD" 
-                   FontSize="35" 
-                   Margin="0 20 20 0"
-                   FontWeight="Bold" 
-                   Foreground="White"
-                   ClipToBounds="True"
-                   HorizontalAlignment="Right" 
-                   VerticalAlignment="Top" />
-        <!-- Playing song detail -->
-        <TextBlock FontSize="30" 
-                   Background="Black"
-                   Foreground="White"
-                   Margin="40 0 40 60" 
-                   Padding="10 0 10 5"
-                   VerticalAlignment="Bottom" 
-                   HorizontalAlignment="Left"
+        <TextBlock Style="{StaticResource ChannelLabel}" />
+        <TextBlock Style="{StaticResource PlayingSongDetail}"
                    Text="{Binding PlayingSongDetail, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
         <!-- Information -->
         <TextBlock x:Name="mInformation"
@@ -65,10 +41,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <!-- Theme -->
-            <Image Grid.Row="1" 
-                   Grid.ColumnSpan="2" 
-                   Stretch="UniformToFill" 
-                   Source="https://thiep.top/uploads/worigin/2021/01/08/hinhanhchuctetnammoi202135ff7e4216d241_8732c78008b1cbd18746cf38450f94b1.jpg" />
+            <Grid.Background>
+                <ImageBrush Stretch="UniformToFill" 
+                            ImageSource="https://vetauvn.com/wp-content/uploads/2019/10/ve-may-bay-tet-2022-nhamdan.jpg" />
+            </Grid.Background>
             <!-- Logo -->
             <Button 
                 Grid.Row="0" 
@@ -77,7 +53,7 @@
                 <Button.Background>
                     <ImageBrush 
                         Stretch="Uniform" 
-                        ImageSource="{Binding AbsoluteUri, Mode=OneWay, Source={StaticResource LogoUrl}}"/>
+                        ImageSource="{Binding AbsoluteUri, Mode=OneWay, Source={StaticResource LogoUri}}"/>
                 </Button.Background>
             </Button>
             <!--<Image Source="" Stretch="Fill" />-->

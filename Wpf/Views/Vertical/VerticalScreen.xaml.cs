@@ -22,12 +22,12 @@ public partial class VerticalScreen : UserControl
             DispatcherTimer timer;
 
             // The timer of vote syntax
-            timer = new() { Interval = TimeSpan.FromSeconds(2) };
-            timer.Tick += delegate
-            {
-                mVoteSyntax.Content = viewModel?.Songs.GetVoteSyntax(viewModel.Language);
-            };
-            timer.Start();
+            //timer = new() { Interval = TimeSpan.FromSeconds(2) };
+            //timer.Tick += delegate
+            //{
+            //    mVoteSyntax.Content = viewModel?.VoteSyntax;
+            //};
+            //timer.Start();
 
             // The timer of information and playlist
             timer = new() { Interval = TimeSpan.FromMilliseconds(1) };
@@ -37,14 +37,14 @@ public partial class VerticalScreen : UserControl
                     mPlaylist.Margin.Top, mPlaylist.Margin.Right, mPlaylist.Margin.Bottom);
                 mInformation.Margin = new(mInformation.Margin.Left - 2,
                     mInformation.Margin.Top, mInformation.Margin.Right, mInformation.Margin.Bottom);
-                if (mPlaylist.Margin.Left < -6000)
+                if (mPlaylist.Margin.Left < -6000) 
                 {
-                    mPlaylist.Margin = new(ActualWidth,
+                    mPlaylist.Margin = new(900,
                         mPlaylist.Margin.Top, mPlaylist.Margin.Right, mPlaylist.Margin.Bottom);
                 }
                 if (mInformation.Margin.Left < -4000)
                 {
-                    mInformation.Margin = new(ActualWidth - mVoteSyntax.RenderSize.Width,
+                    mInformation.Margin = new(900,
                         mInformation.Margin.Top, mInformation.Margin.Right, mInformation.Margin.Bottom);
                 }
             };

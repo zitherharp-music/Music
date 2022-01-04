@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="Wpf.Views.Main.MainScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodels="clr-namespace:Wpf.ViewModels" 
+             xmlns:local="clr-namespace:Wpf.Views.Main"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}">
+    <UserControl.Resources>
+        <local:SongConverter x:Key="SongConverter"/>
+        <local:SongNameConverter x:Key="SongNameConverter"/>
+        <local:SongArtistConverter x:Key="SongArtistConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <StackPanel>
+                <TextBlock Text="{Binding PlayingSongDetail, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ProgressBar Value="{Binding PlayingSong.Duration, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="{Binding PlaylistString, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid ItemsSource="{Binding Playlist, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                      AutoGenerateColumns="False"
+                      CanUserSortColumns="False"
+                      CanUserReorderColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False" 
+                      IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="Name" 
+                                        Binding="{Binding Id, Converter={StaticResource SongNameConverter}}" />
+                    <DataGridTextColumn Header="Artist" 
+                                        Binding="{Binding Id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, 
+                                        Converter={StaticResource SongArtistConverter}}" />
+                    <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" />
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, 
+                                   Converter={StaticResource SongConverter}}" 
+                                   Padding="10" />
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+            <GridSplitter Grid.Column="1"
+                          HorizontalAlignment="Stretch"/>
+            <TextBox Grid.Column="2"
+                     Name="mMessages"/>
+        </Grid>
+    </Grid>
+</UserControl>

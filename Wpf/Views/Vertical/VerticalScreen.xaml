@@ -3,16 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:system="clr-namespace:System;assembly=netstandard"
              xmlns:viewmodels="clr-namespace:Wpf.ViewModels" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=viewmodels:VerticalViewModel}">
-    <UserControl.Resources>
-        <system:Uri x:Key="LogoUrl">
-            https://yt3.ggpht.com/1fwMo61LyshbHPBaSdEdGJFJMnVi0a2p5aizMya3gCxhdBLS7itbEVbV21iRp3sD_sgD-RTSlg
-        </system:Uri>
-    </UserControl.Resources>
     <UserControl.Background>
         <ImageBrush TileMode="None" 
                     Stretch="Fill"
@@ -31,36 +25,17 @@
               Grid.Column="0" 
               Margin="40 20 10 10"
               Background="Black">
-            <!-- Playing song image -->
             <Image Stretch="UniformToFill" 
                    Source="{Binding PlayingSongImage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
             <!--<Image x:Name="imgFrame" Source="C:\Users\Asus\Downloads\istockphoto-1080953840-1024x1024-removebg-preview.png" Margin="0 0 0 0" Stretch="Fill"></Image>-->
-            <!--- Playing song detail -->
-            <TextBlock FontSize="25" 
-                   Background="Black"
-                   Foreground="White" 
-                   Margin="40 0 80 40" 
-                   Padding="10 0 10 5" 
-                   VerticalAlignment="Bottom" 
-                   HorizontalAlignment="Left"
-                   Text="{Binding PlayingSongDetail, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Style="{StaticResource PlayingSongDetail}"
+                       Text="{Binding PlayingSongDetail, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
+        <!-- Channel -->
         <Grid Grid.Row="0" Grid.Column="1">
-            <!-- Channel logo -->
-            <Image Margin="0 30 75 0" 
-                   Width="100" Height="100"
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Right" 
-                   Source="{Binding AbsoluteUri, Mode=OneWay, Source={StaticResource LogoUrl}}"/>
-            <!-- Channel label -->
-            <TextBlock Text="SD" 
-                   FontSize="35" 
-                   Margin="0 20 20 0"
-                   FontWeight="Bold" 
-                   Foreground="White"
-                   ClipToBounds="True"
-                   HorizontalAlignment="Right" 
-                   VerticalAlignment="Top" />
+            <Image Style="{StaticResource ChannelLogo}"
+                   Source="{Binding AbsoluteUri, Mode=OneWay, Source={StaticResource LogoUri}}"/>
+            <TextBlock Style="{StaticResource ChannelLabel}"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -68,7 +43,8 @@
                 <RowDefinition Height="4.5*"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="1">
+            <!-- Song bar -->
+            <Grid Grid.Row="1" Margin="10 0 0 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -145,19 +121,24 @@
                                Text="{Binding SongName3, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
                 <!-- Vote syntax -->
-                <Button Grid.Column="7" 
+                <Grid Grid.Column="3">
+                    <Button  
                         x:Name="mVoteSyntax"                         
-                        Width="180" Height="180" 
-                        VerticalAlignment="Top" 
+                        Margin="30 0 20 40"
                         BorderBrush="Transparent">
-                    <Button.Background>
-                        <ImageBrush ImageSource="{Binding AbsoluteUri, Mode=OneWay, Source={StaticResource LogoUrl}}"
-                                    Stretch="Fill"/>
-                    </Button.Background>
-                    <Button.Content>
-                        <TextBlock Foreground="Black" TextAlignment="Center" FontWeight="Bold"/>
-                    </Button.Content>
-                </Button>
+                        <Button.Background>
+                            <ImageBrush ImageSource="{Binding AbsoluteUri, Mode=OneWay, Source={StaticResource LogoUri}}"
+                                        Stretch="UniformToFill"/>
+                        </Button.Background>
+                        <Button.Content>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Soạn tin:" FontSize="20" HorizontalAlignment="Center"/>
+                                <TextBlock Text="ZHM" FontSize="20" HorizontalAlignment="Center"/>
+                                <TextBlock Text="tên_bài_hát" FontSize="20" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </Grid>
             </Grid>
             <!-- Information -->
             <Grid Grid.Row="0">
@@ -166,8 +147,8 @@
             </Grid>
             <!-- Playlist -->
             <Grid Grid.Row="2">
-                <TextBlock Name="mPlaylist"
-                           Style="{StaticResource VerticalPlaylist}"
+                <TextBlock x:Name="mPlaylist"
+                           Style="{StaticResource Playlist}"
                            Text="{Binding PlaylistString, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
         </Grid>

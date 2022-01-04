@@ -5,6 +5,9 @@ namespace Wpf.ViewModels;
 
 public class MainViewModel : BaseViewModel
 {
+    private static MainViewModel? instance;
+    public static MainViewModel Instance => instance ??= new();
+
     public string? SongName1 => Playlist[0].GetName(Language);
     public string? SongName2 => Playlist[1].GetName(Language);
     public string? SongName3 => Playlist[2].GetName(Language);
@@ -14,6 +17,7 @@ public class MainViewModel : BaseViewModel
     public int SongVote3 => Playlist[2].Users.Count * 10 + 10;
 
     public string PlayingSongImage => PlayingSong.GetPhotoUrl(PhotoQuality.MaxResDefault);
+
     public string PlayingSongDetail
     {
         get
@@ -27,6 +31,7 @@ public class MainViewModel : BaseViewModel
             return detail;
         }
     }
+
     public string PlaylistString
     {
         get
