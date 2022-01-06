@@ -7,12 +7,12 @@
         Title="Zither Harp Music: Television - Horizontal: Control Panel" 
         Height="450" Width="800" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
-    <DockPanel Height="50">
-        <TextBlock Text="Video ID:"
-                   VerticalAlignment="Center"/>
-        <TextBox Name="mLiveStreamingId"
-                 Width="300"/>
-        <Button Name="mStart"
-                Content="Start"/>
-    </DockPanel>
+    <StackPanel Orientation="Horizontal" Height="100">
+        <ComboBox Width="500">
+
+        </ComboBox>
+        <Button>
+            
+        </Button>
+    </StackPanel>
 </Window>

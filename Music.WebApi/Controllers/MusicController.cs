@@ -11,9 +11,6 @@ namespace Music.WebApi.Controllers;
 [Route("[controller]")]
 public class MusicController : ControllerBase
 {
-    private static MusicController? instance;
-    public static MusicController Instance => instance ??= new();
-
     #region The detail of spreadsheet
     protected const string SPREADSHEET_ID = "1znQOtTDJz0UqDs0uB2MQZV3wN0l_J0TrU44d9chH2SI";
     protected const string SONG_RANGE = "Audio!A1:G";

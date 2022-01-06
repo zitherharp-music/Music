@@ -19,16 +19,16 @@ public partial class MainControl : Window
                 switch (visibleScreen.Name)
                 {
                     case "Main":
-                        mainWindow.DataContext = MainViewModel.Instance;
-                        mainWindow.mMainScreen.Visibility = Visibility.Visible;
+                        //mainWindow.DataContext = MainViewModel.Instance;
+                        //mainWindow.mMainScreen.Visibility = Visibility.Visible;
                         break;
                     case "Vertical":
-                        mainWindow.DataContext = VerticalViewModel.Instance;
-                        mainWindow.mVerticalScreen.Visibility = Visibility.Visible;
+                        //mainWindow.DataContext = VerticalViewModel.Instance;
+                        //mainWindow.mVerticalScreen.Visibility = Visibility.Visible;
                         break;
                     case "Horizontal":
-                        mainWindow.DataContext = HorizontalViewModel.Instance;
-                        mainWindow.mHorizontalScreen.Visibility = Visibility.Visible;
+                        //mainWindow.DataContext = HorizontalViewModel.Instance;
+                        //mainWindow.mHorizontalScreen.Visibility = Visibility.Visible;
                         break;
                 }
                 mainWindow.Show();

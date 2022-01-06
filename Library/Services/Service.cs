@@ -18,9 +18,6 @@ public class Service
     private const int SimplifiedChineseName = 3;
     private const int TraditionalChineseName = 4;
     private const int PinyinName = 5;
-    private const int VietnameseDescription = 6;
-    private const int SimplifiedChineseDescription = 7;
-    private const int TraditionalChineseDescription = 8;
     private const int Duration = 6;
 
     private readonly SheetsService? sheetsService;

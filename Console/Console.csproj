@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Library\Library.csproj" />
+    <ProjectReference Include="..\Music.WebApi\Music.WebApi.csproj" />
   </ItemGroup>
 
 </Project>

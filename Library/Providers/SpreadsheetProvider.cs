@@ -38,7 +38,7 @@ public partial class Provider
             {
                 Song song;
                 songs = new();
-                foreach (dynamic values in GetValues("audio"))
+                foreach (var values in GetValues("audio"))
                 {
                     if (values.Count == 0) continue;
                     song = new(GetString(values[PrimaryId]),
@@ -63,7 +63,7 @@ public partial class Provider
             {
                 Artist artist;
                 artists = new();
-                foreach (dynamic values in GetValues(nameof(Artist)))
+                foreach (var values in GetValues(nameof(Artist)))
                 {
                     if (values.Count == 0) continue;
                     artist = new(GetString(values[PrimaryId]));
