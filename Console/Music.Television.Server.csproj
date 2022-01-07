@@ -8,12 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis.Sheets.v4" Version="1.55.0.2371" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Library\Library.csproj" />
-    <ProjectReference Include="..\Music.WebApi\Music.WebApi.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace Music.WebApi.Models;
+﻿namespace Music.WebApi.Models.Music;
 
 public class Song : Music
 {

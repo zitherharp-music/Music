@@ -1,8 +1,12 @@
 using Google.Apis.Sheets.v4.Data;
 using Microsoft.AspNetCore.Mvc;
-using Music.WebApi.Models;
+using Music.WebApi.Models.Music;
 using Music.WebApi.Models.Television;
-using static Music.WebApi.Controllers.MusicController;
+using Music.WebApi.Data;
+using static Music.WebApi.Service;
+using static Music.WebApi.Data.AudioData;
+using static Music.WebApi.Data.MusicData;
+using static Music.WebApi.Data.TelevisionData;
 using AppendValueInputOption = Google.Apis.Sheets.v4.SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum;
 using UpdateValueInputOption = Google.Apis.Sheets.v4.SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum;
 
@@ -10,21 +14,15 @@ namespace Music.WebApi.Controllers;
 
 public class TelevisionController : ControllerBase
 {
-    private const string SPREADSHEET_ID = "15XE1J5YPKyCoEHHJabM7IDQeK_wgSnKbWVRvn9eqVVc";
-    private const string PLAYLIST_RANGE = "Playlist!A2:G";
-    private const string INFORMATION_RANGE = "Information";
-    private const string MESSAGE_RANGE = "Message!A1:D";
-    private const string PLAYINGSONG_RANGE = "Playlist!A1:G";
-
-    [HttpGet("/television/informations/get")]
+    [HttpGet("/television/information/get")]
     public async Task<IList<string>> GetInformations()
     {
         var responseBody = await SheetsService.Spreadsheets.Values
-            .Get(SPREADSHEET_ID, INFORMATION_RANGE).ExecuteAsync();
+            .Get(TelevisionData.SpreadsheetId, InformationRange).ExecuteAsync();
         var informations = new List<string>();
         foreach (var row in responseBody.Values)
         {
-            informations.Add(row[PrimaryId].GetString());
+            informations.Add(row[Id].GetString());
         }
         return informations;
     }
@@ -34,13 +32,13 @@ public class TelevisionController : ControllerBase
     {
         var songs = new List<Song>();
         var responseBody = await SheetsService.Spreadsheets.Values
-            .Get(SPREADSHEET_ID, PLAYLIST_RANGE).ExecuteAsync();
+            .Get(TelevisionData.SpreadsheetId, PlaylistRange).ExecuteAsync();
         foreach (var row in responseBody.Values)
         {
             var song = new Song()
             {
-                Id = row[PrimaryId].GetString(),
-                ArtistId = row[ReferenceId].GetString(),
+                Id = row[Id].GetString(),
+                ArtistId = row[ArtistId].GetString(),
                 VietnameseName = row[VietnameseName].GetString(),
                 SimplifiedChineseName = row[SimplifiedChineseName].GetString(),
                 TraditionalChineseName = row[TraditionalChineseName].GetString(),
@@ -71,7 +69,8 @@ public class TelevisionController : ControllerBase
             rows.Add(row);
         }
         var requestBody = new ValueRange() { Values = rows };
-        var request = SheetsService.Spreadsheets.Values.Append(requestBody, SPREADSHEET_ID, PLAYLIST_RANGE);
+        var request = SheetsService.Spreadsheets.Values
+            .Append(requestBody, TelevisionData.SpreadsheetId, PlaylistRange);
         request.ValueInputOption = AppendValueInputOption.RAW;
         var response = await request.ExecuteAsync();
         return response.TableRange;
@@ -96,7 +95,8 @@ public class TelevisionController : ControllerBase
             rows.Add(row);
         }
         var requestBody = new ValueRange() { Values = rows };
-        var request = SheetsService.Spreadsheets.Values.Update(requestBody, SPREADSHEET_ID, PLAYLIST_RANGE);
+        var request = SheetsService.Spreadsheets.Values
+            .Update(requestBody, TelevisionData.SpreadsheetId, PlaylistRange);
         request.ValueInputOption = UpdateValueInputOption.RAW;
         var response = await request.ExecuteAsync();
         return response.UpdatedRange;
@@ -106,13 +106,13 @@ public class TelevisionController : ControllerBase
     public async Task<Song> GetPlayingSong()
     {
         var responseBody = await SheetsService.Spreadsheets.Values
-            .Get(SPREADSHEET_ID, PLAYINGSONG_RANGE).ExecuteAsync();
+            .Get(TelevisionData.SpreadsheetId, PlayingSongRange).ExecuteAsync();
         foreach (var row in responseBody.Values)
         {
             return new Song()
             {
-                Id = row[PrimaryId].GetString(),
-                ArtistId = row[ReferenceId].GetString(),
+                Id = row[Id].GetString(),
+                ArtistId = row[ArtistId].GetString(),
                 VietnameseName = row[VietnameseName].GetString(),
                 SimplifiedChineseName = row[SimplifiedChineseName].GetString(),
                 TraditionalChineseName = row[TraditionalChineseName].GetString(),
@@ -140,7 +140,8 @@ public class TelevisionController : ControllerBase
              }
         };
         var requestBody = new ValueRange() { Values = row };
-        var request = SheetsService.Spreadsheets.Values.Append(requestBody, SPREADSHEET_ID, PLAYINGSONG_RANGE);
+        var request = SheetsService.Spreadsheets.Values
+            .Append(requestBody, TelevisionData.SpreadsheetId, PlayingSongRange);
         request.ValueInputOption = AppendValueInputOption.RAW;
         var response = await request.ExecuteAsync();
         return response.TableRange;
@@ -164,17 +165,17 @@ public class TelevisionController : ControllerBase
         };
         var requestBody = new ValueRange() { Values = row };
         var request = SheetsService.Spreadsheets.Values
-            .Update(requestBody, SPREADSHEET_ID, PLAYINGSONG_RANGE);
+            .Update(requestBody, TelevisionData.SpreadsheetId, PlayingSongRange);
         request.ValueInputOption = UpdateValueInputOption.RAW;
         var response = await request.ExecuteAsync();
         return response.UpdatedRange;
     }
 
-    [HttpGet("/television/messages/get")]
+    [HttpGet("/television/message/get")]
     public async Task<IList<Message>> GetMessages()
     {
         var responseBody = await SheetsService.Spreadsheets.Values
-            .Get(SPREADSHEET_ID, MESSAGE_RANGE).ExecuteAsync();
+            .Get(TelevisionData.SpreadsheetId, MessageRange).ExecuteAsync();
         var messages = new List<Message>();
         foreach (var row in responseBody.Values)
         {
@@ -193,7 +194,7 @@ public class TelevisionController : ControllerBase
         return messages;
     }
 
-    [HttpPost("/television/messages/append")]
+    [HttpPost("/television/message/append")]
     public async Task<string> AppendMessage([FromBody] Message message)
     {
         var row = new List<IList<object?>>()
@@ -208,7 +209,7 @@ public class TelevisionController : ControllerBase
         };
         var requestBody = new ValueRange() { Values = row };
         var request = SheetsService.Spreadsheets.Values
-            .Append(requestBody, SPREADSHEET_ID, MESSAGE_RANGE);
+            .Append(requestBody, TelevisionData.SpreadsheetId, MessageRange);
         request.ValueInputOption = AppendValueInputOption.RAW;
         var response = await request.ExecuteAsync();
         return response.TableRange;

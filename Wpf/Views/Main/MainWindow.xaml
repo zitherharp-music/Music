@@ -7,7 +7,7 @@
         xmlns:horizontal="clr-namespace:Wpf.Views.Horizontal"
         Title="Zither Harp Music: Television" WindowState="Maximized">
     <Grid>
-        <WebBrowser Source="https://www.youtube.com/watch?v=U4NmgEjvPfg" />
+        <WebBrowser />
         <local:MainScreen x:Name="mMainScreen" Visibility="Hidden"/>
         <vertical:VerticalScreen x:Name="mVerticalScreen" Visibility="Hidden"/>
         <horizontal:HorizontalScreen x:Name="mHorizontalScreen" Visibility="Hidden"/>
