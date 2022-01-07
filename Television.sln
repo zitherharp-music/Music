@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wpf", "Wpf\Wpf.csproj", "{4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library", "Library\Library.csproj", "{A89E188D-59C1-4E14-9125-3269C7CF8E15}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console", "Console\Console.csproj", "{7A157FF2-1A48-4EF4-8CCD-8D2CE9B52236}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Television.Server", "Music.Television.Server\Music.Television.Server.csproj", "{7A157FF2-1A48-4EF4-8CCD-8D2CE9B52236}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.WebApi", "Music.WebApi\Music.WebApi.csproj", "{5EBAEFF2-FAD8-4D75-9768-C0576647B0C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerService", "WorkerService\WorkerService.csproj", "{A9ECA5B8-A5D1-41A9-B0E3-E7F33E9B6E6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,6 +70,18 @@ Global
 		{5EBAEFF2-FAD8-4D75-9768-C0576647B0C6}.Release|x64.Build.0 = Release|Any CPU
 		{5EBAEFF2-FAD8-4D75-9768-C0576647B0C6}.Release|x86.ActiveCfg = Release|Any CPU
 		{5EBAEFF2-FAD8-4D75-9768-C0576647B0C6}.Release|x86.Build.0 = Release|Any CPU
+		{A9ECA5B8-A5D1-41A9-B0E3-E7F33E9B6E6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9ECA5B8-A5D1-41A9-B0E3-E7F33E9B6E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9ECA5B8-A5D1-41A9-B0E3-E7F33E9B6E6C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A9ECA5B8-A5D1-41A9-B0E3-E7F33E9B6E6C}.Debug|x64.Build.0 = Debug|Any CPU
+		{A9ECA5B8-A5D1-41A9-B0E3-E7F33E9B6E6C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A9ECA5B8-A5D1-41A9-B0E3-E7F33E9B6E6C}.Debug|x86.Build.0 = Debug|Any CPU
+		{A9ECA5B8-A5D1-41A9-B0E3-E7F33E9B6E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9ECA5B8-A5D1-41A9-B0E3-E7F33E9B6E6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9ECA5B8-A5D1-41A9-B0E3-E7F33E9B6E6C}.Release|x64.ActiveCfg = Release|Any CPU
+		{A9ECA5B8-A5D1-41A9-B0E3-E7F33E9B6E6C}.Release|x64.Build.0 = Release|Any CPU
+		{A9ECA5B8-A5D1-41A9-B0E3-E7F33E9B6E6C}.Release|x86.ActiveCfg = Release|Any CPU
+		{A9ECA5B8-A5D1-41A9-B0E3-E7F33E9B6E6C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
