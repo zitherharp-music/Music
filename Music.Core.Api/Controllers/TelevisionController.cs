@@ -12,9 +12,11 @@ using UpdateValueInputOption = Google.Apis.Sheets.v4.SpreadsheetsResource.Values
 
 namespace Music.WebApi.Controllers;
 
+[ApiController]
+[Route("apis/[controller]")]
 public class TelevisionController : ControllerBase
 {
-    [HttpGet("/television/information/get")]
+    [HttpGet("/television/informations/get")]
     public async Task<IList<string>> GetInformations()
     {
         var responseBody = await SheetsService.Spreadsheets.Values
@@ -171,7 +173,7 @@ public class TelevisionController : ControllerBase
         return response.UpdatedRange;
     }
 
-    [HttpGet("/television/message/get")]
+    [HttpGet("/television/messages/get")]
     public async Task<IList<Message>> GetMessages()
     {
         var responseBody = await SheetsService.Spreadsheets.Values
@@ -194,7 +196,7 @@ public class TelevisionController : ControllerBase
         return messages;
     }
 
-    [HttpPost("/television/message/append")]
+    [HttpPost("/television/messages/append")]
     public async Task<string> AppendMessage([FromBody] Message message)
     {
         var row = new List<IList<object?>>()

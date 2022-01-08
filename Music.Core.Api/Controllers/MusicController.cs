@@ -7,10 +7,10 @@ using static Music.WebApi.Data.MusicData;
 namespace Music.WebApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("apis/[controller]")]
 public class MusicController : ControllerBase
 {
-    [HttpGet("/music/song/get")]
+    [HttpGet("/music/songs/get")]
     public async Task<IList<Song>> GetSongs()
     {
         if (SheetsService is null) throw new NullReferenceException(nameof(SheetsService));
@@ -34,7 +34,7 @@ public class MusicController : ControllerBase
         return songs;
     }
 
-    [HttpGet("/music/artist/get")]
+    [HttpGet("/music/artists/get")]
     public async Task<IList<Artist>> GetArtists()
     {
         if (SheetsService is null) throw new NullReferenceException(nameof(SheetsService));
