@@ -7,7 +7,7 @@ namespace Wpf.ViewModels;
 internal class HorizontalViewModel : MainViewModel
 {
     private static HorizontalViewModel? instance;
-    public static new HorizontalViewModel Instance => instance ??= new();
+    public static HorizontalViewModel Instance => instance ??= new();
 
     public string VoteSyntax
     {

@@ -36,7 +36,7 @@ public class Service
         using var stream = new FileStream("credentials.json", FileMode.Open, FileAccess.Read);
         var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
             GoogleClientSecrets.FromStream(stream).Secrets,
-            new[] { SheetsService.Scope.SpreadsheetsReadonly }, "user",
+            new[] { SheetsService.Scope.Spreadsheets }, "user",
             CancellationToken.None, new FileDataStore("token.json", true)).Result;
         sheetsService = new SheetsService(new BaseClientService.Initializer()
         {
