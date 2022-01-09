@@ -1,7 +1,6 @@
 using Google.Apis.Sheets.v4.Data;
 using Microsoft.AspNetCore.Mvc;
-using Music.WebApi.Models.Music;
-using Music.WebApi.Models.Television;
+using Music.Core.Models;
 using Music.WebApi.Data;
 using static Music.WebApi.Service;
 using static Music.WebApi.Data.AudioData;

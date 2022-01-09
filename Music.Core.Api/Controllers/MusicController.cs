@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Music.WebApi.Models.Music;
-using static Music.WebApi.Service;
-using static Music.WebApi.Data.AudioData;
-using static Music.WebApi.Data.MusicData;
+using Music.Core.Models;
+using static Music.Core.Services.ServerService;
 
 namespace Music.WebApi.Controllers;
 
@@ -13,10 +11,10 @@ public class MusicController : ControllerBase
     [HttpGet("/music/songs/get")]
     public async Task<IList<Song>> GetSongs()
     {
-        if (SheetsService is null) throw new NullReferenceException(nameof(SheetsService));
+        if (Instance.SheetsService is null) throw new NullReferenceException(nameof(Instance.SheetsService));
         var songs = new List<Song>();
-        var songRange = await SheetsService.Spreadsheets.Values
-            .Get(SpreadsheetId, AudioRange).ExecuteAsync();
+        var songRange = await Instance.SheetsService.Spreadsheets.Values
+            .Get(Instance.SpreadsheetElement.GetString("id", "music"), AudioRange).ExecuteAsync();
         foreach (var row in songRange.Values)
         {
             var song = new Song()
@@ -37,7 +35,7 @@ public class MusicController : ControllerBase
     [HttpGet("/music/artists/get")]
     public async Task<IList<Artist>> GetArtists()
     {
-        if (SheetsService is null) throw new NullReferenceException(nameof(SheetsService));
+        if (Instance.SheetsService is null) throw new NullReferenceException(nameof(Instance.SheetsService));
         var artists = new List<Artist>();
         var artistRange = await SheetsService.Spreadsheets.Values
             .Get(SpreadsheetId, ArtistRange).ExecuteAsync();
