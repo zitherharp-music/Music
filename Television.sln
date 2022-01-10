@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Television.Server", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Core.Api", "Music.Core.Api\Music.Core.Api.csproj", "{5EBAEFF2-FAD8-4D75-9768-C0576647B0C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.Core.Service", "Music.Core.Service\Music.Core.Service.csproj", "{3E2DF604-6F17-4B46-9AE4-FC9F6EA7B70F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Core.Service", "Music.Core.Service\Music.Core.Service.csproj", "{3E2DF604-6F17-4B46-9AE4-FC9F6EA7B70F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.Core", "Music.Core\Music.Core.csproj", "{511E9E4E-43A7-48E3-9F25-81C8A542BF84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Core", "Music.Core\Music.Core.csproj", "{511E9E4E-43A7-48E3-9F25-81C8A542BF84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.Core.Client", "Music.Core.Client\Music.Core.Client.csproj", "{81DEA549-9A22-4B9F-ADE8-E380F783A3ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +98,18 @@ Global
 		{511E9E4E-43A7-48E3-9F25-81C8A542BF84}.Release|x64.Build.0 = Release|Any CPU
 		{511E9E4E-43A7-48E3-9F25-81C8A542BF84}.Release|x86.ActiveCfg = Release|Any CPU
 		{511E9E4E-43A7-48E3-9F25-81C8A542BF84}.Release|x86.Build.0 = Release|Any CPU
+		{81DEA549-9A22-4B9F-ADE8-E380F783A3ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DEA549-9A22-4B9F-ADE8-E380F783A3ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DEA549-9A22-4B9F-ADE8-E380F783A3ED}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{81DEA549-9A22-4B9F-ADE8-E380F783A3ED}.Debug|x64.Build.0 = Debug|Any CPU
+		{81DEA549-9A22-4B9F-ADE8-E380F783A3ED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{81DEA549-9A22-4B9F-ADE8-E380F783A3ED}.Debug|x86.Build.0 = Debug|Any CPU
+		{81DEA549-9A22-4B9F-ADE8-E380F783A3ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DEA549-9A22-4B9F-ADE8-E380F783A3ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81DEA549-9A22-4B9F-ADE8-E380F783A3ED}.Release|x64.ActiveCfg = Release|Any CPU
+		{81DEA549-9A22-4B9F-ADE8-E380F783A3ED}.Release|x64.Build.0 = Release|Any CPU
+		{81DEA549-9A22-4B9F-ADE8-E380F783A3ED}.Release|x86.ActiveCfg = Release|Any CPU
+		{81DEA549-9A22-4B9F-ADE8-E380F783A3ED}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

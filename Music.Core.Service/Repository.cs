@@ -1,4 +1,4 @@
-﻿using Music.Core.Models;
+﻿using Music.Core.Models.Music;
 using System.Text;
 using System.Text.Json;
 

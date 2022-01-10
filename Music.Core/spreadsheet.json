@@ -8,7 +8,11 @@
   ],
   "range": {
     "audio": "Audio!A1:G",
-    "artist": "Artist!A1:F"
+    "artist": "Artist!A1:F",
+    "playingsong": "Playlist!A1:G",
+    "playlist": "Playlist!A2:G",
+    "information": "Information",
+    "message": "Message!A1:D"
   },
   "column": {
     "audio": {

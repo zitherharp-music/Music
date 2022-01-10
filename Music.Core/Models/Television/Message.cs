@@ -1,4 +1,4 @@
-﻿namespace Music.Core.Models;
+﻿namespace Music.Core.Models.Television;
 
 public class Message
 {
