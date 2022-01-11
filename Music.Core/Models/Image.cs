@@ -1,4 +1,4 @@
-﻿namespace Music.Core.Models.Music;
+﻿namespace Music.Core.Models;
 
 public class Image
 {

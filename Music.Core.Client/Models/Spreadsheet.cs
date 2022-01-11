@@ -13,7 +13,7 @@ public class Spreadsheet
         var key = Repository.SpreadsheetJson.Key[0];
         var url = $"https://sheets.googleapis.com/v4/spreadsheets/{ id }/values/{ tableName }?key={ key }";
         var jsonString = await Repository.HttpClient.GetStringAsync(url);
-        var responseBody = JsonSerializer.Deserialize<SpreadsheetApi>(jsonString);
+        var responseBody = JsonSerializer.Deserialize<Core.Models.Spreadsheet.Spreadsheet>(jsonString);
         return responseBody?.Values ?? throw new NullReferenceException(nameof(responseBody));
     }
 

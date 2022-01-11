@@ -1,4 +1,4 @@
-﻿namespace Music.Core.Music.Enum;
+﻿namespace Music.Core.Music;
 
 public enum Language
 {

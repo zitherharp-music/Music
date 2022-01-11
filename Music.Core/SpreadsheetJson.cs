@@ -1,4 +1,4 @@
-﻿namespace Music.Core.Models.Spreadsheet;
+﻿namespace Music.Core.Models;
 
 public class SpreadsheetJson
 {

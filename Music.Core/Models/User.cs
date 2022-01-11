@@ -1,4 +1,4 @@
-﻿namespace Music.Core.Models.Television;
+﻿namespace Music.Core.Models;
 
 public class User
 {

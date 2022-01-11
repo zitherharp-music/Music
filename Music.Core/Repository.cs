@@ -1,5 +1,5 @@
 ﻿using Music.Core.Models.Music;
-using Music.Core.Models.Spreadsheet;
+using Music.Core.Models;
 using System.Text.Json;
 
 namespace Music.Core;
@@ -41,7 +41,7 @@ public class Repository
         var key = Service.SpreadsheetJson.Key[0];
         var url = $"https://sheets.googleapis.com/v4/spreadsheets/{ spreadsheetId }/values/{ range }?key={ key }";
         var jsonString = Service.HttpClient.GetStringAsync(url).Result;
-        var responseBody = JsonSerializer.Deserialize<SpreadsheetApi>(jsonString);
+        var responseBody = JsonSerializer.Deserialize<Spreadsheet.Api>(jsonString);
         return responseBody?.Values ?? throw new NullReferenceException(nameof(responseBody));
     }
 }

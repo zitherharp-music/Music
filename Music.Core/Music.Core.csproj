@@ -23,6 +23,13 @@
     <PackageReference Include="Google.Apis.Sheets.v4" Version="1.55.0.2371" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Enum\" />
+    <Folder Include="Music\" />
+    <Folder Include="Spreadsheet\" />
+    <Folder Include="Television\" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>
