@@ -19,18 +19,14 @@
       "id": 0,
       "artistId": 1,
       "vietnameseName": 2,
-      "simplifiedChineseName": 3,
-      "traditionalChineseName": 4,
-      "pinyinName": 5,
-      "duration": 6
+      "chineseName": 3,
+      "duration": 4
     },
     "artist": {
       "id": 0,
       "playlistId": 1,
       "vietnameseName": 2,
-      "simplifiedChineseName": 3,
-      "traditionalChineseName": 4,
-      "pinyinName": 5
+      "chineseName": 3
     }
   }
 }

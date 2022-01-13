@@ -1,9 +1,8 @@
-namespace Music.Core.Service.Workers;
-
 using Music.Core.Models;
 using System.Text;
 using System.Text.Json;
-using static Music.Core.Service.Repository;
+
+namespace Music.Core.Service.Workers;
 
 internal class TelevisionWorker : BackgroundService
 {
@@ -50,8 +49,8 @@ internal class TelevisionWorker : BackgroundService
         {
             logger.LogInformation("Playing song: {content}", playingSong.VietnameseName);
 
-            jsonString = JsonSerializer.Serialize(playingSong, JsonOptions);
-            responseMessage = await HttpClient.PutAsync(
+            jsonString = JsonSerializer.Serialize(playingSong, Spreadsheet.JsonOptions);
+            responseMessage = await Spreadsheet.HttpClient.PutAsync(
                 "https://localhost:7149/television/playingsong/update",
                 new StringContent(jsonString, Encoding.UTF8, "application/json"), stoppingToken);
             logger.LogInformation("Update the playing song: {j}", responseMessage.StatusCode);

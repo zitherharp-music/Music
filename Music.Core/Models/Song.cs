@@ -24,7 +24,7 @@ public class Song : Music
                 if (ArtistId is null) return artists;
                 foreach (var artistId in ArtistId.Split(splitCharacter))
                 {
-                    foreach (var artist in Repository.Instance.Artists)
+                    foreach (var artist in Repository.Artists)
                     {
                         if (artist.Id is not null)
                         {

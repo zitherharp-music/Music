@@ -1,9 +1,8 @@
-﻿namespace Music.Core.Service.Workers;
-
-using Music.Core.Models;
+﻿using Music.Core.Models;
 using System.Text;
 using System.Text.Json;
-using static Music.Core.Service.Repository;
+
+namespace Music.Core.Service.Workers;
 
 internal class MusicWorker : BackgroundService
 {
@@ -23,15 +22,15 @@ internal class MusicWorker : BackgroundService
             try
             {
                 // TODO: Load songs
-                jsonString = await HttpClient.GetStringAsync(
+                jsonString = await Spreadsheet.HttpClient.GetStringAsync(
                     "https://localhost:7149/music/songs/get", stoppingToken);
                 Songs = JsonSerializer.Deserialize<IList<Song>>(
-                    new MemoryStream(Encoding.UTF8.GetBytes(jsonString)), JsonOptions);
+                    new MemoryStream(Encoding.UTF8.GetBytes(jsonString)), Spreadsheet.JsonOptions);
                 // TODO: Load artists
-                jsonString = await HttpClient.GetStringAsync(
+                jsonString = await Spreadsheet.HttpClient.GetStringAsync(
                     "https://localhost:7149/music/artists/get", stoppingToken);
                 Artists = JsonSerializer.Deserialize<IList<Artist>>(
-                    new MemoryStream(Encoding.UTF8.GetBytes(jsonString)), JsonOptions);
+                    new MemoryStream(Encoding.UTF8.GetBytes(jsonString)), Spreadsheet.JsonOptions);
                 logger.LogInformation("Done...");
             }
             catch (Exception e)
