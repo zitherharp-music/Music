@@ -7,19 +7,15 @@
     <UseWPF>true</UseWPF>
     <Platforms>AnyCPU</Platforms>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <ApplicationIcon>green.ico</ApplicationIcon>
+    <ApplicationIcon>television.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="green.ico" />
+    <Content Include="television.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Library\Library.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Container\" />
+    <ProjectReference Include="..\Music\Music.csproj" />
   </ItemGroup>
 
 </Project>

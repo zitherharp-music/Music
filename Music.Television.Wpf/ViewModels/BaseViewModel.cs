@@ -1,12 +1,12 @@
-﻿using Library.Enums;
-using Library.Models;
-using Library.Providers;
-using Library.Utils;
+﻿using Music.Cores;
+using Music.Enums;
+using Music.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Wpf.ViewModels;
+namespace Music.Television.Wpf.ViewModels;
 
 public class BaseViewModel : INotifyPropertyChanged
 {
@@ -14,7 +14,7 @@ public class BaseViewModel : INotifyPropertyChanged
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         => PropertyChanged?.Invoke(this, new(propertyName));
 
-    public readonly List<Song> Songs;
+    public readonly IList<Song> Songs;
     public List<Message>? Messages;
 
     public List<Song> Playlist { get; }
@@ -24,22 +24,20 @@ public class BaseViewModel : INotifyPropertyChanged
     protected BaseViewModel()
     {
         Playlist = new();
-        Songs = Provider.Songs;
+        Songs = Spreadsheet.Repository.Songs;
 
         Fill();
-        PlayingSong = Songs.GetRandom();
+        PlayingSong = Songs[Random.Shared.Next(Songs.Count)];
     }
-    
+
     protected virtual void Fill()
     {
         Song song;
         while (Playlist.Count < 15)
         {
-            song = Songs.GetRandom();
-            if (!Playlist.Contains(song))
-            {
-                Playlist.Add(song);
-            }
+            song = Songs[Random.Shared.Next(Songs.Count)];
+            if (Playlist.Contains(song)) continue;
+            Playlist.Add(song);
         }
     }
 

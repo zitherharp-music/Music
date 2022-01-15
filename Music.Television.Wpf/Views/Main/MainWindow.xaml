@@ -1,13 +1,12 @@
-﻿<Window x:Class="Wpf.Views.Main.MainWindow"
+﻿<Window x:Class="Music.Television.Wpf.Views.Main.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:Wpf.Views.Main"
-        xmlns:vertical="clr-namespace:Wpf.Views.Vertical"
-        xmlns:horizontal="clr-namespace:Wpf.Views.Horizontal"
+        xmlns:vertical="clr-namespace:Music.Television.Wpf.Views.Vertical"
+        xmlns:horizontal="clr-namespace:Music.Television.Wpf.Views.Horizontal" 
         Title="Zither Harp Music: Television" WindowState="Maximized">
     <Grid>
-        <vertical:VerticalScreen x:Name="mVerticalScreen" />
-        <horizontal:HorizontalScreen x:Name="mHorizontalScreen" Visibility="Hidden"/>
+        <vertical:VerticalScreen x:Name="mVerticalScreen" Visibility="Hidden" />
+        <horizontal:HorizontalScreen x:Name="mHorizontalScreen" />
         <WebBrowser x:Name="mPlayerView" Visibility="Hidden" />
     </Grid>
 </Window>

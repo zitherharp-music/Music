@@ -1,23 +1,24 @@
-using Music.Core.Models;
+using Music.Models;
 using System.Text;
 using System.Text.Json;
 
-namespace Music.Core.Service.Workers;
+namespace Music.Cores.Service.Workers;
 
-internal class TelevisionWorker : BackgroundService
+internal class TelevisionWorker : MusicWorker
 {
     private readonly ILogger<TelevisionWorker> logger;
 
-    private Song playingSong;
-    private IList<Song> playlist;
+    private Song? playingSong;
+    private IList<Song>? playlist;
 
-    public TelevisionWorker(ILogger<TelevisionWorker> logger)
+    public TelevisionWorker(ILoggerFactory factory) : base(factory)
     {
-        this.logger = logger;
+        logger = new Logger<TelevisionWorker>(factory);
     }
 
     private void Fill()
     {
+        if (Songs is null) throw new NullReferenceException(nameof(Songs));
         if (playlist is null) throw new NullReferenceException(nameof(playlist));
 
         Song song;
@@ -31,6 +32,8 @@ internal class TelevisionWorker : BackgroundService
 
     private void Play()
     {
+        if (playlist is null) throw new NullReferenceException(nameof(playlist));
+
         playingSong = playlist[0];
         playlist[0].Users.Clear();
         playlist.RemoveAt(0);
@@ -39,7 +42,9 @@ internal class TelevisionWorker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        OnLoad(stoppingToken);
+        await base.ExecuteAsync(stoppingToken);
+        if (Songs is null) throw new NullReferenceException(nameof(Songs));
+
         playingSong = Songs[Random.Shared.Next(Songs.Count)];
         playlist = Songs.OrderBy(s => Random.Shared.Next()).Take(15).ToList();
 

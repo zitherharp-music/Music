@@ -1,6 +1,6 @@
 ﻿namespace Music.Cores;
 
-public class QQMusic : Spreadsheet
+public abstract class QQMusic : Spreadsheet
 {
     public enum Image
     {
@@ -8,4 +8,6 @@ public class QQMusic : Spreadsheet
         Medium = 500,
         Large = 800
     }
+
+    public abstract string GetImageUrl(Image image);
 }

@@ -52,7 +52,7 @@ public class Spreadsheet
         public static T Deserialize<T>(IList<IList<object>> values)
         {
             IDictionary<string, int> columns;
-            switch (typeof(IList<Song>).GenericTypeArguments[0].Name)
+            switch (typeof(T).GenericTypeArguments[0].Name)
             {
                 case nameof(Song):
                     Song song;
@@ -66,7 +66,7 @@ public class Spreadsheet
                             ArtistId = value[columns["artistId"]].ToString(),
                             VietnameseName = value[columns["vietnameseName"]].ToString(),
                             ChineseName = value[columns["chineseName"]].ToString(),
-                            Duration = Convert.ToInt32(value[columns["duration"]])
+                            Duration = int.TryParse(value[columns["duration"]].ToString(), out int i) ? i : 0
                         };
                         songs.Add(song);
                     }
@@ -87,7 +87,7 @@ public class Spreadsheet
                     }
                     return (T)(IList<Artist>)artists;
             }
-            throw new Exception();
+            throw new FormatException(nameof(T));
         }
     }
 

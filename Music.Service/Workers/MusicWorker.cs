@@ -1,17 +1,20 @@
-﻿using Music.Core.Models;
+﻿using Music.Models;
 using System.Text;
 using System.Text.Json;
 
-namespace Music.Core.Service.Workers;
+namespace Music.Cores.Service.Workers;
 
 internal class MusicWorker : BackgroundService
 {
     private readonly ILogger<MusicWorker> logger;
     private string? jsonString;
 
-    public MusicWorker(ILogger<MusicWorker> logger)
+    public IList<Song>? Songs { get; set; }
+    public IList<Artist>? Artists { get; set; }
+
+    public MusicWorker(ILoggerFactory factory)
     {
-        this.logger = logger;
+        logger = new Logger<MusicWorker>(factory);
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)

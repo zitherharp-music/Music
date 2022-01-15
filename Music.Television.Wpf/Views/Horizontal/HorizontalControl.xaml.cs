@@ -1,14 +1,13 @@
-﻿using Library.Providers;
-using System;
+﻿using Music.Television.Wpf.ViewModels;
 using System.Windows;
 
-namespace Wpf.Views.Horizontal;
+namespace Music.Television.Wpf.Views.Horizontal;
 
 public partial class HorizontalControl : Window
 {
     public HorizontalControl()
     {
         InitializeComponent();
-        
+        DataContext = HorizontalViewModel.Instance;
     }
 }

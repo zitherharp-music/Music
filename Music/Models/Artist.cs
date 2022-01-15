@@ -4,7 +4,7 @@ namespace Music.Models;
 
 public class Artist : QQMusic
 {
-    public string GetImageUrl(Image image)
+    public override string GetImageUrl(Image image)
         => $"https://y.qq.com/music/photo_new/T001R{ (int)image }x{ (int)image }M000{ Id }.jpg";
 
     private IList<Song>? songs;

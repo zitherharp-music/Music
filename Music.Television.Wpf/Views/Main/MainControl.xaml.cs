@@ -1,8 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Wpf.ViewModels;
 
-namespace Wpf.Views.Main;
+namespace Music.Television.Wpf.Views.Main;
 
 public partial class MainControl : Window
 {
@@ -15,7 +14,7 @@ public partial class MainControl : Window
             if (visibleScreen is not null)
             {
                 var mainWindow = new MainWindow();
-                mainWindow.Title += " - " + visibleScreen.Name;                
+                mainWindow.Title += " - " + visibleScreen.Name;
                 switch (visibleScreen.Name)
                 {
                     case "Main":

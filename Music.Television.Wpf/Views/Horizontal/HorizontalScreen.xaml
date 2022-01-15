@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="Wpf.Views.Horizontal.HorizontalScreen"
+﻿<UserControl x:Class="Music.Television.Wpf.Views.Horizontal.HorizontalScreen"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:viewmodels="clr-namespace:Wpf.ViewModels" 
+             xmlns:viewmodels="clr-namespace:Music.Television.Wpf.ViewModels" 
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewmodels:HorizontalViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -16,10 +16,9 @@
         <Image Stretch="UniformToFill" 
                Source="{Binding PlayingSongImage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
         <!-- Channel logo -->
-        <Image Style="{StaticResource ChannelLogo}"
-               Source="{Binding AbsoluteUri, Mode=OneWay, Source={StaticResource LogoUri}}"/>
+        <Image Style="{StaticResource ChannelLogo}"/>
         <!--<Image Stretch="Fill" Margin="1050 10 180 475" HorizontalAlignment="Right" VerticalAlignment="Top" Source="" />-->
-        <TextBlock Style="{StaticResource ChannelLabel}" />
+        <TextBlock Style="{StaticResource ChannelLabel}"/>
         <TextBlock Style="{StaticResource PlayingSongDetail}"
                    Text="{Binding PlayingSongDetail, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
         <!-- Information -->
@@ -42,8 +41,9 @@
             </Grid.ColumnDefinitions>
             <!-- Theme -->
             <Grid.Background>
-                <ImageBrush Stretch="UniformToFill" 
-                            ImageSource="https://vetauvn.com/wp-content/uploads/2019/10/ve-may-bay-tet-2022-nhamdan.jpg" />
+                <SolidColorBrush Color="DarkRed"/>
+                <!--<ImageBrush Stretch="UniformToFill" 
+                            ImageSource="https://subiz.com.vn/blog/wp-content/uploads/2021/12/FROM-SUBIZ-TEAM-WITH-LOVE.png" />-->
             </Grid.Background>
             <!-- Logo -->
             <Button 

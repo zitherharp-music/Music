@@ -1,29 +1,15 @@
-﻿using Library.Enums;
-using Library.Utils;
-using System;
+﻿using Music.Cores;
 
-namespace Wpf.ViewModels;
+namespace Music.Television.Wpf.ViewModels;
 
 public class VerticalViewModel : MainViewModel
 {
     private static VerticalViewModel? instance;
-    public static new VerticalViewModel Instance => instance ??= new();
+    public static VerticalViewModel Instance => instance ??= new();
 
-    public string SongImage1 => Playlist[0].GetPhotoUrl(PhotoQuality.MQDefault);
-    public string SongImage2 => Playlist[1].GetPhotoUrl(PhotoQuality.MQDefault);
-    public string SongImage3 => Playlist[2].GetPhotoUrl(PhotoQuality.MQDefault);
-
-    public string? VoteSyntax
-    {
-        get
-        {
-            return Language switch
-            {
-                Language.Vietnamese => Songs.GetRandom().Id.GetNumberId(),
-                _ => throw new NotImplementedException()
-            };
-        }
-    }    
+    public string SongImage1 => Playlist[0].GetImageUrl(Youtube.Image.MQDefault);
+    public string SongImage2 => Playlist[1].GetImageUrl(Youtube.Image.MQDefault);
+    public string SongImage3 => Playlist[2].GetImageUrl(Youtube.Image.MQDefault);
 
     public override void Play()
     {

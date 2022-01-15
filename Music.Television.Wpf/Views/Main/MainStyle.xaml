@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=netstandard">
     <system:Uri x:Key="LogoUri">
-        https://yt3.ggpht.com/1fwMo61LyshbHPBaSdEdGJFJMnVi0a2p5aizMya3gCxhdBLS7itbEVbV21iRp3sD_sgD-RTSlg
+        https://yt3.ggpht.com/nVifEoz35xKYKfHV0vqtfl3SZsHcJMm0he6BFJgXQs_EjutrBiovzIRFLTxySXPxdDZ8aNO1gwU
     </system:Uri>
 
     <Style x:Key="ChannelLogo" TargetType="Image">
@@ -11,6 +11,7 @@
         <Setter Property="Margin" Value="0 30 80 0"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Source" Value="{Binding AbsoluteUri, Mode=OneWay, Source={StaticResource LogoUri}}"/>
     </Style>
 
     <Style x:Key="ChannelLabel" TargetType="TextBlock">

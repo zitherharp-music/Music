@@ -1,8 +1,6 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using Wpf.ViewModels;
+﻿using System.Windows.Controls;
 
-namespace Wpf.Views.Main;
+namespace Music.Television.Wpf.Views.Main;
 
 public partial class MainScreen : UserControl
 {

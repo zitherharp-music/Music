@@ -1,18 +1,17 @@
-﻿using Library.Utils;
+﻿using Music.Television.Wpf.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
-using Wpf.ViewModels;
 
-namespace Wpf.Views.Vertical;
+namespace Music.Television.Wpf.Views.Vertical;
 
 public partial class VerticalScreen : UserControl
 {
     public VerticalScreen()
     {
         InitializeComponent();
-        Loaded += delegate
+        IsVisibleChanged += delegate
         {
             // TODO: Initialize the data
             DataContext = Window.GetWindow(this).DataContext;
@@ -37,7 +36,7 @@ public partial class VerticalScreen : UserControl
                     mPlaylist.Margin.Top, mPlaylist.Margin.Right, mPlaylist.Margin.Bottom);
                 mInformation.Margin = new(mInformation.Margin.Left - 2,
                     mInformation.Margin.Top, mInformation.Margin.Right, mInformation.Margin.Bottom);
-                if (mPlaylist.Margin.Left < -6000) 
+                if (mPlaylist.Margin.Left < -6000)
                 {
                     mPlaylist.Margin = new(900,
                         mPlaylist.Margin.Top, mPlaylist.Margin.Right, mPlaylist.Margin.Bottom);
@@ -51,7 +50,7 @@ public partial class VerticalScreen : UserControl
             timer.Start();
 
             // TODO: Delegate the buttons
-            mVoteSyntax.Click += delegate {  };
+            mVoteSyntax.Click += delegate { };
         };
     }
 }

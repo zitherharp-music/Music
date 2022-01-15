@@ -9,7 +9,7 @@ using UpdateValueInputOption = Google.Apis.Sheets.v4.SpreadsheetsResource.Values
 namespace Music.Api.Controllers;
 
 [ApiController]
-[Route("apis/[controller]")]
+[Route("[controller]")]
 public class TelevisionController : ControllerBase
 {
     private readonly string id = JsonValues.Id["television"];

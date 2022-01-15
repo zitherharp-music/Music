@@ -1,6 +1,4 @@
-﻿using Library.Enums;
-using Library.Models;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Data;
 
@@ -10,7 +8,7 @@ internal class SongNameConverter : IValueConverter
 {
     public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return ((Song)value).GetName(Language.Vietnamese);
+        return null;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

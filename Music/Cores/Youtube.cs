@@ -1,6 +1,6 @@
 ﻿namespace Music.Cores;
 
-public class Youtube : Spreadsheet
+public abstract class Youtube : Spreadsheet
 {
     public enum Image
     {

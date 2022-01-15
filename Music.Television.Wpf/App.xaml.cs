@@ -1,5 +1,5 @@
 ﻿using System.Windows;
 
-namespace Wpf;
+namespace Music.Television.Wpf;
 
 public partial class App : Application { }

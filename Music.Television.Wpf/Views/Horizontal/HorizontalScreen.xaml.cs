@@ -1,11 +1,10 @@
-﻿using Library.Utils;
+﻿using Music.Television.Wpf.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
-using Wpf.ViewModels;
 
-namespace Wpf.Views.Horizontal;
+namespace Music.Television.Wpf.Views.Horizontal;
 
 public partial class HorizontalScreen : UserControl
 {
@@ -15,8 +14,10 @@ public partial class HorizontalScreen : UserControl
         Loaded += delegate
         {
             // TODO: Initialize the data
-            DataContext = Window.GetWindow(this).DataContext;
-            var viewModel = DataContext as HorizontalViewModel;
+            var viewModel = MainViewModel.Instance;
+            DataContext = viewModel;
+            Window.GetWindow(this).DataContext = viewModel;
+            Window.GetWindow(this).Title = $"{ Window.GetWindow(this).Title } - { nameof(HorizontalScreen) }";
 
             // TODO: Initialize the timers
             DispatcherTimer timer;
@@ -25,7 +26,7 @@ public partial class HorizontalScreen : UserControl
             timer = new() { Interval = TimeSpan.FromSeconds(2) };
             timer.Tick += delegate
             {
-                mVoteSyntax.Text = viewModel?.VoteSyntax;
+                mVoteSyntax.Text = viewModel.VoteSyntax;
             };
             timer.Start();
 

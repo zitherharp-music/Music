@@ -21,8 +21,13 @@ public class Song : Youtube
             {
                 foreach (var artist in Repository.Artists)
                 {
-                    if (artist.Id is null) continue;
-                    if (artist.Id.Equals(artistId)) artists.Add(artist); break;
+                    if (artist.Id != null)
+                    {
+                        if (artist.Id.Equals(artistId))
+                        {
+                            artists.Add(artist); break;
+                        }
+                    }
                 }
             }
         }
