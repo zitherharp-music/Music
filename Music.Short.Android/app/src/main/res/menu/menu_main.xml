@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_live"
+        android:icon="@drawable/ic_livetv_white_24"
+        app:showAsAction="ifRoom"
+        android:title="@string/live">
+    </item>
+    <item
+        android:id="@+id/action_setting"
+        app:showAsAction="never"
+        android:title="@string/setting">
+    </item>
+    <item
+        android:id="@+id/action_about"
+        app:showAsAction="never"
+        android:title="Giới thiệu">
+    </item>
+    <item
+        android:id="@+id/action_update"
+        app:showAsAction="never"
+        android:title="Kiểm tra cập nhật">
+    </item>
+</menu>
