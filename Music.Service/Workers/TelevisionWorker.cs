@@ -1,4 +1,5 @@
-using Music.Models;
+using Music.Shared.Cores;
+using Music.Shared.Models;
 using System.Text;
 using System.Text.Json;
 

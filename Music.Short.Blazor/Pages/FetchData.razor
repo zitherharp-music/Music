@@ -1,0 +1,49 @@
+﻿@page "/fetchdata"
+
+<PageTitle>Thống kê</PageTitle>
+
+@using Music.Models;
+@using Music.Short.Blazor.Data;
+@inject MusicService MusicService
+
+<h1>Thống kê</h1>
+<p>Bảng thống kê này dựa theo các idol trên Short</p>
+
+@if (artists == null)
+{
+    <p><em>Đang tải dữ liệu...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nghệ danh</th>
+                <th>Audio (bài)</th>
+                <th>Short (chiếc)</th>
+                <th>Tổng cộng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var artist in artists.OrderByDescending(a => a.GetSongs().Count + a.GetShorts().Count))
+            {
+                var sum = artist.GetSongs().Count + artist.GetShorts().Count;
+                <tr>
+                    <td>@artist.VietnameseName</td>
+                    <td>@artist.GetSongs().Count</td>
+                    <td>@artist.GetShorts().Count</td>
+                    <td>@sum</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IList<Artist>? artists;
+
+    protected override async Task OnInitializedAsync()
+    {
+        artists = await MusicService.GetArtistsAsync();
+    }
+}

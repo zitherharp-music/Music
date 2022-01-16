@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Music\Music.csproj" />
+    <ProjectReference Include="..\Music\Shared\Music.Shared.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties token_1json_4google_1apis_1auth_1oauth2_1responses_1tokenresponse-user__JsonSchema="https://json-schema.org/draft-04/schema" /></VisualStudio></ProjectExtensions>

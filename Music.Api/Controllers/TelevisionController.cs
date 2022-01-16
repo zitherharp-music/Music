@@ -1,7 +1,7 @@
 using Google.Apis.Sheets.v4.Data;
 using Microsoft.AspNetCore.Mvc;
-using Music.Models;
-using static Music.Cores.Spreadsheet;
+using Music.Shared.Models;
+using static Music.Shared.Cores.Spreadsheet;
 using static Music.Api.Service;
 using AppendValueInputOption = Google.Apis.Sheets.v4.SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum;
 using UpdateValueInputOption = Google.Apis.Sheets.v4.SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Music.Models;
+using Music.Shared.Models;
 using static Music.Api.Service;
-using static Music.Cores.Spreadsheet;
+using static Music.Shared.Cores.Spreadsheet;
 
 namespace Music.Api.Controllers;
 

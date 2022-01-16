@@ -1,0 +1,38 @@
+{
+  "id": {
+    "music": "1znQOtTDJz0UqDs0uB2MQZV3wN0l_J0TrU44d9chH2SI",
+    "television": "15XE1J5YPKyCoEHHJabM7IDQeK_wgSnKbWVRvn9eqVVc"
+  },
+  "key": [
+    "AIzaSyAD91OiEeWRoqhsw0peq94qg5joZe47r_s"
+  ],
+  "range": {
+    "audio": "Audio!A1:G",
+    "artist": "Artist!A1:F",
+    "short": "Short!A1:C",
+    "playingsong": "Playlist!A1:G",
+    "playlist": "Playlist!A2:G",
+    "information": "Information",
+    "message": "Message!A1:D"
+  },
+  "column": {
+    "audio": {
+      "id": 0,
+      "artistId": 1,
+      "vietnameseName": 2,
+      "chineseName": 3,
+      "duration": 6
+    },
+    "artist": {
+      "id": 0,
+      "playlistId": 1,
+      "vietnameseName": 2,
+      "chineseName": 3
+    },
+    "short": {
+      "id": 0,
+      "artistId": 1,
+      "songId": 2
+    }
+  }
+}
