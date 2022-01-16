@@ -1,4 +1,5 @@
 ﻿using Music.Television.Wpf.ViewModels;
+using Music.Television.Wpf.Views.Horizontal;
 using System;
 using System.Windows;
 using System.Windows.Threading;
@@ -7,12 +8,17 @@ namespace Music.Television.Wpf.Views.Main;
 
 public partial class MainWindow : Window
 {
+    private bool isFirstLoad = true;
+
     public MainWindow()
     {
         InitializeComponent();
-        DataContextChanged += delegate
+        mMainContainer.Children.Clear();
+        mMainContainer.Children.Add(new HorizontalScreen());
+        mMainContainer.DataContextChanged += delegate
         {
-            var viewModel = DataContext as BaseViewModel;
+            if (!isFirstLoad) return;
+            var viewModel = mMainContainer.DataContext as BaseViewModel;
             mPlayerView.Navigate("https://youtu.be/" + viewModel?.PlayingSong.Id);
 
             // TODO: Initialize the timer
@@ -29,6 +35,8 @@ public partial class MainWindow : Window
                 }
             };
             timer.Start();
-        };
+
+            isFirstLoad = false;
+        };    
     }
 }

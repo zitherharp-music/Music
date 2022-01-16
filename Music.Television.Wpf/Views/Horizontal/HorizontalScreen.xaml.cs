@@ -1,4 +1,5 @@
 ﻿using Music.Television.Wpf.ViewModels;
+using Music.Television.Wpf.Views.Main;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,10 +15,14 @@ public partial class HorizontalScreen : UserControl
         Loaded += delegate
         {
             // TODO: Initialize the data
-            var viewModel = MainViewModel.Instance;
+            var viewModel = HorizontalViewModel.Instance;
             DataContext = viewModel;
-            Window.GetWindow(this).DataContext = viewModel;
-            Window.GetWindow(this).Title = $"{ Window.GetWindow(this).Title } - { nameof(HorizontalScreen) }";
+
+            if (Window.GetWindow(this) is MainWindow mainWindow)
+            {
+                mainWindow.mMainContainer.DataContext = viewModel;
+                mainWindow.Title = $"{ Window.GetWindow(this).Title } - Horizontal";
+            }    
 
             // TODO: Initialize the timers
             DispatcherTimer timer;

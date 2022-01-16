@@ -5,9 +5,6 @@ namespace Music.Television.Wpf.ViewModels;
 
 public class MainViewModel : BaseViewModel
 {
-    private static MainViewModel? instance;
-    public static MainViewModel Instance => instance ??= new();
-
     public string? SongName1 => Playlist[0].GetName(Language);
     public string? SongName2 => Playlist[1].GetName(Language);
     public string? SongName3 => Playlist[2].GetName(Language);
@@ -16,11 +13,7 @@ public class MainViewModel : BaseViewModel
     public int SongVote2 => Playlist[1].Users.Count * 10 + 10;
     public int SongVote3 => Playlist[2].Users.Count * 10 + 10;
 
-    public string SongImage1 => Playlist[0].GetImageUrl(Youtube.Image.MQDefault);
-    public string SongImage2 => Playlist[1].GetImageUrl(Youtube.Image.MQDefault);
-    public string SongImage3 => Playlist[2].GetImageUrl(Youtube.Image.MQDefault);
-
-    public string PlayingSongImage => PlayingSong.GetImageUrl(Youtube.Image.SDDefault);
+    public string PlayingSongImage => PlayingSong.GetImageUrl(Youtube.Image.MaxResDefault);
 
     public string PlayingSongDetail
     {
@@ -49,8 +42,6 @@ public class MainViewModel : BaseViewModel
         }
     }
 
-    public string? VoteSyntax => "Soạn tin: ZHM " + Songs.GetRandom().GetName(Language);
-
     public override void Play()
     {
         base.Play();
@@ -60,9 +51,6 @@ public class MainViewModel : BaseViewModel
         OnPropertyChanged(nameof(SongVote1));
         OnPropertyChanged(nameof(SongVote2));
         OnPropertyChanged(nameof(SongVote3));
-        OnPropertyChanged(nameof(SongImage1));
-        OnPropertyChanged(nameof(SongImage2));
-        OnPropertyChanged(nameof(SongImage3));
         OnPropertyChanged(nameof(PlaylistString));
         OnPropertyChanged(nameof(PlayingSongImage));
         OnPropertyChanged(nameof(PlayingSongDetail));
@@ -77,9 +65,6 @@ public class MainViewModel : BaseViewModel
         OnPropertyChanged(nameof(SongVote1));
         OnPropertyChanged(nameof(SongVote2));
         OnPropertyChanged(nameof(SongVote3));
-        OnPropertyChanged(nameof(SongImage1));
-        OnPropertyChanged(nameof(SongImage2));
-        OnPropertyChanged(nameof(SongImage3));
         OnPropertyChanged(nameof(PlaylistString));
     }
 }

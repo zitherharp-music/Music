@@ -1,6 +1,44 @@
 <resources>
-    <string name="app_name">Zither Harp Music: Television</string>
+    <string name="app_name">Zither Harp Music: Short</string>
+    <string name="title_home">Trang chủ</string>
+    <string name="title_explorer">Khám phá</string>
+    <string name="title_notifications">Thông báo</string>
+    <string name="title_user">Người dùng</string>
+
+    <string name="youtube_server_url">https://www.googleapis.com/youtube/v3</string>
+    <string name="youtube_channel_id">UCyC1CZgRYu0_PaJPCVcjJvA</string>
+    <string name="youtube_api_key">AIzaSyBKe3ugpze8tni2Zyw-JeA-sKFCJHKMmUQ</string>
+
+    <string name="sheet_url">https://sheets.googleapis.com/v4/spreadsheets</string>
+    <string name="sheet_id">1znQOtTDJz0UqDs0uB2MQZV3wN0l_J0TrU44d9chH2SI</string>
+    <string name="sheet_api_key">AIzaSyAD91OiEeWRoqhsw0peq94qg5joZe47r_s</string>
+
+    <string name="recommend">Đề xuất</string>
+    <string name="recent">Gần đây</string>
+    <string name="favourite">Yêu thích</string>
+    <string name="follow">Theo dõi</string>
+    <string name="unfollow">Bỏ theo dõi</string>
+    <string name="follower">Người theo dõi</string>
+    <string name="loading">Đang tải</string>
+    <string name="reload">Tải lại</string>
+
+    <string name="artists">Artist</string>
+    <string name="shorts">Short</string>
+    <string name="videos">Video</string>
+    <string name="audios">Audio</string>
+    <string name="use">Sử dụng</string>
+    <string name="share">Chia sẻ</string>
+    <string name="empty">Trống</string>
+    <string name="login">Đăng nhập</string>
+    <string name="login_by_google">Do Zither Harp Music tự động tạo</string>
+
+    <string name="not_login">Bạn chưa đăng nhập\nHãy đăng nhập bằng tài khoản ZHC của bạn</string>
     <string name="no_connection">Không có kết nối</string>
-    <string name="setting">Cài đặt</string>
-    <string name="live">Trực tiếp</string>
+    <string name="no_notification">Không có thông báo</string>
+
+    <string name="require_google_account">Ứng dụng này cần quyền truy cập vào tài khoản Google của bạn</string>
+    <string name="require_google_play_service">Ứng dụng này yêu cầu phải có Dịch vụ của Google.
+        Vui lòng cài đặt Dịch vụ của Google trên thiết bị của bạn và chạy lại ứng dụng!
+    </string>
+    <string name="empty_text">Vui lòng tải xuống ứng dụng Zither Harp Music: %1$s để xem thêm</string>
 </resources>

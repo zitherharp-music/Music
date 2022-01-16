@@ -35,7 +35,7 @@
                                HorizontalAlignment="Center">Options</TextBlock>
                     <Button Name="btnShowSelectedItem">Show selected</Button>
                 </StackPanel>
-                <ListView ItemsSource="{Binding Playlist}" 
+                <ListView ItemsSource="{Binding Playlist, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
                           HorizontalContentAlignment="Stretch">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -44,10 +44,10 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="100" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding VietnameseName}" />
+                                <TextBlock Text="{Binding VietnameseName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                                 <ProgressBar Grid.Column="1" 
                                              Minimum="0" Maximum="100" 
-                                             Value="{Binding Users.Count}" />
+                                             Value="{Binding Users.Count, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
