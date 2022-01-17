@@ -1,6 +1,6 @@
-﻿using Music.Cores;
-using Music.Enums;
-using Music.Models;
+﻿using Music.Shared.Cores;
+using Music.Shared.Enums;
+using Music.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -1,4 +1,6 @@
 ﻿using Music.Shared.Cores;
+using Music.Shared.Enums;
+using Music.Shared;
 using System.Text.Json.Serialization;
 
 namespace Music.Shared.Models;
@@ -33,4 +35,7 @@ public class Song : Youtube
         }
         return artists;
     }
+
+    public string ToString(Language language)
+        => GetName(language) + " - " + GetArtists().GetNames(language);
 }

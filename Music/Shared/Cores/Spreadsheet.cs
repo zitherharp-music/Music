@@ -1,4 +1,5 @@
-﻿using Music.Shared.Models;
+﻿using Music.Shared.Enums;
+using Music.Shared.Models;
 using System.Text.Json;
 
 namespace Music.Shared.Cores;
@@ -16,7 +17,7 @@ public class Spreadsheet
 
     public class Json
     {
-        public List<string> Key { get; init; } = new();
+        public string[] Key { get; init; } = Array.Empty<string>();
 
         public Dictionary<string, string> Id { get; init; } = new();
 
@@ -47,7 +48,7 @@ public class Spreadsheet
     {
         public static IList<IList<object>> GetValues(string id, string range)
         {
-            var key = JsonValues.Key[Random.Shared.Next(JsonValues.Key.Count)];
+            var key = JsonValues.Key[Random.Shared.Next(JsonValues.Key.Length)];
             var url = $"https://sheets.googleapis.com/v4/spreadsheets/{ id }/values/{ range }?key={ key }";
             var jsonString = HttpClient.GetStringAsync(url).Result;
             var responseBody = JsonSerializer.Deserialize<Api>(jsonString, JsonOptions);
@@ -111,14 +112,6 @@ public class Spreadsheet
         }
     }
 
-    #region Properties
-    protected const string splitCharacter = "/";
-
-    public string? Id { get; init; }
-    public string? VietnameseName { get; init; }
-    public string? ChineseName { get; init; }
-    #endregion
-
     public static readonly HttpClient HttpClient = new();
     public static readonly JsonSerializerOptions JsonOptions = new()
     {
@@ -139,4 +132,19 @@ public class Spreadsheet
             return jsonValues;
         }
     }
+
+    #region Properties
+    protected const string splitCharacter = "/";
+
+    public string? Id { get; init; }
+    public string? VietnameseName { get; init; }
+    public string? ChineseName { get; init; }
+    #endregion
+
+    public string? GetName(Language language) => language switch
+    {
+        Language.Vietnamese => VietnameseName,
+        Language.SimplifiedChinese => ChineseName,
+        _ => null
+    };
 }

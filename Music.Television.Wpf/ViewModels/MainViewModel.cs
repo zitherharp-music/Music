@@ -1,5 +1,6 @@
-﻿using Music.Cores;
-using Music.Enums;
+﻿using Music.Shared;
+using Music.Shared.Cores;
+using Music.Shared.Enums;
 
 namespace Music.Television.Wpf.ViewModels;
 

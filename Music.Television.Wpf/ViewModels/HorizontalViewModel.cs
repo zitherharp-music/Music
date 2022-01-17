@@ -1,4 +1,6 @@
-﻿namespace Music.Television.Wpf.ViewModels;
+﻿using Music.Shared;
+
+namespace Music.Television.Wpf.ViewModels;
 
 internal class HorizontalViewModel : MainViewModel
 {

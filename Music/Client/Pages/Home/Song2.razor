@@ -1,0 +1,94 @@
+﻿@page "/song"
+@using Music.Shared;
+@using Music.Shared.Cores;
+@using Music.Shared.Enums;
+@using Music.Shared.Models;
+@inject HttpClient HttpClient
+
+<PageTitle>Zither Harp Music - Bài hát</PageTitle>
+
+<div class="row p-3">
+    <!--Recent songs-->
+    <div class="bg-body rounded col-sm-6 mb-5">
+        <div class="border-bottom h6 pb-2 mb-0">
+            Cập nhật gần đây
+            <a class="float-right">
+                Phát tất cả
+            </a>
+        </div>
+        @if (recentSongs == null)
+        {
+            <p><em>Đang tải...</em></p>
+        }
+        else
+        {
+            foreach (var song in recentSongs)
+            {
+                <div class="d-flex text-muted pt-3">
+                    <a asp-controller="Song" asp-action="Detail">
+                        <img class="img-fluid shadow p-1"
+                             style="background-color:deeppink; width:64px;"
+                             src=@song.GetImageUrl(Youtube.Image.MQDefault) 
+                             loading="lazy" aria-label="song" />
+                    </a>
+                    <a class="pb-3 ml-3 mb-0 small lh-sm w-100 border-bottom"
+                       asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id">
+                        <div class="d-block text-gray-dark h6">
+                            
+                        </div>
+                        <div class="text-muted">
+                            
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+    </div>
+    <!--Recommend songs-->
+    <div class="bg-body rounded col-sm-6">
+        <div class="border-bottom h6 pb-2 mb-0">
+            Đề xuất cho bạn
+            <a class="float-right">
+                Phát tất cả
+            </a>
+        </div>
+        @if (recommendSongs == null)
+        {
+            <p><em>Đang tải...</em></p>
+        }
+        else
+        {
+            foreach (var song in recommendSongs)
+            {
+                <div class="d-flex text-muted pt-3">
+                    <a asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id">
+                        <img class="img-fluid shadow p-1"
+                             style="background-color:deeppink; width:64px;"
+                             src=@song.GetImageUrl(Youtube.Image.MQDefault)
+                             loading="lazy" aria-label="song" />
+                    </a>
+                    <a class="pb-3 ml-3 mb-0 small lh-sm w-100 border-bottom"
+                         asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id">
+                        <div class="d-block text-gray-dark h6">
+                            
+                        </div>
+                        <div class="text-muted">
+                            
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private IList<Song>? recentSongs, recommendSongs;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var songs = await HttpClient.GetFromJsonAsync<IList<Song>>("apis/music/songs/get");
+        recentSongs = songs.Take(15).ToList();
+        recommendSongs = songs.OrderBy(song => Random.Shared.Next()).Take(15).ToList();
+    }
+}

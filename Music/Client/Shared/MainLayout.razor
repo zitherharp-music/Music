@@ -1,17 +1,68 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
     <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
+        <nav class="top-row px-4 navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" aria-current="page" href="/">
+                    <img alt="zhmusic" src="~/icon-192.png">
+                </a>
+                <button class="navbar-toggler" type="button"
+                        data-toggle="collapse" data-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex font-weight-bold justify-content-end">
+                    <ul class="navbar-nav flex-grow-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" href="/song">BÀI HÁT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" href="/download">CA SĨ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" 
+                               asp-controller="Album" asp-action="Index">ALBUM</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary"
+                               data-toggle="modal" data-target="#error-modal">VIDEO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary"
+                               data-toggle="modal" data-target="#error-modal">THỂ LOẠI</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary"
+                               data-toggle="modal" data-target="#error-modal">GIỚI THIỆU</a>
+                        </li>
+                        <li>
+                            <input type="search" class="form-control form-control-dark"
+                                   placeholder="Tìm kiếm..." aria-label="Search">
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-primary dropdown-toggle mr-md-2"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SẢN PHẨM</a>
+                            <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="bd-versions">
+                                <a class="dropdown-item disabled"
+                                   asp-area="" asp-controller="Home" asp-action="Index">English</a>
+                                <a class="dropdown-item active"
+                                   asp-area="" asp-controller="Home" asp-action="Index">Tiếng Việt</a>
+                                <a class="dropdown-item disabled"
+                                   asp-area="" asp-controller="Home" asp-action="Index">中文（简体）</a>
+                                <a class="dropdown-item disabled"
+                                   asp-area="" asp-controller="Home" asp-action="Index">中文（繁体）</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
         <article class="content px-4">
             @Body
         </article>
     </main>
+
 </div>

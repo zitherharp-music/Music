@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Television.Wpf", "Mus
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Service", "Music.Service\Music.Service.csproj", "{3E2DF604-6F17-4B46-9AE4-FC9F6EA7B70F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.Server", "Music\Server\Music.Server.csproj", "{DAEB9F07-8241-4055-8551-0731A67A00C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Server", "Music\Server\Music.Server.csproj", "{DAEB9F07-8241-4055-8551-0731A67A00C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.Client", "Music\Client\Music.Client.csproj", "{DBC33DED-E56D-4CDC-8D62-E69CD997EB7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Client", "Music\Client\Music.Client.csproj", "{DBC33DED-E56D-4CDC-8D62-E69CD997EB7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music.Shared", "Music\Shared\Music.Shared.csproj", "{0158FCD1-90D8-43AD-98A6-0805EE93549D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Shared", "Music\Shared\Music.Shared.csproj", "{0158FCD1-90D8-43AD-98A6-0805EE93549D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

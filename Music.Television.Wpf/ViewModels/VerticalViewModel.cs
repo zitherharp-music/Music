@@ -1,4 +1,4 @@
-﻿using Music.Cores;
+﻿using Music.Shared.Cores;
 
 namespace Music.Television.Wpf.ViewModels;
 
@@ -13,7 +13,7 @@ public class VerticalViewModel : MainViewModel
 
     public override void Play()
     {
-        base.Play();
+        base.Play(); 
         OnPropertyChanged(nameof(SongImage1));
         OnPropertyChanged(nameof(SongImage2));
         OnPropertyChanged(nameof(SongImage3));

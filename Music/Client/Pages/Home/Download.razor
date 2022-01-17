@@ -1,0 +1,120 @@
+﻿@page "/download"
+@using Music.Shared.Models;
+
+<PageTitle>Zither Harp Music - Tải xuống</PageTitle>
+
+<div class="p-3 pb-md-3 mx-auto text-center">
+    <h1 class="display-4">Tải xuống</h1>
+    <p class="text-muted">Vui lòng chọn một trong các chất lượng nhạc bên dưới để 
+        tải bài hát</p>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <div class="card mb-3 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">128kbps</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">~4MB<small class="text-muted fw-light">/bài</small></h1>
+                    <p class="mt-3 mb-3">Định dạng âm thanh MP3 với chất lượng 128kbps 
+                        có dung lượng nhỏ được nhiều thiết bị nghe nhạc hỗ trợ</p>
+                    <a type="button" class="w-100 btn btn-lg btn-outline-primary"
+                       href="">Tải về</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-3 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">192kbps</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">~6MB<small class="text-muted fw-light">/bài</small></h1>
+                    <p class="mt-3 mb-3">Định dạng âm thanh MP3 với chất lượng 192kbps 
+                        có dung lượng lớn hơn nhưng nghe hay và chi tiết hơn định dạng MP3 128kbps</p>
+                    <a type="button" class="w-100 btn btn-lg btn-dark disabled" href="#">Không khả dụng</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-3 rounded-3 shadow-sm border-primary">
+                <div class="card-header py-3 text-white bg-primary border-primary">
+                    <h4 class="my-0 fw-normal">320kbps</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">~10MB<small class="text-muted fw-light">/bài</small></h1>
+                    <p class="mt-3 mb-3">Định dạng âm thanh MP3 với chất lượng 320kbps 
+                        có dung lượng lớn hơn nhưng nghe hay và chi tiết hơn định dạng MP3 192kbps</p>
+                    <button type="button" class="w-100 btn btn-lg btn-primary">Liên hệ chúng tôi</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-3 rounded-3 shadow-sm border-primary">
+                <div class="card-header py-3 text-white bg-primary border-primary">
+                    <h4 class="my-0 fw-normal">Lossless</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">~28MB<small class="text-muted fw-light">/bài</small></h1>
+                    <p class="mt-3 mb-3">Định dạng âm thanh Lossless với chất lượng tốt nhất 
+                        đem lại chất lượng âm thanh giống như bạn nghe được từ đĩa CD gốc</p>
+                    <button type="button" class="w-100 btn btn-lg btn-primary">Liên hệ chúng tôi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <h2 class="display-6 mb-4">So sánh chất lượng</h2>
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th style="width: 26%;"></th>
+                    <th style="width: 18%;">128kbps</th>
+                    <th style="width: 18%;">192kbps</th>
+                    <th style="width: 18%;">320kbps</th>
+                    <th style="width: 18%;">Lossless</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Dung lượng</th>
+                    <td title="Trung bình từ 3 đến 5 MB">Nhỏ</td>
+                    <td title="Trung bình từ 5 đến 8 MB">Trung bình</td>
+                    <td title="Trung bình từ 8 đến 12 MB">Lớn</td>
+                    <td title="Trung bình từ 25 đến 30 MB">Rất lớn</td>
+                </tr>
+                <tr>
+                    <th scope="row">Chất lượng</th>
+                    <td>Thấp</td>
+                    <td>Trung bình</td>
+                    <td>Cao</td>
+                    <td>Rất cao</td>
+                </tr>
+                <tr>
+                    <th scope="row">Chi phí</th>
+                    <td>Miễn phí</td>
+                    <td title="Vừa miễn phí và có phí đối với nguồn tải nhạc">Trung bình</td>
+                    <td>Cao</td>
+                    <td title="Chi phí cao cho thiết bị và nguồn tải nhạc">Rất cao</td>
+                </tr>
+                <tr>
+                    <th scope="row">Điều kiện</th>
+                    <td title="Có thể thưởng thức dễ dàng trên bất kì thiết bị nào từ di động cho đến máy tính">Dễ dàng</td>
+                    <td title="Cần loa hoặc tai nghe chất lượng cao để cảm nhận âm thanh tốt hơn">Trung bình</td>
+                    <td title="Cần có phần mềm chơi nhạc chuyên dụng để phát định dạng này">Khó</td>
+                    <td title="Cần phần mềm chuyên dụng và thiết bị chuyển đổi âm thanh số cùng với dàn âm thanh 5.1 trở lên">Rất khó</td>
+                </tr>
+                <tr>
+                    <th scope="row">Nguồn nhạc</th>
+                    <td title="Nhiều nguồn chia sẻ trực tuyến">Phổ biến</td>
+                    <td title="Ít nguồn chia sẻ hơn và chủ yếu phát hành qua các trang nhạc tính phí">Trung bình</td>
+                    <td title="Nguồn nhạc hiếm và tập trung chủ yếu ở các website nhạc bản quyền lớn">Hiếm</td>
+                    <td title="Tập trung chủ yếu ở các trang web nhạc bản quyền tính phí">Rất hiếm</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+
+}

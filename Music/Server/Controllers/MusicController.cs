@@ -5,13 +5,19 @@ using static Music.Shared.Cores.Spreadsheet;
 
 namespace Music.Server.Controllers;
 
-[ApiController]
-[Route("[controller]/apis")]
+[ApiController()]
+[Route("apis/[controller]")]
 public class MusicController : ControllerBase
 {
+    private readonly ILogger<MusicController> logger;
     private readonly string id = JsonValues.Id["music"];
 
-    [HttpGet("/music/songs/get")]
+    public MusicController(ILogger<MusicController> logger)
+    {
+        this.logger = logger;
+    }
+
+    [HttpGet("songs/get")]
     public async Task<IList<Song>> GetSongs()
     {
         var responseBody = await SheetsService.Spreadsheets.Values
@@ -19,7 +25,7 @@ public class MusicController : ControllerBase
         return Serializer.Deserialize<IList<Song>>(responseBody.Values);
     }
 
-    [HttpGet("/music/artists/get")]
+    [HttpGet("artists/get")]
     public async Task<IList<Artist>> GetArtists()
     {
         var responseBody = await SheetsService.Spreadsheets.Values

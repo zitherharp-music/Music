@@ -1,6 +1,6 @@
 {
-  "name": "Music",
-  "short_name": "Music",
+  "name": "Zither Harp Music",
+  "short_name": "ZH Music",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",

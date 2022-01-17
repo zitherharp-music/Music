@@ -1,6 +1,10 @@
 ﻿@page "/fetchdata"
 @using Music.Shared
-@inject HttpClient Http
+@using Music.Shared.Cores;
+@using Music.Shared.Models;
+@using System.Text;
+@using System.Text.Json;
+@inject HttpClient HttpClient
 
 <PageTitle>Weather forecast</PageTitle>
 
@@ -8,9 +12,9 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (forecasts == null)
+@if (artists == null)
 {
-    <p><em>Loading...</em></p>
+    <p><em>Đang tải...</em></p>
 }
 else
 {
@@ -24,13 +28,13 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach (var forecast in artists)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
+                    <td>@forecast.Id</td>
+                    <td>@forecast.VietnameseName</td>
+                    <td>@forecast.ChineseName</td>
+                    <td>@forecast.ToString()</td>
                 </tr>
             }
         </tbody>
@@ -38,10 +42,10 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private Artist[]? artists;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+        artists = await HttpClient.GetFromJsonAsync<Artist[]>("apis/music/artists/get");
     }
 }

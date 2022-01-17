@@ -9,12 +9,12 @@ using UpdateValueInputOption = Google.Apis.Sheets.v4.SpreadsheetsResource.Values
 namespace Music.Server.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("apis/[controller]")]
 public class TelevisionController : ControllerBase
 {
     private readonly string id = JsonValues.Id["television"];
 
-    [HttpGet("/television/informations/get")]
+    [HttpGet("informations/get")]
     public async Task<IList<string?>> GetInformations()
     {
         var responseBody = await SheetsService.Spreadsheets.Values
@@ -27,7 +27,7 @@ public class TelevisionController : ControllerBase
         return informations;
     }
 
-    [HttpGet("/television/playlist/get")]
+    [HttpGet("playlist/get")]
     public async Task<IList<Song>> GetPlaylist()
     {
         var responseBody = await SheetsService.Spreadsheets.Values
@@ -50,7 +50,7 @@ public class TelevisionController : ControllerBase
         return songs;
     }
 
-    [HttpPost("/television/playlist/append")]
+    [HttpPost("playlist/append")]
     public async Task<string> AppendPlaylist([FromBody] IList<Song> songs)
     {
         var rows = new List<IList<object?>>();
@@ -74,7 +74,7 @@ public class TelevisionController : ControllerBase
         return response.TableRange;
     }
 
-    [HttpPut("/television/playlist/update")]
+    [HttpPut("playlist/update")]
     public async Task<string> UpdatePlaylist([FromBody] IList<Song> songs)
     {
         var rows = new List<IList<object?>>();
@@ -98,7 +98,7 @@ public class TelevisionController : ControllerBase
         return response.UpdatedRange;
     }
 
-    [HttpGet("/television/playingsong/get")]
+    [HttpGet("playingsong/get")]
     public async Task<Song> GetPlayingSong()
     {
         var responseBody = await SheetsService.Spreadsheets.Values
@@ -106,7 +106,7 @@ public class TelevisionController : ControllerBase
         return Serializer.Deserialize<IList<Song>>(responseBody.Values)[0];
     }
 
-    [HttpPost("/television/playingsong/append")]
+    [HttpPost("playingsong/append")]
     public async Task<string> AppendPlayingSong([FromBody] Song song)
     {
         var row = new List<IList<object?>>()
@@ -128,7 +128,7 @@ public class TelevisionController : ControllerBase
         return response.TableRange;
     }
 
-    [HttpPut("/television/playingsong/update")]
+    [HttpPut("playingsong/update")]
     public async Task<string> UpdatePlayingSong([FromBody] Song song)
     {
         var row = new List<IList<object?>>()
@@ -150,7 +150,7 @@ public class TelevisionController : ControllerBase
         return response.UpdatedRange;
     }
 
-    [HttpGet("/television/messages/get")]
+    [HttpGet("messages/get")]
     public async Task<IList<Message>> GetMessages()
     {
         var responseBody = await SheetsService.Spreadsheets.Values
@@ -173,7 +173,7 @@ public class TelevisionController : ControllerBase
         return messages;
     }
 
-    [HttpPost("/television/messages/append")]
+    [HttpPost("messages/append")]
     public async Task<string> AppendMessage([FromBody] Message message)
     {
         var row = new List<IList<object?>>()
