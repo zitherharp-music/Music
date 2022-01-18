@@ -1,6 +1,6 @@
-﻿@page "/short"
+﻿@page "/short/recommend"
 
-<PageTitle>Zither Harp Music: Short - Trang chủ</PageTitle>
+<PageTitle>Zither Harp Music: Short - Đề xuất</PageTitle>
 
 <div @onclick="ToggleNavMenu">
     <nav class="flex-column">
@@ -22,6 +22,8 @@
     </nav>
 </div>
 
+<h4>Hi Recommend</h4>
+
 @code {
     private bool collapseNavMenu = true;
 
@@ -32,4 +34,3 @@
         collapseNavMenu = !collapseNavMenu;
     }
 }
-

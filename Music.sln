@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Television.Wpf", "Music.Television.Wpf\Music.Television.Wpf.csproj", "{4922F750-85DE-4B29-B861-7947AE44DBB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Client.Windows", "Music.Client.Desktop\Music.Client.Windows.csproj", "{4922F750-85DE-4B29-B861-7947AE44DBB5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Service", "Music.Service\Music.Service.csproj", "{3E2DF604-6F17-4B46-9AE4-FC9F6EA7B70F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Server.Service", "Music.Server.Service\Music.Server.Service.csproj", "{3E2DF604-6F17-4B46-9AE4-FC9F6EA7B70F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music.Server", "Music\Server\Music.Server.csproj", "{DAEB9F07-8241-4055-8551-0731A67A00C5}"
 EndProject
