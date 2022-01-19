@@ -28,6 +28,8 @@ namespace Music.Client.Wpf
             items.Add(new User() { Name = "Jane Doe", Description = "njt" });
             items.Add(new User() { Name = "Sammy Doe", Description = "njt" });
             lvUsers.ItemsSource = items;
+            Hide();
+            new Television.Views.MainWindow().Show();
         }
 
         class User

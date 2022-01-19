@@ -77,6 +77,23 @@ public class Spreadsheet
                         songs.Add(song);
                     }
                     return (T)(IList<Song>)songs;
+                case nameof(Video):
+                    Video video;
+                    var videos = new List<Video>();
+                    columns = JsonValues.Column["video"];
+                    foreach (var value in values)
+                    {
+                        video = new Video()
+                        {
+                            Id = value[columns["id"]].ToString(),
+                            ArtistId = value[columns["artistId"]].ToString(),
+                            VietnameseName = value[columns["vietnameseName"]].ToString(),
+                            ChineseName = value[columns["chineseName"]].ToString(),
+                            Duration = int.TryParse(value[columns["duration"]].ToString(), out int i) ? i : 0
+                        };
+                        videos.Add(video);
+                    }
+                    return (T)(IList<Video>)videos;
                 case nameof(Artist):
                     Artist artist;
                     var artists = new List<Artist>();

@@ -2,4 +2,4 @@
 
 namespace Music.Shared.Models;
 
-public class Song : Youtube { }
+public class Video : Youtube { }
