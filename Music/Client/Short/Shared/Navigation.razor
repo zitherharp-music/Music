@@ -1,0 +1,36 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/short">Zither Harp Music: Short</a>
+    </div>
+</div>
+
+<div @onclick="ToggleNavMenu">
+    <nav class="flex-column" style="height:100%;">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/short" Match="NavLinkMatch.All">
+                <span class="oi oi-home"></span> Đề xuất
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/short/recent">
+                <span class="oi oi-plus"></span> Gần đây
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="/short/login">
+                <span class="oi oi-list-rich"></span> Giới thiệu
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

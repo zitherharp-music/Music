@@ -2,27 +2,36 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Zither Harp Music</title>
     <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link href="Music.Client.styles.css" rel="stylesheet" />
-    <link href="manifest.json" rel="manifest" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" href="Music.Client.styles.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap-grid.css" />
+    <link rel="stylesheet" href="css/bootstrap-reboot.css" />
+    <link rel="stylesheet" href="css/bootstrap-utilities.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="manifest" href="manifest.webmanifest" />
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
 </head>
 
 <body>
-    <div id="app">Loading...</div>
+    <div id="app">
+        <img style="position:absolute" alt="loading" src="icon-512.png" />
+    </div>
 
-    <div id="blazor-error-ui">
+    <!--<div id="blazor-error-ui">
         Oops! Một sự cố ngoài ý muốn đã xảy ra...
         <a href="" class="reload">Tải lại</a>
         <a class="dismiss">🗙</a>
-    </div>
+    </div>-->
 
+    <script src="js/app.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
 </body>

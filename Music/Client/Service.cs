@@ -4,28 +4,19 @@ using System.Net.Http.Json;
 
 namespace Music.Client;
 
-internal class Service : IService
+internal class Service 
 {
-    private readonly IList<Song>? songs;
-    private readonly IList<Artist>? artists;
-    HttpClient httpClient;
+    private IList<Song>? songs;
 
-    public Service()
+    public IList<Song> Songs
     {
-        httpClient = new HttpClient { BaseAddress = new Uri(WebAssemblyHostBuilder.CreateDefault().HostEnvironment.BaseAddress) };
+        get
+        {
+            if (songs is null)
+            {
+                songs = new List<Song>();
+            }
+            return songs;
+        }
     }
-
-    public async Task<IList<Song>> GetSongs()
-    {
-        return await httpClient.GetFromJsonAsync<IList<Song>>("apis/music/songs/get");
-    }
-
-    public async Task<IList<Artist>> GetArtists() => await httpClient.GetFromJsonAsync<IList<Artist>>("apis/music/artists/get");
-}
-
-internal interface IService
-{
-    Task<IList<Song>> GetSongs();
-
-    Task<IList<Artist>> GetArtists();
-}    
+}   

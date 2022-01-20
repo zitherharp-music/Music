@@ -21,17 +21,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Pages\Home\Download.razor" />
-    <None Include="Pages\Home\SongPage.razor" />
-    <None Include="Pages\Short\RecommendPage.razor" />
+    <None Include="Home\Download.razor" />
+    <None Include="Home\SongPage.razor" />
+    <None Include="Short\Pages\RecommendPage.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Short\RecommendPage.razor" />
+    <UpToDateCheckInput Remove="Short\RecommendPage.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Short\RecommendPage.razor" />
+    <_ContentIncludedByDefault Remove="Short\RecommendPage.razor" />
   </ItemGroup>
 
 </Project>

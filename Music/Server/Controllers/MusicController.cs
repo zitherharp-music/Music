@@ -32,4 +32,12 @@ public class MusicController : ControllerBase
             .Get(id, JsonValues.Range["artist"]).ExecuteAsync();
         return Serializer.Deserialize<IList<Artist>>(responseBody.Values);
     }
+
+    [HttpGet("shorts/get")]
+    public async Task<IList<Short>> GetShorts()
+    {
+        var responseBody = await SheetsService.Spreadsheets.Values
+            .Get(id, JsonValues.Range["short"]).ExecuteAsync();
+        return Serializer.Deserialize<IList<Short>>(responseBody.Values);
+    }
 }

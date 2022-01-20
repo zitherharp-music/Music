@@ -1,0 +1,39 @@
+﻿@page "/short"
+@layout Layout
+@inject HttpClient HttpClient
+
+<PageTitle>Zither Harp Music: Short - Trang chủ</PageTitle>
+
+<div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        @foreach (var video in shorts.Take(10))
+        {
+            <div class="col h-100">
+              <div class="card shadow-sm">
+                <iframe title="youtube" frameborder="0" allowfullscreen
+                src="https://www.youtube.com/embed/@video.Id?&autoplay=0&loop=1&iv_load_policy=3&playlist=@video.Id"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;" />
+                <div class="card-body">
+                  <p class="card-text">Không có tựa đề</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-danger">Yêu thích</button>
+                      <button type="button" class="btn btn-sm btn-outline-danger">Bỏ qua</button>
+                    </div>
+                    <small class="text-muted">@video.Id</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private IList<Short>? shorts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        shorts = await HttpClient.GetFromJsonAsync<IList<Short>>("apis/music/shorts/get");
+    }
+}
