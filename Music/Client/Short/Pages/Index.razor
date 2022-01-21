@@ -6,7 +6,7 @@
 
 <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        @foreach (var video in shorts.Take(10))
+        @foreach (var video in Repository.Shorts.Take(10))
         {
             <div class="col h-100">
               <div class="card shadow-sm">
@@ -30,10 +30,10 @@
 </div>
 
 @code {
-    private IList<Short>? shorts;
+    //private IList<Short>? shorts;
 
-    protected override async Task OnInitializedAsync()
-    {
-        shorts = await HttpClient.GetFromJsonAsync<IList<Short>>("apis/music/shorts/get");
-    }
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    shorts = await HttpClient.GetFromJsonAsync<IList<Short>>("apis/music/shorts/get");
+    //}
 }
