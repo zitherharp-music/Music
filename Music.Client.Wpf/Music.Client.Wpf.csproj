@@ -16,11 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Short\" />
-    <Folder Include="Audio\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Television\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
@@ -33,6 +28,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Karaoke\ViewModels\Controls\" />
+    <Folder Include="Dictionaries\" />
   </ItemGroup>
 
 </Project>

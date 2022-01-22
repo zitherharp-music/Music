@@ -23,7 +23,7 @@ public partial class MainWindow : Window
                 var components = mAddress.Text.Split('/');
                 var itemId = components[^1];
                 var responseBody = client.GetStringAsync(
-                $"https://www.iesdouyin.com/web/api/v2/aweme/iteminfo/?item_ids={ itemId }").Result;
+                    $"https://www.iesdouyin.com/web/api/v2/aweme/iteminfo/?item_ids={ itemId }").Result;
                 var jsonElement = JsonSerializer.Deserialize<JsonElement>(responseBody);
                 var videoId = jsonElement.GetProperty("item_list").EnumerateArray().ToArray()[0]
                     .GetProperty("video").GetProperty("vid").GetString();
@@ -41,7 +41,10 @@ public partial class MainWindow : Window
         {
             var text = new TextRange(mSource.Document.ContentStart, mSource.Document.ContentEnd).Text;
             var components = text.Split("\n");
-            mTarget.Text = text.Split("\n")[1] + "\n\r" + text.Split("\n")[3];
+            if (components.Length > 3)
+            {
+                mTarget.Text = text.Split("\n")[1] + "\n\r" + text.Split("\n")[3];
+            }    
         };
     }
 }

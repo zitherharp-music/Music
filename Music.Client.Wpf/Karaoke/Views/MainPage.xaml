@@ -1,0 +1,84 @@
+﻿<Page x:Class="Music.Client.Wpf.Karaoke.Views.Recommend.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:viewmodels="clr-namespace:Music.Client.Wpf.Karaoke.ViewModels" 
+      d:DataContext="{d:DesignInstance Type=viewmodels:RecommendViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800" Title="Đề xuất">
+    <Grid>
+        <TabControl Margin="10" BorderBrush="Gainsboro">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border Name="Border" BorderThickness="1,1,1,0" 
+                                        BorderBrush="Gainsboro" 
+                                        CornerRadius="4,4,0,0" Margin="2,0">
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Thịnh hành">
+                <Label Content="Content goes here..." />
+            </TabItem>
+            <TabItem Header="Gợi ý">
+                <DataGrid ItemsSource="{Binding Songs}"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          CanUserResizeRows="False"
+                          CanUserSortColumns="False"
+                          CanUserReorderColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                        <DataGridTextColumn Header="Bài hát" Binding="{Binding VietnameseName}" />
+                        <DataGridTextColumn Header="Ca sĩ" Binding="{Binding ChineseName}" />
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <DockPanel Background="GhostWhite">
+                                <Image DockPanel.Dock="Left" Source="{Binding ImageUrl}" Height="64" Margin="10" />
+                                <Grid Margin="0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="ID: " FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Id}" Grid.Column="1" />
+                                    <TextBlock Text="Tiếng Việt: " FontWeight="Bold" Grid.Row="1" />
+                                    <TextBlock Text="{Binding VietnameseName}" Grid.Column="1" Grid.Row="1" />
+                                    <TextBlock Text="Tiếng Trung: " FontWeight="Bold" Grid.Row="2" />
+                                    <TextBlock Text="{Binding ChineseName}" Grid.Column="1" Grid.Row="2" />
+                                </Grid>
+                            </DockPanel>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

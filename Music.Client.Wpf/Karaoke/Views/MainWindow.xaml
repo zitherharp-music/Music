@@ -1,0 +1,44 @@
+﻿<Window x:Class="Music.Client.Wpf.Karaoke.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:recommend="clr-namespace:Music.Client.Wpf.Karaoke.Views.Recommend"
+        mc:Ignorable="d"
+        Title="Zither Harp Music: Karaoke" Height="450" Width="800" WindowState="Maximized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Background="Gray" LastChildFill="False">
+            <StackPanel Margin="20" DockPanel.Dock="Top"
+                HorizontalAlignment="Center">
+                <Image Source="https://yt3.ggpht.com/BHdcJ3H2uZMAngtsXNgu7bp8UFaIjc0VC726-nxC1gaT60UL7F5GFVqnan-e0imrCh8kcCZZog" />
+                <TextBlock Text="Zither Harp" TextAlignment="Center"/>
+                <TextBlock Text="zitherharp@gmail.com" TextAlignment="Center"/>
+            </StackPanel>
+            <StackPanel TextBlock.FontSize="25" DockPanel.Dock="Top"
+                        TextBlock.TextAlignment="Center">
+                <ToggleButton Content="Đề xuất" Padding="10" BorderBrush="Transparent" Background="Gray"/>
+                <Button Content="Chọn bài" Padding="10" BorderBrush="Transparent" Background="Gray"/>
+                <Button Content="Phân loại" Padding="10" BorderBrush="Transparent" Background="Gray"/>
+                <Button Content="Danh sách" Padding="10" BorderBrush="Transparent" Background="Gray"/>
+                <Button Content="Tác phẩm" Padding="10" BorderBrush="Transparent" Background="Gray"/>
+            </StackPanel>
+            <WrapPanel DockPanel.Dock="Bottom" 
+                       Orientation="Horizontal" 
+                       Margin="30"
+                       TextBlock.FontSize="20">
+                <TextBlock Text="Liên hệ" />
+                <TextBlock Text="|" Margin="10 0 10 0"/>
+                <ToggleButton Content="Cài đặt"/>
+            </WrapPanel>
+        </DockPanel>
+
+        <Frame Grid.Column="1"
+               Name="mMainContainer">
+        </Frame>
+    </Grid>
+</Window>

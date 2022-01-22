@@ -4,6 +4,17 @@ namespace Music.Shared.Models;
 
 public class Short : Youtube
 {
+    public new class Api
+    {
+        public int Rank { get; init; }
+        public int Duration { get; init; }
+        public string? Author { get; init; }
+        public string? Title { get; init; }
+        public string? Value { get; init; }
+        public string? Link { get; init; }
+        public string? Img_Url { get; init; }
+    }
+
     public string? SongId { get; init; }
 
     private IList<Song>? songs;

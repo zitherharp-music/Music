@@ -1,0 +1,18 @@
+﻿<Window x:Class="Music.Client.Wpf.Karaoke.Views.RecordWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800" Title="Record Window">
+    <StackPanel>
+        <DataGrid>
+            <DataGrid.Background>
+                <ImageBrush />
+            </DataGrid.Background>
+        </DataGrid>
+        <StackPanel.Background>
+            <ImageBrush ImageSource=""/>
+        </StackPanel.Background>
+    </StackPanel>
+</Window>
