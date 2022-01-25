@@ -10,7 +10,7 @@ internal class MusicWorker : BackgroundService
     private readonly ILogger<MusicWorker> logger;
     private string? jsonString;
 
-    public IList<Song>? Songs { get; set; }
+    public IList<Audio>? Songs { get; set; }
     public IList<Artist>? Artists { get; set; }
 
     public MusicWorker(ILoggerFactory factory)
@@ -28,7 +28,7 @@ internal class MusicWorker : BackgroundService
                 // TODO: Load songs
                 jsonString = await Spreadsheet.HttpClient.GetStringAsync(
                     "https://localhost:7149/music/songs/get", stoppingToken);
-                Songs = JsonSerializer.Deserialize<IList<Song>>(
+                Songs = JsonSerializer.Deserialize<IList<Audio>>(
                     new MemoryStream(Encoding.UTF8.GetBytes(jsonString)), Spreadsheet.JsonOptions);
                 // TODO: Load artists
                 jsonString = await Spreadsheet.HttpClient.GetStringAsync(

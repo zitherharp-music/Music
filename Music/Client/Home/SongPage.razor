@@ -83,11 +83,11 @@
 </div>
 
 @code {
-    private IList<Song>? recentSongs, recommendSongs;
+    private IList<Audio>? recentSongs, recommendSongs;
 
     protected override async Task OnInitializedAsync()
     {
-        var songs = await HttpClient.GetFromJsonAsync<IList<Song>>("apis/music/songs/get");
+        var songs = await HttpClient.GetFromJsonAsync<IList<Audio>>("apis/music/songs/get");
         recentSongs = songs?.Take(15).ToList();
         recommendSongs = songs?.OrderBy(song => Random.Shared.Next()).Take(15).ToList();
     }

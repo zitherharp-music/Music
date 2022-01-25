@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name = "Zither Harp Music - Short"

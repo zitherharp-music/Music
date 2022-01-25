@@ -15,16 +15,16 @@ public class BaseViewModel : INotifyPropertyChanged
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         => PropertyChanged?.Invoke(this, new(propertyName));
 
-    protected readonly IList<Song> songs;
+    protected readonly IList<Audio> songs;
 
-    public IList<Song> Playlist { get; }
-    public Song PlayingSong { get; protected set; }
+    public IList<Audio> Playlist { get; }
+    public Audio PlayingSong { get; protected set; }
     public Language Language { get; set; } = Language.Vietnamese;
 
     protected BaseViewModel()
     {
-        Playlist = new List<Song>();
-        songs = Spreadsheet.Repository.Songs;
+        Playlist = new List<Audio>();
+        songs = Spreadsheet.Repository.Audios;
 
         Fill();
         PlayingSong = songs.GetRandom();
@@ -32,7 +32,7 @@ public class BaseViewModel : INotifyPropertyChanged
 
     protected virtual void Fill()
     {
-        Song song;
+        Audio song;
         while (Playlist.Count < 15)
         {
             song = songs[Random.Shared.Next(songs.Count)];

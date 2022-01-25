@@ -17,41 +17,43 @@ public class Spreadsheet
 
     public class Json
     {
-        public string[] Key { get; init; } = Array.Empty<string>();
+        public string? Id { get; init; }
 
-        public Dictionary<string, string> Id { get; init; } = new();
+        public string[] Key { get; init; } = Array.Empty<string>();
 
         public Dictionary<string, string> Range { get; init; } = new();
 
-        public Dictionary<string, IDictionary<string, int>> Column { get; init; } = new();        
+        public Dictionary<string, IDictionary<string, int>> Column { get; init; } = new();
     }
 
     public class Repository
     {
-        private static IList<Song>? songs;
-        public static IList<Song> Songs
-            => songs ??= Serializer.Deserialize<IList<Song>>(
-                Serializer.GetValues(JsonValues.Id["music"], JsonValues.Range["audio"]));
+        private static readonly Json music = Items["music"];
 
         private static IList<Artist>? artists;
-        public static IList<Artist> Artists 
+        public static IList<Artist> Artists
             => artists ??= Serializer.Deserialize<IList<Artist>>(
-                Serializer.GetValues(JsonValues.Id["music"], JsonValues.Range["artist"]));
+                Serializer.Deserialize(music, music.Range[nameof(Artist).ToLower()]));
+
+        private static IList<Audio>? audios; 
+        public static IList<Audio> Audios
+            => audios ??= Serializer.Deserialize<IList<Audio>>(
+                Serializer.Deserialize(music, music.Range[nameof(Audio).ToLower()]));
 
         private static IList<Short>? shorts;
         public static IList<Short> Shorts
             => shorts ??= Serializer.Deserialize<IList<Short>>(
-                Serializer.GetValues(JsonValues.Id["music"], JsonValues.Range["short"]));
+                Serializer.Deserialize(music, music.Range[nameof(Short).ToLower()]));
     }
 
     public class Serializer
     {
-        public static IList<IList<object>> GetValues(string id, string range)
+        public static IList<IList<object>> Deserialize(Json json, string range)
         {
-            var key = JsonValues.Key[Random.Shared.Next(JsonValues.Key.Length)];
-            var url = $"https://sheets.googleapis.com/v4/spreadsheets/{ id }/values/{ range }?key={ key }";
-            var jsonString = HttpClient.GetStringAsync(url).Result;
-            var responseBody = JsonSerializer.Deserialize<Api>(jsonString, JsonOptions);
+            var key = json.Key[Random.Shared.Next(json.Key.Length)];
+            var url = $"https://sheets.googleapis.com/v4/spreadsheets/{ json.Id }/values/{ range }?key={ key }";
+            var jsonString = httpClient.GetStringAsync(url).Result;
+            var responseBody = JsonSerializer.Deserialize<Api>(jsonString, jsonOptions);
             return responseBody?.Values ?? throw new NullReferenceException(nameof(responseBody));
         }
 
@@ -60,13 +62,13 @@ public class Spreadsheet
             IDictionary<string, int> columns;
             switch (typeof(T).GenericTypeArguments[0].Name)
             {
-                case nameof(Song):
-                    Song song;
-                    var songs = new List<Song>();
-                    columns = JsonValues.Column["audio"];
+                case nameof(Audio):
+                    Audio song;
+                    var songs = new List<Audio>();
+                    columns = Items["music"].Column["audio"];
                     foreach (var value in values)
                     {
-                        song = new Song()
+                        song = new Audio()
                         {
                             Id = value[columns["id"]].ToString(),
                             ArtistId = value[columns["artistId"]].ToString(),
@@ -76,11 +78,11 @@ public class Spreadsheet
                         };
                         songs.Add(song);
                     }
-                    return (T)(IList<Song>)songs;
+                    return (T)(IList<Audio>)songs;
                 case nameof(Video):
                     Video video;
                     var videos = new List<Video>();
-                    columns = JsonValues.Column["video"];
+                    columns = Items["music"].Column["video"];
                     foreach (var value in values)
                     {
                         video = new Video()
@@ -97,7 +99,7 @@ public class Spreadsheet
                 case nameof(Artist):
                     Artist artist;
                     var artists = new List<Artist>();
-                    columns = JsonValues.Column["artist"];
+                    columns = Items["music"].Column["artist"];
                     foreach (var value in values)
                     {
                         artist = new Artist()
@@ -112,7 +114,7 @@ public class Spreadsheet
                 case nameof(Short):
                     Short @short;
                     var shorts = new List<Short>();
-                    columns = JsonValues.Column["short"];
+                    columns = Items["music"].Column["short"];
                     foreach (var value in values)
                     {
                         @short = new Short()
@@ -127,31 +129,31 @@ public class Spreadsheet
             }
             throw new FormatException(nameof(T));
         }
-    }
+    }    
 
-    public static readonly HttpClient HttpClient = new();
-    public static readonly JsonSerializerOptions JsonOptions = new()
+    private static readonly HttpClient httpClient = new();
+    private static readonly JsonSerializerOptions jsonOptions = new()
     {
         PropertyNameCaseInsensitive = true
     };
 
-    private static Json? jsonValues;
-    public static Json JsonValues
+    private static IDictionary<string, Json>? items;
+    public static IDictionary<string, Json> Items
     {
         get
         {
-            if (jsonValues is null)
+            if (items is null)
             {
-                using var stream = new StreamReader("spreadsheet.json");
-                jsonValues = JsonSerializer.Deserialize<Json>(stream.ReadToEnd(), JsonOptions) ??
-                    throw new NullReferenceException(nameof(JsonValues));
+                using var stream = new StreamReader("Properties/spreadsheets.json");
+                items = JsonSerializer.Deserialize<IDictionary<string, Json>>(
+                    stream.ReadToEnd(), jsonOptions) ?? throw new NullReferenceException(nameof(Items));
             }
-            return jsonValues;
+            return items;
         }
     }
 
     #region Properties
-    protected const string splitCharacter = "/";
+    protected const string splitChar = "/";
 
     public string? Id { get; init; }
     public string? VietnameseName { get; init; }

@@ -1,0 +1,24 @@
+{
+    "name": "Zither Harp Music: Short",
+    "description": "An extension of Zither Harp Music",
+    "version": "0.22.01.23",
+    "browser_action": {
+        "default_icon": "short.ico",
+        "default_popup": "index.html"
+    },
+    "permissions": [
+        "https://www.douyin.com/",
+        "https://www.iesdouyin.com/"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "http://v3-dy-o.zjcdn.com/*"
+            ],
+            "js": [
+                "download.js"
+            ]
+        }
+    ],
+    "manifest_version": 2
+}

@@ -17,16 +17,16 @@ public class Short : Youtube
 
     public string? SongId { get; init; }
 
-    private IList<Song>? songs;
-    public IList<Song> GetSongs()
+    private IList<Audio>? songs;
+    public IList<Audio> GetSongs()
     {
         if (songs is null)
         {
-            songs = new List<Song>();
+            songs = new List<Audio>();
             if (SongId is null) return songs;
-            foreach (var songId in SongId.Split(splitCharacter))
+            foreach (var songId in SongId.Split(splitChar))
             {
-                foreach (var song in Repository.Songs)
+                foreach (var song in Repository.Audios)
                 {
                     if (songId.Equals(song.Id)) songs.Add(song); break;
                 }    

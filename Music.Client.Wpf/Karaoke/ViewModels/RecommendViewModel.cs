@@ -7,13 +7,13 @@ namespace Music.Client.Wpf.Karaoke.ViewModels;
 
 internal class RecommendViewModel : BaseViewModel
 {
-    public IList<Song> Songs { get; set; }
+    public IList<Audio> Songs { get; set; }
 
     private static RecommendViewModel? instance;
     public static RecommendViewModel Instance => instance ??= new();
 
     private RecommendViewModel()
     {
-        Songs = Spreadsheet.Repository.Songs.Take(15).ToList();
+        Songs = Spreadsheet.Repository.Audios.Take(15).ToList();
     }
 }

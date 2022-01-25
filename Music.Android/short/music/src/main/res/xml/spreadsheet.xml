@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spreadsheet>
+    <id>
+        <music>1znQOtTDJz0UqDs0uB2MQZV3wN0l_J0TrU44d9chH2SI</music>
+        <television>15XE1J5YPKyCoEHHJabM7IDQeK_wgSnKbWVRvn9eqVV</television>
+    </id>
+    <api>
+        <key index='0'>AIzaSyAD91OiEeWRoqhsw0peq94qg5joZe47r_s</key>
+    </api>
+    <range>
+        <audio>Audio!A1:G</audio>
+        <artist>Artist!A1:F</artist>
+        <short>Short!A1:C</short>
+        <video>Video!A1:G</video>
+    </range>
+    <column>
+        <audio>
+            <id>0</id>
+            <artistId>1</artistId>
+            <vietnameseName>2</vietnameseName>
+            <chineseName>3</chineseName>
+            <duration>6</duration>
+        </audio>
+        <artist>
+            <id>0</id>
+            <vietnameseName>2</vietnameseName>
+            <chineseName>3</chineseName>
+        </artist>
+        <short>
+            <id>0</id>
+            <artistId>1</artistId>
+            <songId>2</songId>
+        </short>
+        <video>
+            <id>0</id>
+            <artistId>1</artistId>
+            <vietnameseName>2</vietnameseName>
+            <chineseName>3</chineseName>
+            <duration>6</duration>
+        </video>
+    </column>
+</spreadsheet>

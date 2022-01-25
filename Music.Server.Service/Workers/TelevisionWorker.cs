@@ -9,8 +9,8 @@ internal class TelevisionWorker : MusicWorker
 {
     private readonly ILogger<TelevisionWorker> logger;
 
-    private Song? playingSong;
-    private IList<Song>? playlist;
+    private Audio? playingSong;
+    private IList<Audio>? playlist;
 
     public TelevisionWorker(ILoggerFactory factory) : base(factory)
     {
@@ -22,7 +22,7 @@ internal class TelevisionWorker : MusicWorker
         if (Songs is null) throw new NullReferenceException(nameof(Songs));
         if (playlist is null) throw new NullReferenceException(nameof(playlist));
 
-        Song song;
+        Audio song;
         while (playlist.Count < 15)
         {
             song = Songs[Random.Shared.Next(Songs.Count)];

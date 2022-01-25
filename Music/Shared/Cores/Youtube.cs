@@ -16,7 +16,6 @@ public abstract class Youtube : Spreadsheet
     }
 
     public string? ArtistId { get; init; }
-
     public int Duration { get; init; }
 
     [JsonIgnore]
@@ -32,7 +31,7 @@ public abstract class Youtube : Spreadsheet
         {
             artists = new List<Artist>();
             if (ArtistId is null) return artists;
-            foreach (var artistId in ArtistId.Split(splitCharacter))
+            foreach (var artistId in ArtistId.Split(splitChar))
             {
                 foreach (var artist in Repository.Artists)
                 {

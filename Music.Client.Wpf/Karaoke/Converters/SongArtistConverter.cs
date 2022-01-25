@@ -11,7 +11,7 @@ internal class SongArtistConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        var song = Spreadsheet.Repository.Songs.ToList().Find(s => value.Equals(s.Id));
+        var song = Spreadsheet.Repository.Audios.ToList().Find(s => value.Equals(s.Id));
         if (song == null) return string.Empty;
         return song.GetArtists().GetNames(Shared.Enums.Language.Vietnamese);
     }
