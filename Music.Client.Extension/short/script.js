@@ -3,6 +3,7 @@ function renderContent(content) {
 }
 
 async function getVideoDetails() {
+let clipboard = await navigator.clipboard.readText();
     let videoUrl = document.getElementById('video_url').value;
     let components = videoUrl.split('/');
     let videoId = components[components.length - 1];

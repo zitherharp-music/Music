@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_application">
+
+    <fragment
+        android:id="@+id/navigation_application"
+        android:name="com.zitherharp.store.ui.application.ApplicationFragment"
+        android:label="@string/application"
+        tools:layout="@layout/fragment_application" />
+
+    <fragment
+        android:id="@+id/navigation_game"
+        android:name="com.zitherharp.store.ui.game.GameFragment"
+        android:label="@string/game"
+        tools:layout="@layout/fragment_empty" />
+</navigation>
