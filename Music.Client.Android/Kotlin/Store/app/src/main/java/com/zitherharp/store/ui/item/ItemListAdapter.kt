@@ -33,16 +33,18 @@ class ItemListAdapter(
             val item = items[position]
             title.text = item.name
             subtitle.text = item.description
-
             itemView.setOnClickListener {
-                val intent = Intent(context, ItemDetailActivity::class.java).apply {
+                context.startActivity(Intent(context, ItemDetailActivity::class.java).apply {
                     putExtra(ItemDetailActivity::class.java.name, item.id)
-                }
-                context.startActivity(intent)
+                })
             }
             item.field?.let {
-                version.text = String.format("v${it.version}")
-                size.text = it.getSize()
+                if (item.downloadUrl.isNotEmpty()) {
+                    version.text = String.format("v${it.version}")
+                    size.text = String.format("${it.size} MB")
+                } else {
+                    version.text = "(chưa được phát hành)"
+                }
             }
             item.image?.let {
                 image.setImageUrl(it.getIconUrl(100))

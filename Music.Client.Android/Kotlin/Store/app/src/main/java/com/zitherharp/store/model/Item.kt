@@ -1,7 +1,5 @@
 package com.zitherharp.store.model
 
-import com.zitherharp.store.Repository
-
 data class Item(
     var id: String,
     var name : String,
@@ -15,12 +13,39 @@ data class Item(
 
     data class Field(
         var provider: String,
-        var version: String,
         var size: Double,
-        var minSdk: Double,
-        var maxSdk: Double) {
-        fun getSize() = "$size MB"
-        fun getSdk() = "$minSdk -> $maxSdk"
+        var version: String,
+        var minSdkVersion: Int,
+        var updateTime: String,
+        var releaseTime: String) {
+        fun getAndroidVersion(): String {
+            when(minSdkVersion) {
+                9 -> return "2.3"
+                10 -> return "2.3.3"
+                11 -> return "3.0"
+                12 -> return "3.1"
+                13 -> return "3.2"
+                14 -> return "4.0"
+                15 -> return "4.0.3"
+                16 -> return "4.1"
+                17 -> return "4.2"
+                18 -> return "4.3"
+                19 -> return "4.4"
+                20 -> return "4.4W"
+                21 -> return "5.0"
+                22 -> return "5.1"
+                23 -> return "6.0"
+                24 -> return "7.0"
+                25 -> return "7.1"
+                26 -> return "8.0"
+                27 -> return "8.1"
+                28 -> return "9.0"
+                29 -> return "10.0"
+                30 -> return "11.0"
+                31 -> return "12.0"
+            }
+            return minSdkVersion.toString()
+        }
     }
 
     data class Image(

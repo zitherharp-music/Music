@@ -5,16 +5,16 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.zitherharp.store.Extension.getItemDetailView
+import com.zitherharp.store.Extension.getItemDetailDialog
 import com.zitherharp.store.R
 import com.zitherharp.store.Repository
 import com.zitherharp.store.databinding.ActivityItemBinding
 import com.zitherharp.store.Extension.isUpdateAvailable
+import com.zitherharp.store.Extension.reportItem
 import com.zitherharp.store.Extension.shareItem
-import com.zitherharp.store.Extension.showItemUpdateDialog
 import com.zitherharp.store.model.Item
 
 class ItemDetailActivity: AppCompatActivity() {
@@ -28,14 +28,36 @@ class ItemDetailActivity: AppCompatActivity() {
             setContentView(root)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             title = item.name
-            //toolbarLayout.title = "Chưa cài đặt"
+            //toolbarLayout.title = "Không có ảnh chụp màn hình"
+            // TODO: Download url
+            if (item.downloadUrl.isNotEmpty()) {
+                actionFab.setOnClickListener {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(item.downloadUrl)))
+                }
+            } else {
+                itemDetail.itemField.visibility = View.GONE
+                actionFab.setOnClickListener {
+                    Toast.makeText(this@ItemDetailActivity,
+                        "Ứng dụng chưa được phát hành", Toast.LENGTH_SHORT).show()
+                }
+            }
+            // TODO: Installed
             if (item.isInstalled) {
                 actionFab.setImageResource(android.R.drawable.ic_media_play)
                 actionFab.setOnClickListener {
                     if (!isUpdateAvailable(item)) {
                         startActivity(Intent(packageManager.getLaunchIntentForPackage(item.id)))
                     } else {
-                        showItemUpdateDialog(item, false)
+                        getItemDetailDialog(item).apply {
+                            setTitle("Phát hiện bản cập nhật mới")
+                            setMessage("Phiên bản: ${item.field?.version}")
+                            setNegativeButton("Để sau") { _, _ ->
+                                startActivity(Intent(packageManager.getLaunchIntentForPackage(item.id)))
+                            }
+                            setPositiveButton("Cập nhật") { _, _ ->
+                                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(item.downloadUrl)))
+                            }
+                        }.show()
                     }
                 }
                 actionFab.setOnLongClickListener {
@@ -44,36 +66,37 @@ class ItemDetailActivity: AppCompatActivity() {
                 }
             } else {
                 actionFab.setImageResource(android.R.drawable.stat_sys_download)
-                actionFab.setOnClickListener {
-                    if (item.downloadUrl.isNotEmpty()) {
-                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(item.downloadUrl)))
-                    } else {
-                        Toast.makeText(this@ItemDetailActivity,
-                            "Ứng dụng hiện tại không khả dụng", Toast.LENGTH_SHORT).show()
-                    }
+            }
+            // TODO: Image
+            item.image?.let {
+                if (it.snapshotId.isNotEmpty()) {
+                    imageStatus.visibility = View.GONE
+                    imageGallery.setInAnimation(this@ItemDetailActivity, android.R.anim.fade_in)
+                    imageGallery.setOutAnimation(this@ItemDetailActivity, android.R.anim.fade_out)
+                    //imageGallery.setFactory { ImageView() }
                 }
             }
-            imageGallery.setInAnimation(this@ItemDetailActivity, android.R.anim.fade_in)
-            imageGallery.setOutAnimation(this@ItemDetailActivity, android.R.anim.fade_out)
-            //imageGallery.setFactory { ImageView() }
+            // TODO: Field
             with(itemDetail) {
                 feature.text = item.feature
                 description.text = item.description
                 item.field?.let {
                     provider.text = it.provider
+                    size.text = String.format("${it.size} MB")
                     version.text = it.version
-                    size.text = it.getSize()
-                    sdk.text = it.getSdk()
+                    androidVersion.text = String.format("${it.getAndroidVersion()} trở lên")
+                    updateTime.text = it.updateTime
+                    releaseTime.text = it.releaseTime
                 }
             }
         }
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
-        when (menuItem.itemId) {
+        when(menuItem.itemId) {
             android.R.id.home -> onBackPressed()
             R.id.navigation_share -> shareItem(item)
-            R.id.navigation_report -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(item.downloadUrl)))
+            R.id.navigation_report -> reportItem(item)
         }
         return true
     }

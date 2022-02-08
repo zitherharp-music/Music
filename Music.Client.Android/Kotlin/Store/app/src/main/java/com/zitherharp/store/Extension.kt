@@ -6,15 +6,16 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Environment
-import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.zitherharp.store.databinding.ItemDetailContentBinding
 import com.zitherharp.store.model.Item
 import kotlinx.coroutines.*
 import java.net.URL
 import java.sql.*
+
 
 @DelicateCoroutinesApi
 object Extension {
@@ -49,7 +50,14 @@ object Extension {
         startActivity(Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             putExtra(Intent.EXTRA_TEXT,
-                "Cùng tôi tải về và trải nghiệm ${item.name} nhé!\n${item.downloadUrl}")
+                "Cùng tôi tải về và trải nghiệm ${item.name} nhé! ${item.downloadUrl}")
+        })
+    }
+
+    fun Context.reportItem(item: Item) {
+        startActivity(Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("mailto:zh.zitherharp@gmail.com")
+            putExtra(Intent.EXTRA_SUBJECT, "Phản hồi về ${item.name}")
         })
     }
 
@@ -64,47 +72,50 @@ object Extension {
         return false
     }
 
-    fun FragmentActivity.getItemDetailView(item: Item): View {
-        return ItemDetailContentBinding.inflate(layoutInflater).apply {
-            feature.text = item.feature
-            description.text = item.description
-            item.field?.let { field ->
-                provider.text = field.provider
-                version.text = field.version
-                size.text = field.getSize()
-                sdk.text = field.getSdk()
-            }
-        }.root
+    fun FragmentActivity.getItemDetailDialog(item: Item): AlertDialog.Builder {
+        return AlertDialog.Builder(this).apply {
+            setView(ItemDetailContentBinding.inflate(layoutInflater).apply {
+                feature.text = item.feature
+                description.text = item.description
+                item.field?.let {
+                    provider.text = it.provider
+                    size.text = String.format("${it.size} MB")
+                    version.text = it.version
+                    androidVersion.text = String.format("${it.getAndroidVersion()} trở lên")
+                    updateTime.text = it.updateTime
+                    releaseTime.text = it.releaseTime
+                }
+            }.root)
+        }
     }
 
     fun FragmentActivity.showItemDetailDialog(item: Item) {
-        val packetInfo = packageManager.getPackageInfo(item.id, 0)
-        AlertDialog.Builder(this).apply {
+        val packageInfo = packageManager.getPackageInfo(item.id, 0)
+        getItemDetailDialog(item).apply {
             setTitle("Về ứng dụng ${item.name}")
-            setMessage("Cài đặt lần đầu: ${Date(Timestamp(packetInfo.firstInstallTime).time)}\n" +
-                    "Cập nhật lần cuối: ${Date(Timestamp(packetInfo.lastUpdateTime).time)}")
+            setMessage("Cài đặt lần đầu: ${Date(Timestamp(packageInfo.firstInstallTime).time)}\n" +
+                    "Cập nhật lần cuối: ${Date(Timestamp(packageInfo.lastUpdateTime).time)}")
             setPositiveButton("Đóng") { dlg, _ -> dlg.dismiss() }
-            setView(getItemDetailView(item))
         }.show()
     }
 
     fun FragmentActivity.showItemUpdateDialog(item: Item, isAutoDisplay: Boolean) {
         if (!isUpdateAvailable(item)) {
             if (!isAutoDisplay) return
-            AlertDialog.Builder(this).apply {
+            getItemDetailDialog(item).apply {
+                setView(null)
                 setTitle("Kiểm tra hoàn tất")
                 setMessage("Không có bản cập nhật mới")
                 setPositiveButton("Đóng") { dlg, _ -> dlg.dismiss() }
             }.show()
         } else {
-            AlertDialog.Builder(this).apply {
+            getItemDetailDialog(item).apply {
                 setTitle("Phát hiện bản cập nhật mới")
-                setMessage("Phiên bản: ${packageManager.getPackageInfo(item.id, 0).versionName} -> ${item.field?.version}")
+                setMessage("Phiên bản: ${item.field?.version}")
                 setNegativeButton("Để sau") { dlg, _ -> dlg.cancel() }
                 setPositiveButton("Cập nhật") { _, _ ->
                     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(item.downloadUrl)))
                 }
-                setView(getItemDetailView(item))
             }.show()
         }
     }

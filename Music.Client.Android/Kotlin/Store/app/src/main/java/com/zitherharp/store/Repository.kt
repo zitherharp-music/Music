@@ -28,10 +28,11 @@ object Repository {
             itemMap[jsonValue.requireString(0)]?.let {
                 it.field = Item.Field(
                     jsonValue.requireString(1),
-                    jsonValue.requireString(2),
-                    jsonValue.requireDouble(3),
-                    jsonValue.requireDouble(4),
-                    jsonValue.requireDouble(5))
+                    jsonValue.requireDouble(2),
+                    jsonValue.requireString(3),
+                    jsonValue.requireInt(4),
+                    jsonValue.requireString(5),
+                    jsonValue.requireString(6))
             }
         }
         // TODO: Load image
@@ -69,5 +70,6 @@ object Repository {
     }
 
     private fun JSONArray.requireString(index: Int) = try { getString(index) } catch (e: Exception) { "" }
+    private fun JSONArray.requireInt(index: Int) = try { getInt(index) } catch (e: Exception) { 0 }
     private fun JSONArray.requireDouble(index: Int) = try { getDouble(index) } catch (e: Exception) { 0.0 }
 }

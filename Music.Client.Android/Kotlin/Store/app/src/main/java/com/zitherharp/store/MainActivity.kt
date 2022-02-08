@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.zitherharp.store.Extension.reportItem
 import com.zitherharp.store.Extension.shareItem
 import com.zitherharp.store.Extension.showItemDetailDialog
 import com.zitherharp.store.Extension.showItemUpdateDialog
@@ -41,11 +42,12 @@ class MainActivity: AppCompatActivity() {
         }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
-        when(menuItem.itemId) {
+        when (menuItem.itemId) {
             R.id.navigation_setting -> startActivity(Intent(this, SettingActivity::class.java))
             R.id.navigation_share -> shareItem(item)
             R.id.navigation_detail -> showItemDetailDialog(item)
             R.id.navigation_update -> showItemUpdateDialog(item, true)
+            R.id.navigation_report -> reportItem(item)
         }
         return true
     }

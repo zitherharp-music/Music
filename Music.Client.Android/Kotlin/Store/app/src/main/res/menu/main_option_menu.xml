@@ -9,6 +9,10 @@
         android:title="@string/share"/>
 
     <item
+        android:id="@+id/navigation_report"
+        android:title="Phản hồi"/>
+
+    <item
         android:id="@+id/navigation_detail"
         android:title="Giới thiệu" />
 
