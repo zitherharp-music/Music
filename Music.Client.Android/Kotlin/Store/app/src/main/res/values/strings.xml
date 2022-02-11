@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Zither Harp Store</string>
+    <string name="application">Ứng dụng</string>
+    <string name="game">Trò chơi</string>
+    <string name="loading">Đang tải</string>
+    <string name="empty">Trống</string>
+    <string name="no_connection">Không có kết nối</string>
+    <string name="setting">Cài đặt</string>
+    <string name="update">Cập nhật</string>
+    <string name="title_activity_setting">SettingActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="share">Chia sẻ</string>
+</resources>
