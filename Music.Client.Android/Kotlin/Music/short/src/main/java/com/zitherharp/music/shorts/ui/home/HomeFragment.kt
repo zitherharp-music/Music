@@ -28,19 +28,14 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     inner class HomeAdapter(fragment: Fragment,
                             tabNames: Array<String>): FragmentStateAdapter(fragment, tabNames) {
         override fun createFragment(position: Int): Fragment {
             when (position) {
                 0 -> return ShortFullscreenFragment(Short.repository.values.drop(120))
-                1 -> return ShortFullscreenFragment(Short.repository.values.drop(110))
+                1 -> return ShortFullscreenFragment(Short.repository.values.shuffled().subList(0, 50))
             }
-            TODO("Not yet implemented")
+            TODO("Index $position out of bounds for ${tabNames.size}")
         }
     }
 }

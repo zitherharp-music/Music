@@ -25,4 +25,32 @@ class Audio(id: String, val artistId: String): Youtube(id) {
             }
         }
     }
+
+    fun toString(language: Language) =
+        getName(language) + CONCAT_CHAR + getArtists().getName(language)
+
+    fun getArtists(): List<Artist> {
+        val artists = ArrayList<Artist>()
+        for (artistId in artistId.split(SPLIT_CHAR)) {
+            for (artist in Artist.repository.values) {
+                if (artist.id == artistId) {
+                    artists.add(artist)
+                    break
+                }
+            }
+        }
+        return artists
+    }
+
+    fun getShorts(): List<Short> {
+        val shorts = ArrayList<Short>()
+        for (short in Short.repository.values) {
+            for (audioId in short.audioId.split(SPLIT_CHAR)) {
+                if (audioId == id) {
+                    shorts.add(short)
+                }
+            }
+        }
+        return shorts
+    }
 }

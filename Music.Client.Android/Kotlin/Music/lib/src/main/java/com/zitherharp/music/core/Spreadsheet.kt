@@ -1,6 +1,7 @@
 package com.zitherharp.music.core
 
 import com.zitherharp.music.Language
+import com.zitherharp.music.model.Short
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
@@ -14,7 +15,9 @@ abstract class Spreadsheet(val id: String) {
 
     companion object {
         const val EMPTY_CHAR = ""
-        const val SPLIT_CHAR = '/'
+        const val SPLIT_CHAR = "/"
+        const val CONCAT_CHAR = " - "
+
         const val ID = 0
         const val VIETNAMESE_NAME = 2
         const val CHINESE_NAME = 3
@@ -33,7 +36,24 @@ abstract class Spreadsheet(val id: String) {
         }
 
         fun JSONArray.requireInt(index: Int): Int = try { getInt(index) } catch (e: Exception) { 0 }
-        fun JSONArray.requireString(index: Int): String = try { getString(index) } catch (e: Exception) { "" }
+        fun JSONArray.requireString(index: Int): String = try { getString(index) } catch (e: Exception) { EMPTY_CHAR }
+
+        fun List<Spreadsheet>.getIds(): String {
+            var ids = EMPTY_CHAR
+            forEach { ids += it.id + SPLIT_CHAR }
+            return ids.removeSuffix(SPLIT_CHAR)
+        }
+
+        fun List<Spreadsheet>.getName(language: Language, concatChar: String = SPLIT_CHAR): String {
+            var name = EMPTY_CHAR
+            forEach {
+                name += concatChar + when (language) {
+                    Language.CHINESE -> it.chineseName
+                    Language.VIETNAMESE -> it.vietnameseName
+                }
+            }
+            return name.removePrefix(concatChar)
+        }
     }
 
     fun setName(language: Language, name: String) {

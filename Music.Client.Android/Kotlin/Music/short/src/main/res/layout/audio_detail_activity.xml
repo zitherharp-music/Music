@@ -40,7 +40,7 @@
                         android:layout_width="match_parent"
                         android:id="@+id/audio_image"
                         android:scaleType="centerCrop"
-                        android:background="@color/music_short"
+                        android:background="@color/short_app_color"
                         android:contentDescription="@string/user" />
 
                 </androidx.cardview.widget.CardView>
@@ -91,7 +91,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/audio_description"
+                    android:id="@+id/artist_vietnamese_name"
                     android:layout_marginVertical="5dp"
                     android:text="@string/app_name"/>
 
@@ -99,20 +99,22 @@
         </LinearLayout>
     </FrameLayout>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/audio_tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="@dimen/tab_layout_height"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/audio_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/tab_layout_height"/>
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

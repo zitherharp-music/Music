@@ -24,29 +24,29 @@ class Artist(id: String): QQMusic(id) {
                 }
             }
         }
+    }
 
-        fun Artist.getShorts(): List<Short> {
-            val shorts = ArrayList<Short>()
-            for (short in Short.repository.values) {
-                for (artistId in short.artistId.split(SPLIT_CHAR)) {
-                    if (artistId == id) {
-                        shorts.add(short)
-                    }
+    fun getShorts(): List<Short> {
+        val shorts = ArrayList<Short>()
+        for (short in Short.repository.values) {
+            for (artistId in short.artistId.split(SPLIT_CHAR)) {
+                if (artistId == id) {
+                    shorts.add(short)
                 }
             }
-            return shorts
         }
+        return shorts
+    }
 
-        fun Artist.getAudios(): List<Audio> {
-            val audios = ArrayList<Audio>()
-            for (audio in Audio.repository.values) {
-                for (artistId in audio.artistId.split(SPLIT_CHAR)) {
-                    if (artistId == id) {
-                        audios.add(audio)
-                    }
+    fun getAudios(): List<Audio> {
+        val audios = ArrayList<Audio>()
+        for (audio in Audio.repository.values) {
+            for (artistId in audio.artistId.split(SPLIT_CHAR)) {
+                if (artistId == id) {
+                    audios.add(audio)
                 }
             }
-            return audios
         }
+        return audios
     }
 }

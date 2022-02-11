@@ -8,7 +8,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 open class FragmentStateAdapter: FragmentStateAdapter {
-    private var tabNames: Array<String>
+    val tabNames: Array<String>
 
     constructor(fragment: Fragment, tabNames: Array<String>): super(fragment) {
         this.tabNames = tabNames
@@ -17,6 +17,10 @@ open class FragmentStateAdapter: FragmentStateAdapter {
     constructor(fragmentActivity: FragmentActivity, tabNames: Array<String>): super(fragmentActivity) {
         this.tabNames = tabNames
     }
+
+    override fun getItemId(position: Int) = position.toLong()
+
+    override fun getItemViewType(position: Int) = position
 
     override fun getItemCount() = tabNames.size
 

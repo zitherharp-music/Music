@@ -1,11 +1,36 @@
 package com.zitherharp.music.model
 
 import com.zitherharp.music.core.Youtube
-import java.io.Serializable
 
 class Short(id: String,
             val artistId: String,
             val audioId: String): Youtube(id) {
+
+    fun getAudios(): List<Audio> {
+        val audios = ArrayList<Audio>()
+        for (audioId in audioId.split(SPLIT_CHAR)) {
+            for (audio in Audio.repository.values) {
+                if (audio.id == audioId) {
+                    audios.add(audio)
+                    break
+                }
+            }
+        }
+        return audios
+    }
+
+    fun getArtists(): List<Artist> {
+        val artists = ArrayList<Artist>()
+        for (artistId in artistId.split(SPLIT_CHAR)) {
+            for (artist in Artist.repository.values) {
+                if (artist.id == artistId) {
+                    artists.add(artist)
+                    break
+                }
+            }
+        }
+        return artists
+    }
 
     companion object {
         private const val ARTIST_ID = 1
@@ -24,36 +49,12 @@ class Short(id: String,
             }
         }
 
-        fun Short.getAudios(): List<Audio> {
-            val audios = ArrayList<Audio>()
-            for (audioId in audioId.split(SPLIT_CHAR)) {
-                for (audio in Audio.repository.values) {
-                    if (audio.id == audioId) {
-                        audios.add(audio)
-                        break
-                    }
-                }
+        fun String.getShorts(): List<Short> {
+            val shorts = ArrayList<Short>()
+            for (id in split(SPLIT_CHAR)) {
+                shorts.add(repository[id]!!)
             }
-            return audios
-        }
-
-        fun Short.getArtists(): List<Artist> {
-            val artists = ArrayList<Artist>()
-            for (artistId in artistId.split(SPLIT_CHAR)) {
-                for (artist in Artist.repository.values) {
-                    if (artist.id == artistId) {
-                        artists.add(artist)
-                        break
-                    }
-                }
-            }
-            return artists
-        }
-
-        fun List<Short>.getId(): String {
-            var id = EMPTY_CHAR
-            forEach { id += it.id + SPLIT_CHAR }
-            return id
+            return shorts
         }
     }
 }

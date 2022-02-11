@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.zitherharp.music.model.Short
+import com.zitherharp.music.R
 import com.zitherharp.music.shorts.databinding.ShortGridFragmentBinding
 
 class ShortGridFragment(private val shorts: List<Short>): Fragment() {
@@ -14,16 +15,19 @@ class ShortGridFragment(private val shorts: List<Short>): Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        return ShortGridFragmentBinding.inflate(inflater, container, false).apply {
+                              savedInstanceState: Bundle?) =
+        ShortGridFragmentBinding.inflate(inflater, container, false).apply {
             binding = this
         }.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
-            shortGrid.layoutManager = GridLayoutManager(context, 3)
-            shortGrid.adapter = ShortGridAdapter(view.context, shorts)
+            if (shorts.isNotEmpty()) {
+                shortGrid.layoutManager = GridLayoutManager(context, 3)
+                shortGrid.adapter = ShortGridAdapter(view.context, shorts)
+            } else {
+                status.text = getString(R.string.empty)
+            }
         }
     }
 }

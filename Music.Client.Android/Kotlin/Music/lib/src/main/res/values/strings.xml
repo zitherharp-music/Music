@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="short_app_name">Zither Harp Music: Short</string>
     <string name="no_connection">Không có kết nối</string>
     <string name="artist">Nghệ sĩ</string>
     <string name="audio">Âm thanh</string>
@@ -13,4 +14,5 @@
     <string name="empty">Trống</string>
     <string name="recommend">Đề xuất</string>
     <string name="use">Sử dụng</string>
+    <string name="comment">Bình luận</string>
 </resources>

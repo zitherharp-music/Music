@@ -8,8 +8,8 @@ import com.zitherharp.music.Extension.setImageUrl
 import com.zitherharp.music.Language
 import com.zitherharp.music.core.QQMusic
 import com.zitherharp.music.model.Artist
-import com.zitherharp.music.model.Artist.Companion.getAudios
-import com.zitherharp.music.model.Artist.Companion.getShorts
+import com.zitherharp.music.model.Audio
+import com.zitherharp.music.model.Short
 import com.zitherharp.music.shorts.databinding.ArtistDetailActivityBinding
 import com.zitherharp.music.shorts.ui.audio.AudioListFragment
 import com.zitherharp.music.shorts.ui.shorts.ShortGridFragment
@@ -18,19 +18,23 @@ import com.zitherharp.music.ui.FragmentStateAdapter
 class ArtistDetailActivity: AppCompatActivity() {
     private val binding: ArtistDetailActivityBinding by lazy { ArtistDetailActivityBinding.inflate(layoutInflater) }
     private lateinit var artist: Artist
+    private lateinit var audios: List<Audio>
+    private lateinit var shorts: List<Short>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        artist = Artist.repository[intent.getStringExtra(ArtistDetailActivity::class.simpleName)]!!
         with(binding) {
             setContentView(root)
-            artistImage.setImageUrl(artist.getImageUrl(QQMusic.Image.MEDIUM))
-            artistVietnameseName.text = artist.getName(Language.VIETNAMESE)
-            artistChineseName.text = artist.getName(Language.CHINESE)
-            //artistDescription.text = artist.getDescription(Language.VIETNAMESE)
+            artist = Artist.repository[intent.getStringExtra(ArtistDetailActivity::class.simpleName)]!!.apply {
+                audios = getAudios()
+                shorts = getShorts()
+                artistImage.setImageUrl(getImageUrl(QQMusic.Image.MEDIUM))
+                artistChineseName.text = getName(Language.CHINESE)
+                artistVietnameseName.text = getName(Language.VIETNAMESE)
+            }
             ArtistDetailAdapter(this@ArtistDetailActivity,
-                arrayOf("Audio ${artist.getAudios().size}", "Short ${artist.getShorts().size}"))
+                arrayOf("Audio ${audios.size}", "Short ${shorts.size}"))
                 .attach(artistTabLayout, artistViewPager, 1)
         }
     }
@@ -39,10 +43,10 @@ class ArtistDetailActivity: AppCompatActivity() {
                                     tabNames: Array<String>): FragmentStateAdapter(fragmentActivity, tabNames) {
         override fun createFragment(position: Int): Fragment {
             when (position) {
-                0 -> return AudioListFragment(artist.getAudios())
-                1 -> return ShortGridFragment(artist.getShorts().toTypedArray())
+                0 -> return AudioListFragment(audios)
+                1 -> return ShortGridFragment(shorts)
             }
-            TODO("Not yet implemented")
+            TODO("Index $position out of bounds for ${tabNames.size}")
         }
     }
 }

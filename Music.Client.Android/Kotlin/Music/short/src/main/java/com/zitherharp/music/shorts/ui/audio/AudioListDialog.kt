@@ -4,13 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.zitherharp.music.model.Audio
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zitherharp.music.R
+import com.zitherharp.music.model.Audio
 import com.zitherharp.music.shorts.databinding.AudioListFragmentBinding
 
-class AudioListFragment(private val audios: List<Audio>): Fragment() {
+class AudioListDialog: BottomSheetDialogFragment {
     private lateinit var binding: AudioListFragmentBinding
+    private var audios: List<Audio> = ArrayList()
+
+    constructor(): super()
+
+    constructor(audios: List<Audio>): super() {
+        this.audios = audios
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
         AudioListFragmentBinding.inflate(inflater, container, false).apply {

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -11,14 +12,19 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.zitherharp.music.Extension.setImageUrl
 import com.zitherharp.music.Language
 import com.zitherharp.music.core.QQMusic
+import com.zitherharp.music.core.Spreadsheet.Companion.getName
+import com.zitherharp.music.model.Artist
+import com.zitherharp.music.model.Audio
 import com.zitherharp.music.model.Short
-import com.zitherharp.music.model.Short.Companion.getArtists
 import com.zitherharp.music.shorts.databinding.ShortFullscreenContentBinding
 import com.zitherharp.music.shorts.ui.artist.ArtistDetailActivity
+import com.zitherharp.music.shorts.ui.artist.ArtistListDialog
+import com.zitherharp.music.shorts.ui.audio.AudioListDialog
+import com.zitherharp.music.ui.RecyclerViewAdapter
 
 class ShortFullscreenAdapter(private val activity: AppCompatActivity,
                              private val shorts: List<Short>):
-    RecyclerView.Adapter<ShortFullscreenAdapter.ViewHolder>() {
+    RecyclerViewAdapter<ShortFullscreenAdapter.ViewHolder>(activity.baseContext, shorts) {
 
     inner class ViewHolder(binding: ShortFullscreenContentBinding):
         RecyclerView.ViewHolder(binding.root) {
@@ -26,12 +32,8 @@ class ShortFullscreenAdapter(private val activity: AppCompatActivity,
         val artistImage = binding.artistImage
         val artistName = binding.artistName
         val audioName = binding.audioName
-        val shortName = binding.shortName
+        //val shortName = binding.shortName
     }
-
-    override fun getItemId(position: Int) = position.toLong()
-
-    override fun getItemViewType(position: Int) = position
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(
@@ -41,34 +43,62 @@ class ShortFullscreenAdapter(private val activity: AppCompatActivity,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
             val short = shorts[position]
-            with(shortView) {
-                activity.lifecycle.addObserver(this)
-                addYouTubePlayerListener(object: AbstractYouTubePlayerListener() {
-                    override fun onReady(youTubePlayer: YouTubePlayer) {
-                        youTubePlayer.loadVideo(short.id, 0F)
-                    }
-                    override fun onStateChange(youTubePlayer: YouTubePlayer,
-                                               state: PlayerConstants.PlayerState) {
-                        if (state == PlayerConstants.PlayerState.ENDED) {
-                            youTubePlayer.play()
+            with(short) {
+                with(shortView) {
+                    activity.lifecycle.addObserver(this)
+                    addYouTubePlayerListener(object: AbstractYouTubePlayerListener() {
+                        override fun onReady(youTubePlayer: YouTubePlayer) {
+                            setOnFocusChangeListener { _, hasFocus ->
+                                if (hasFocus) youTubePlayer.play() else youTubePlayer.pause()
+                            }
+                            youTubePlayer.loadVideo(short.id, 0F)
+                            youTubePlayer.pause()
                         }
-                    }
-                })
-            }
-            with(short.getArtists()[0]) {
-                artistImage.setImageUrl(getImageUrl(QQMusic.Image.SMALL))
-                artistImage.setOnClickListener {
-                    activity.startActivity(Intent(activity, ArtistDetailActivity::class.java).apply {
-                        putExtra(ArtistDetailActivity::class.simpleName, id)
+                        override fun onStateChange(youTubePlayer: YouTubePlayer,
+                                                   state: PlayerConstants.PlayerState) {
+                            if (state == PlayerConstants.PlayerState.ENDED) {
+                                youTubePlayer.play()
+                            }
+                        }
                     })
                 }
-                artistName.text = getName(Language.VIETNAMESE)
+                with(artistImage) {
+                    setImageUrl(getArtists().first().getImageUrl(QQMusic.Image.SMALL))
+                    setOnClickListener { onArtistClickListener(activity.supportFragmentManager, getArtists()) }
+                }
+                with(artistName) {
+                    text = getArtists().getName(Language.VIETNAMESE, " & ")
+                    setOnClickListener { onArtistClickListener(activity.supportFragmentManager, getArtists()) }
+                }
+                with(audioName) {
+                    isSelected = true
+                    text = if (getAudios().isNotEmpty())
+                        getAudios().getName(Language.VIETNAMESE, " & ") else "Bài hát của ${artistName.text}"
+                    setOnClickListener { onAudioClickListener(activity.supportFragmentManager, getAudios()) }
+                }
             }
-            audioName.text = if (short.getArtists().isNotEmpty())
-                short.getArtists()[0].getName(Language.VIETNAMESE)
-            else "Bài hát của ${artistName.text}"
         }
     }
 
-    override fun getItemCount() = shorts.size
+    private fun onAudioClickListener(manager: FragmentManager, audios: List<Audio>) {
+        if (audios.size == 1) {
+            activity.startActivity(
+                Intent(activity, ArtistDetailActivity::class.java).apply {
+                    putExtra(ArtistDetailActivity::class.simpleName, audios.first().id)
+                })
+        } else if (audios.size > 1) {
+            AudioListDialog(audios).showNow(manager, AudioListDialog::class.simpleName)
+        }
+    }
+
+    private fun onArtistClickListener(manager: FragmentManager, artists: List<Artist>) {
+        if (artists.size == 1) {
+            activity.startActivity(
+                Intent(activity, ArtistDetailActivity::class.java).apply {
+                    putExtra(ArtistDetailActivity::class.simpleName, artists.first().id)
+                })
+        } else if (artists.size > 1) {
+            ArtistListDialog(artists).showNow(manager, ArtistListDialog::class.simpleName)
+        }
+    }
 }
