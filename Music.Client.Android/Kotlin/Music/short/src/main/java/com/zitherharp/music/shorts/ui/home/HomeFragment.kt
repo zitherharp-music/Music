@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+import com.zitherharp.music.model.Short
 import com.zitherharp.music.shorts.databinding.FragmentHomeBinding
-import com.zitherharp.music.shorts.ui.shorts.ShortFullscreenContentFragment
+import com.zitherharp.music.shorts.ui.shorts.ShortFullscreenFragment
+import com.zitherharp.music.ui.FragmentStateAdapter
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -26,7 +24,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with (binding) {
             HomeAdapter(this@HomeFragment,
-                arrayOf("Theo dõi", "Đề xuất")).attach(tabLayout, viewPager)
+                arrayOf("Theo dõi", "Đề xuất")).attach(tabLayout, viewPager, 1)
         }
     }
 
@@ -36,24 +34,13 @@ class HomeFragment : Fragment() {
     }
 
     inner class HomeAdapter(fragment: Fragment,
-                            private val tabsName: Array<String>): FragmentStateAdapter(fragment) {
-        fun attach(tabLayout: TabLayout, viewPager: ViewPager2) {
-            tabLayout.apply {
-                viewPager.adapter = this@HomeAdapter
-                TabLayoutMediator(this, viewPager) {
-                        tab: TabLayout.Tab, position: Int -> tab.text = tabsName[position]
-                }.attach()
-            }.bringToFront()
-        }
-
+                            tabNames: Array<String>): FragmentStateAdapter(fragment, tabNames) {
         override fun createFragment(position: Int): Fragment {
             when (position) {
-                0 -> return ShortFullscreenContentFragment()
-                1 -> return ShortFullscreenContentFragment()
+                0 -> return ShortFullscreenFragment(Short.repository.values.drop(120))
+                1 -> return ShortFullscreenFragment(Short.repository.values.drop(110))
             }
-            return Fragment()
+            TODO("Not yet implemented")
         }
-
-        override fun getItemCount() = tabsName.size
     }
 }

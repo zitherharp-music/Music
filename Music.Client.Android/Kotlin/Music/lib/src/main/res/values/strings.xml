@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_connection">Không có kết nối</string>
+    <string name="artist">Nghệ sĩ</string>
+    <string name="audio">Âm thanh</string>
+    <string name="shorts">Video ngắn</string>
+    <string name="video">Video</string>
+    <string name="explore">Khám phá</string>
+    <string name="notification">Thông báo</string>
+    <string name="favourite">Yêu thích</string>
+    <string name="user">Người dùng</string>
+    <string name="share">Chia sẻ</string>
+    <string name="empty">Trống</string>
+    <string name="recommend">Đề xuất</string>
+    <string name="use">Sử dụng</string>
+</resources>

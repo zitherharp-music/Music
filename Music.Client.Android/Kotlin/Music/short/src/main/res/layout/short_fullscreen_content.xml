@@ -6,14 +6,9 @@
     android:layout_height="match_parent">
 
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-        android:id="@+id/video_view"
+        android:id="@+id/short_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:showFullScreenButton="false"
-        app:showYouTubeButton="false"
-        app:showSeekBar="false"
-        app:showVideoDuration="false"
-        app:showVideoCurrentTime="false"/>
+        android:layout_height="match_parent"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -39,7 +34,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/video_name"
+                android:id="@+id/short_name"
                 android:singleLine="true"
                 android:paddingHorizontal="@dimen/activity_horizontal_margin"
                 android:textColor="@color/white"/>
@@ -47,7 +42,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/song_name"
+                android:id="@+id/audio_name"
                 android:paddingHorizontal="@dimen/activity_horizontal_margin"
                 android:singleLine="true"
                 android:ellipsize="marquee"
@@ -79,8 +74,9 @@
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     android:id="@+id/artist_image"
-                    android:scaleType="fitCenter"
-                    android:src="@mipmap/ic_launcher_round"/>
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_short_launcher_round"
+                    android:contentDescription="@string/artist" />
 
             </androidx.cardview.widget.CardView>
 
@@ -88,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/favourite_button"
-                android:src="@android:drawable/ic_media_ff"
+                android:src="@drawable/ic_short_favorite_border_24"
                 style="?android:attr/actionButtonStyle" />
 
             <TextView
@@ -103,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/comment_button"
                 style="?android:attr/actionButtonStyle"
-                android:src="@drawable/ic_dashboard_black_24dp"/>
+                android:src="@drawable/ic_short_comment_24"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -116,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/share_button"
-                android:src="@android:drawable/ic_menu_share"
+                android:src="@drawable/ic_short_share_24"
                 style="?android:attr/actionButtonStyle"/>
 
             <TextView

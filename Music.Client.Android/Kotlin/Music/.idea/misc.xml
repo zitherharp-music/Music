@@ -4,12 +4,34 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/lib/src/main/res/drawable/ic_short_launcher.xml" value="0.145" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/lib/src/main/res/layout/activity_load.xml" value="0.22153846153846155" />
         <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/lib/src/main/res/mipmap-anydpi-v26/ic_short_launcher.xml" value="0.145" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/lib/src/main/res/mipmap-anydpi-v26/ic_short_launcher_round.xml" value="0.145" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.1495" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/drawable/ic_favorite_border_24.xml" value="0.1495" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/drawable/ic_launcher_background.xml" value="0.145" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/drawable/ic_share_24.xml" value="0.1495" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/acitivity_load.xml" value="0.225" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/activity_artist.xml" value="0.22153846153846155" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/activity_audio.xml" value="0.225" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/activity_load.xml" value="0.225" />
         <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/activity_main.xml" value="0.225" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/activity_short.xml" value="0.225" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/artist_detail_activity.xml" value="0.22153846153846155" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/artist_list_content.xml" value="0.225" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/artist_list_fragment.xml" value="0.225" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/audio_detail_activity.xml" value="0.225" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/audio_list_content.xml" value="0.225" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/audio_list_fragment.xml" value="0.225" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/fragment_dashboard.xml" value="0.22153846153846155" />
         <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/fragment_home.xml" value="0.225" />
         <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/item_fullscreen_content.xml" value="0.225" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/short_fullscreen_activity.xml" value="0.225" />
         <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/short_fullscreen_content.xml" value="0.225" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/short_fullscreen_fragment.xml" value="0.225" />
         <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/short_fullscreen_list.xml" value="0.225" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/short_grid_content.xml" value="0.225" />
+        <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/layout/short_grid_fragment.xml" value="0.225" />
         <entry key="..\:/Repositories/ZitherHarp/Music/Music.Client.Android/Kotlin/Music/short/src/main/res/menu/bottom_nav_menu.xml" value="0.225" />
       </map>
     </option>

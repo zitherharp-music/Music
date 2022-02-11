@@ -1,13 +1,40 @@
 package com.zitherharp.music.core
 
 import com.zitherharp.music.Language
+import org.json.JSONArray
+import org.json.JSONObject
+import java.net.URL
 
-abstract class Spreadsheet(open val id: String) {
+abstract class Spreadsheet(val id: String) {
     private lateinit var vietnameseName: String
     private lateinit var chineseName: String
 
     private lateinit var vietnameseDescription: String
     private lateinit var chineseDescription: String
+
+    companion object {
+        const val EMPTY_CHAR = ""
+        const val SPLIT_CHAR = '/'
+        const val ID = 0
+        const val VIETNAMESE_NAME = 2
+        const val CHINESE_NAME = 3
+        const val VIETNAMESE_DESCRIPTION = 4
+        const val CHINESE_DESCRIPTION = 5
+
+        lateinit var jsonValue: JSONArray
+
+        fun getJsonValues(name: String?): JSONArray {
+            val url = "https://sheets.googleapis.com/v4/spreadsheets/" +
+                    "1znQOtTDJz0UqDs0uB2MQZV3wN0l_J0TrU44d9chH2SI/values/" +
+                    "$name?key=AIzaSyAD91OiEeWRoqhsw0peq94qg5joZe47r_s"
+            val jsonString = URL(url).readText()
+            val jsonObject = JSONObject(jsonString)
+            return jsonObject.getJSONArray("values")
+        }
+
+        fun JSONArray.requireInt(index: Int): Int = try { getInt(index) } catch (e: Exception) { 0 }
+        fun JSONArray.requireString(index: Int): String = try { getString(index) } catch (e: Exception) { "" }
+    }
 
     fun setName(language: Language, name: String) {
         when (language) {

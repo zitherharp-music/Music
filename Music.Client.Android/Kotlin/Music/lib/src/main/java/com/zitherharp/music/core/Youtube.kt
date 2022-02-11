@@ -1,6 +1,14 @@
 package com.zitherharp.music.core
 
-abstract class Youtube(id: String, protected val duration: Int = 0) : Spreadsheet(id) {
+abstract class Youtube(id: String): Spreadsheet(id) {
+    var duration = 0
+    var viewCount = 0
+    var commentCount = 0
+
+    companion object {
+        const val DURATION = 4
+    }
+
     enum class Image {
         DEFAULT,
         MQDEFAULT,
