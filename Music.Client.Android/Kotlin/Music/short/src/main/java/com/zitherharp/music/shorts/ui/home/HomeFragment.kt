@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.zitherharp.music.model.Short
 import com.zitherharp.music.shorts.databinding.FragmentHomeBinding
 import com.zitherharp.music.shorts.ui.shorts.ShortFullscreenFragment
-import com.zitherharp.music.ui.FragmentStateAdapter
+import com.zitherharp.music.ui.adapter.FragmentStateAdapter
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null

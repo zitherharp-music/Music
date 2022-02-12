@@ -11,13 +11,11 @@ import com.zitherharp.music.R
 import com.zitherharp.music.model.Short
 import com.zitherharp.music.shorts.databinding.ShortFullscreenFragmentBinding
 
-class ShortFullscreenFragment: Fragment {
+class ShortFullscreenFragment(): Fragment() {
     private lateinit var binding: ShortFullscreenFragmentBinding
     private var shorts: List<Short> = ArrayList()
 
-    constructor(): super()
-
-    constructor(shorts: List<Short>): super() {
+    constructor(shorts: List<Short>): this() {
         this.shorts = shorts
     }
 

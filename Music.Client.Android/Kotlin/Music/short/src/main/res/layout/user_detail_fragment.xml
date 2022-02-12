@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/audio_background"
+            android:id="@+id/user_background"
             android:src="@mipmap/ic_short_launcher"
             android:background="@mipmap/ic_short_launcher"
             android:contentDescription="@string/user"/>
@@ -33,33 +33,40 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    app:cardCornerRadius="0dp">
+                    app:cardCornerRadius="40dp">
 
                     <ImageView
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        android:id="@+id/audio_image"
+                        android:id="@+id/user_image"
+                        android:src="@mipmap/ic_short_launcher"
                         android:scaleType="centerCrop"
                         android:background="@color/short_app_color"
                         android:contentDescription="@string/user" />
 
                 </androidx.cardview.widget.CardView>
 
-                <ImageButton
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:id="@+id/favourite_audio"
-                    android:src="@drawable/ic_short_favorite_border_24"
-                    android:layout_toStartOf="@+id/share_audio"
-                    android:contentDescription="@string/favourite" />
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentEnd="true">
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:id="@+id/share_audio"
-                    android:src="@drawable/ic_short_share_24"
-                    android:layout_alignParentEnd="true"
-                    android:contentDescription="@string/share" />
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:id="@+id/follow_user"
+                        android:src="@drawable/ic_short_favorite_border_24"
+                        android:contentDescription="@string/favourite" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:id="@+id/share_user"
+                        android:src="@drawable/ic_short_share_24"
+                        android:contentDescription="@string/share" />
+
+                </LinearLayout>
             </RelativeLayout>
 
             <LinearLayout
@@ -70,17 +77,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/audio_vietnamese_name"
+                    android:id="@+id/user_name"
                     android:textSize="25sp"
                     android:layout_marginVertical="2dp"
-                    android:text="@string/audio"/>
+                    android:text="@string/user"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/audio_chinese_name"
+                    android:id="@+id/user_id"
                     android:layout_marginVertical="2dp"
-                    android:text="@string/audio"/>
+                    android:text="@string/user"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -91,30 +98,29 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/artist_name"
-                    android:layout_marginVertical="5dp"
-                    android:text="@string/app_name"/>
+                    android:id="@+id/user_description"
+                    android:text="Do Zither Harp Music tự động tạo"
+                    android:layout_marginVertical="5dp"/>
 
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/audio_tab_layout"
+            android:id="@+id/user_tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/tab_layout_height"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_height="@dimen/tab_layout_height"/>
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/audio_view_pager"
+            android:id="@+id/user_view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/tab_layout_height"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </LinearLayout>

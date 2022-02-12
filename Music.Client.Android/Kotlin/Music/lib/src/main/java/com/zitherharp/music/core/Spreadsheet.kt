@@ -1,6 +1,7 @@
 package com.zitherharp.music.core
 
 import com.zitherharp.music.Language
+import com.zitherharp.music.model.Audio
 import com.zitherharp.music.model.Short
 import org.json.JSONArray
 import org.json.JSONObject
@@ -17,6 +18,7 @@ abstract class Spreadsheet(val id: String) {
         const val EMPTY_CHAR = ""
         const val SPLIT_CHAR = "/"
         const val CONCAT_CHAR = " - "
+        const val COMBINE_CHAR = " & "
 
         const val ID = 0
         const val VIETNAMESE_NAME = 2
@@ -44,15 +46,15 @@ abstract class Spreadsheet(val id: String) {
             return ids.removeSuffix(SPLIT_CHAR)
         }
 
-        fun List<Spreadsheet>.getName(language: Language, concatChar: String = SPLIT_CHAR): String {
+        fun List<Spreadsheet>.getName(language: Language): String {
             var name = EMPTY_CHAR
             forEach {
-                name += concatChar + when (language) {
+                name += SPLIT_CHAR + when (language) {
                     Language.CHINESE -> it.chineseName
                     Language.VIETNAMESE -> it.vietnameseName
                 }
             }
-            return name.removePrefix(concatChar)
+            return name.removePrefix(SPLIT_CHAR)
         }
     }
 

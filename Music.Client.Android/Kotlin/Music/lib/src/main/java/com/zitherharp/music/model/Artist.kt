@@ -2,6 +2,7 @@ package com.zitherharp.music.model
 
 import com.zitherharp.music.Language
 import com.zitherharp.music.core.QQMusic
+import com.zitherharp.music.model.Short.Companion.getShorts
 
 class Artist(id: String): QQMusic(id) {
 
@@ -22,6 +23,18 @@ class Artist(id: String): QQMusic(id) {
                         setDescription(Language.VIETNAMESE, jsonValue.requireString(VIETNAMESE_DESCRIPTION))
                         setDescription(Language.CHINESE, jsonValue.requireString(CHINESE_DESCRIPTION))
                 }
+            }
+        }
+
+        fun String?.getArtists(): List<Artist> {
+            return if (this != null && this != EMPTY_CHAR) {
+                val artists = ArrayList<Artist>()
+                for (id in split(SPLIT_CHAR)) {
+                    artists.add(repository[id]!!)
+                }
+                artists
+            } else {
+                emptyList()
             }
         }
     }

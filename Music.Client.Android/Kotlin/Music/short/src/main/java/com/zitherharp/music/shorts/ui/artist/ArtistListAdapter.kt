@@ -10,7 +10,7 @@ import com.zitherharp.music.Language
 import com.zitherharp.music.core.QQMusic
 import com.zitherharp.music.model.Artist
 import com.zitherharp.music.shorts.databinding.ArtistListContentBinding
-import com.zitherharp.music.ui.RecyclerViewAdapter
+import com.zitherharp.music.ui.adapter.RecyclerViewAdapter
 
 class ArtistListAdapter(private val context: Context,
                         private val artists: List<Artist>):

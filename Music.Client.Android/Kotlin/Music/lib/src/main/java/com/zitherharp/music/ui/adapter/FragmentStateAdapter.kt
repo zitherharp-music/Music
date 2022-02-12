@@ -1,4 +1,4 @@
-package com.zitherharp.music.ui
+package com.zitherharp.music.ui.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

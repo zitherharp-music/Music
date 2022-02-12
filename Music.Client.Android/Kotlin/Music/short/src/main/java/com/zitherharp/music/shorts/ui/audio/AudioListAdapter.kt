@@ -10,7 +10,7 @@ import com.zitherharp.music.Language
 import com.zitherharp.music.core.Youtube
 import com.zitherharp.music.model.Audio
 import com.zitherharp.music.shorts.databinding.AudioListContentBinding
-import com.zitherharp.music.ui.RecyclerViewAdapter
+import com.zitherharp.music.ui.adapter.RecyclerViewAdapter
 
 class AudioListAdapter(private val context: Context,
                        private val audios: List<Audio>):

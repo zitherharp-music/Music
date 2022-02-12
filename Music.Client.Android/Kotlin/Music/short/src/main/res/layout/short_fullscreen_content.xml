@@ -45,20 +45,33 @@
                 android:singleLine="true"
                 android:paddingHorizontal="@dimen/activity_horizontal_margin"/>
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/audio_name"
-                android:layout_marginEnd="60dp"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin"
-                android:textColor="@color/white"
-                android:singleLine="true"
-                android:ellipsize="marquee"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:scrollHorizontally="true"
-                android:text="@string/fab_transformation_scrim_behavior"/>
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_audio_song_24"
+                    android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                    android:contentDescription="@string/audio"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/audio_name"
+                    android:layout_marginEnd="60dp"
+                    android:textColor="@color/white"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:scrollHorizontally="true"
+                    android:text="@string/fab_transformation_scrim_behavior"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -68,7 +81,7 @@
             android:layout_alignParentBottom="true"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="@dimen/activity_horizontal_margin"
+            android:padding="10dp"
             android:layout_marginBottom="90dp">
 
             <androidx.cardview.widget.CardView

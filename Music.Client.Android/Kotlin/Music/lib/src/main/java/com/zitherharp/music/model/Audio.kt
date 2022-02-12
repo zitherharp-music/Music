@@ -2,6 +2,7 @@ package com.zitherharp.music.model
 
 import com.zitherharp.music.Language
 import com.zitherharp.music.core.Youtube
+import com.zitherharp.music.model.Short.Companion.getShorts
 
 class Audio(id: String, val artistId: String): Youtube(id) {
 
@@ -11,7 +12,7 @@ class Audio(id: String, val artistId: String): Youtube(id) {
         val repository: MutableMap<String, Audio> = HashMap()
 
         init {
-            val jsonValues = getJsonValues(Audio::class.simpleName)
+            val jsonValues = getJsonValues(Audio::class.java.simpleName)
             for (i in 0 until jsonValues.length()) {
                 jsonValue = jsonValues.getJSONArray(i)
                 repository[jsonValue.requireString(ID)] = Audio(
@@ -23,6 +24,26 @@ class Audio(id: String, val artistId: String): Youtube(id) {
                         setDescription(Language.CHINESE, jsonValue.requireString(CHINESE_DESCRIPTION))
                 }
             }
+        }
+
+        fun String?.getAudios(): List<Audio> {
+            return if (this != null && this != EMPTY_CHAR) {
+                val audios = ArrayList<Audio>()
+                for (id in split(SPLIT_CHAR)) {
+                    audios.add(repository[id]!!)
+                }
+                audios
+            } else {
+                emptyList()
+            }
+        }
+
+        fun List<Audio>.toString(language: Language): String {
+            var string = EMPTY_CHAR
+            forEach {
+                string += it.toString(language) + COMBINE_CHAR
+            }
+            return string.removeSuffix(COMBINE_CHAR)
         }
     }
 

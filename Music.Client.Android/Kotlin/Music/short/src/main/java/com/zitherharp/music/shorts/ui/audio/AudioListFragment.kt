@@ -9,8 +9,13 @@ import com.zitherharp.music.model.Audio
 import com.zitherharp.music.R
 import com.zitherharp.music.shorts.databinding.AudioListFragmentBinding
 
-class AudioListFragment(private val audios: List<Audio>): Fragment() {
+class AudioListFragment(): Fragment() {
     private lateinit var binding: AudioListFragmentBinding
+    private var audios: List<Audio> = ArrayList()
+
+    constructor(audios: List<Audio>): this() {
+        this.audios = audios
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
         AudioListFragmentBinding.inflate(inflater, container, false).apply {

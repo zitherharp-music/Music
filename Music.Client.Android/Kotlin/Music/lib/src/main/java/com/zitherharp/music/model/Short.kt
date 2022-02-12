@@ -1,10 +1,14 @@
 package com.zitherharp.music.model
 
+import android.util.Log
 import com.zitherharp.music.core.Youtube
 
 class Short(id: String,
             val artistId: String,
             val audioId: String): Youtube(id) {
+
+    fun getShareUrl() =
+        "https://youtube.com/shorts/$id"
 
     fun getAudios(): List<Audio> {
         val audios = ArrayList<Audio>()
@@ -49,12 +53,16 @@ class Short(id: String,
             }
         }
 
-        fun String.getShorts(): List<Short> {
-            val shorts = ArrayList<Short>()
-            for (id in split(SPLIT_CHAR)) {
-                shorts.add(repository[id]!!)
+        fun String?.getShorts(): List<Short> {
+            return if (this != null && this != EMPTY_CHAR) {
+                val shorts = ArrayList<Short>()
+                for (id in split(SPLIT_CHAR)) {
+                    shorts.add(repository[id]!!)
+                }
+                shorts
+            } else {
+                emptyList()
             }
-            return shorts
         }
     }
 }

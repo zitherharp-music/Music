@@ -22,6 +22,6 @@
 
     <fragment
         android:id="@+id/navigation_user"
-        android:name="com.zitherharp.music.shorts.ui.notifications.NotificationsFragment"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.zitherharp.music.shorts.ui.user.UserDetailFragment"
+        tools:layout="@layout/user_detail_fragment" />
 </navigation>

@@ -18,7 +18,7 @@
 
     <item
         android:id="@+id/navigation_user"
-        android:icon="@android:drawable/ic_secure"
+        android:icon="@drawable/ic_short_favorite_24"
         android:title="Người dùng" />
 
 </menu>

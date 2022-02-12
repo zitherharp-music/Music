@@ -10,12 +10,15 @@ import com.zitherharp.music.model.Short
 import com.zitherharp.music.R
 import com.zitherharp.music.shorts.databinding.ShortGridFragmentBinding
 
-class ShortGridFragment(private val shorts: List<Short>): Fragment() {
+class ShortGridFragment(): Fragment() {
     private lateinit var binding: ShortGridFragmentBinding
+    private var shorts: List<Short> = ArrayList()
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?) =
+    constructor(shorts: List<Short>): this() {
+        this.shorts = shorts
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
         ShortGridFragmentBinding.inflate(inflater, container, false).apply {
             binding = this
         }.root

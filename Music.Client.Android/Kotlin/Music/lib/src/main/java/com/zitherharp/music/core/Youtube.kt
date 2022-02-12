@@ -20,6 +20,6 @@ abstract class Youtube(id: String): Spreadsheet(id) {
     fun getImageUrl(image: Image) =
         "https://i.ytimg.com/vi/$id/${image.name.lowercase()}.jpg"
 
-    fun getShareUrl(isEmbed: Boolean) =
+    fun getShareUrl(isEmbed: Boolean = false) =
         if (!isEmbed) "https://youtu.be/$id" else "https://www.youtube.com/embed/$id"
 }

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -13,14 +12,14 @@ import com.zitherharp.music.Extension.setImageUrl
 import com.zitherharp.music.Language
 import com.zitherharp.music.core.QQMusic
 import com.zitherharp.music.core.Spreadsheet.Companion.getName
-import com.zitherharp.music.model.Artist
-import com.zitherharp.music.model.Audio
+import com.zitherharp.music.model.Audio.Companion.toString
 import com.zitherharp.music.model.Short
 import com.zitherharp.music.shorts.databinding.ShortFullscreenContentBinding
-import com.zitherharp.music.shorts.ui.artist.ArtistDetailActivity
-import com.zitherharp.music.shorts.ui.artist.ArtistListDialog
-import com.zitherharp.music.shorts.ui.audio.AudioListDialog
-import com.zitherharp.music.ui.RecyclerViewAdapter
+import com.zitherharp.music.ui.adapter.RecyclerViewAdapter
+import com.zitherharp.music.shorts.Extension.onArtistClickListener
+import com.zitherharp.music.shorts.Extension.onAudioClickListener
+import com.zitherharp.music.R
+import com.zitherharp.music.shorts.ui.user.User
 
 class ShortFullscreenAdapter(private val activity: AppCompatActivity,
                              private val shorts: List<Short>):
@@ -32,7 +31,10 @@ class ShortFullscreenAdapter(private val activity: AppCompatActivity,
         val artistImage = binding.artistImage
         val artistName = binding.artistName
         val audioName = binding.audioName
-        //val shortName = binding.shortName
+        val shortName = binding.shortName
+        val favouriteButton = binding.favouriteButton
+        val commentButton = binding.commentButton
+        val shareButton = binding.shareButton
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -64,41 +66,38 @@ class ShortFullscreenAdapter(private val activity: AppCompatActivity,
                 }
                 with(artistImage) {
                     setImageUrl(getArtists().first().getImageUrl(QQMusic.Image.SMALL))
-                    setOnClickListener { onArtistClickListener(activity.supportFragmentManager, getArtists()) }
+                    setOnClickListener { context.onArtistClickListener(activity.supportFragmentManager, getArtists()) }
                 }
                 with(artistName) {
-                    text = getArtists().getName(Language.VIETNAMESE, " & ")
-                    setOnClickListener { onArtistClickListener(activity.supportFragmentManager, getArtists()) }
+                    text = getArtists().getName(Language.VIETNAMESE)
+                    setOnClickListener { context.onArtistClickListener(activity.supportFragmentManager, getArtists()) }
                 }
                 with(audioName) {
                     isSelected = true
                     text = if (getAudios().isNotEmpty())
-                        getAudios().getName(Language.VIETNAMESE, " & ") else "Bài hát của ${artistName.text}"
-                    setOnClickListener { onAudioClickListener(activity.supportFragmentManager, getAudios()) }
+                        getAudios().toString(Language.VIETNAMESE) else "Bài hát của ${artistName.text}"
+                    setOnClickListener { context.onAudioClickListener(activity.supportFragmentManager, getAudios()) }
+                }
+                with(favouriteButton) {
+                    User(context).run {
+                        if (!shortId!!.contains(short.id)) {
+                            setImageResource(com.zitherharp.music.shorts.R.drawable.ic_short_favorite_border_24)
+                        } else {
+                            setImageResource(com.zitherharp.music.shorts.R.drawable.ic_short_favorite_24)
+
+                        }
+                    }
+                }
+                with(shareButton) {
+                    setOnClickListener { _ ->
+                        context.startActivity(Intent.createChooser(
+                            Intent(Intent.ACTION_SEND).apply {
+                                type = "text/plain"
+                                putExtra(Intent.EXTRA_TEXT, getShareUrl())
+                            }, context.getString(R.string.share)))
+                    }
                 }
             }
-        }
-    }
-
-    private fun onAudioClickListener(manager: FragmentManager, audios: List<Audio>) {
-        if (audios.size == 1) {
-            activity.startActivity(
-                Intent(activity, ArtistDetailActivity::class.java).apply {
-                    putExtra(ArtistDetailActivity::class.simpleName, audios.first().id)
-                })
-        } else if (audios.size > 1) {
-            AudioListDialog(audios).showNow(manager, AudioListDialog::class.simpleName)
-        }
-    }
-
-    private fun onArtistClickListener(manager: FragmentManager, artists: List<Artist>) {
-        if (artists.size == 1) {
-            activity.startActivity(
-                Intent(activity, ArtistDetailActivity::class.java).apply {
-                    putExtra(ArtistDetailActivity::class.simpleName, artists.first().id)
-                })
-        } else if (artists.size > 1) {
-            ArtistListDialog(artists).showNow(manager, ArtistListDialog::class.simpleName)
         }
     }
 }
