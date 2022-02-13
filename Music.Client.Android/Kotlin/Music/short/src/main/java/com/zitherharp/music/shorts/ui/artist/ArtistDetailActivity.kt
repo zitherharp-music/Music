@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.zitherharp.music.Extension.setImageUrl
-import com.zitherharp.music.Language
+import com.zitherharp.music.core.Language
 import com.zitherharp.music.core.QQMusic
 import com.zitherharp.music.model.Artist
 import com.zitherharp.music.model.Audio

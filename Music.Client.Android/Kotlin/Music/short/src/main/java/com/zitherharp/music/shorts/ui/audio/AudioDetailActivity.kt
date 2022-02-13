@@ -6,14 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.zitherharp.music.Extension.setImageUrl
-import com.zitherharp.music.Language
+import com.zitherharp.music.core.Language
 import com.zitherharp.music.R
 import com.zitherharp.music.core.Spreadsheet.Companion.getName
 import com.zitherharp.music.core.Youtube
 import com.zitherharp.music.model.Audio
 import com.zitherharp.music.model.Short
 import com.zitherharp.music.shorts.Extension.onArtistClickListener
-import com.zitherharp.music.shorts.Extension.onAudioClickListener
 import com.zitherharp.music.shorts.databinding.AudioDetailActivityBinding
 import com.zitherharp.music.shorts.ui.shorts.ShortGridFragment
 import com.zitherharp.music.ui.adapter.FragmentStateAdapter

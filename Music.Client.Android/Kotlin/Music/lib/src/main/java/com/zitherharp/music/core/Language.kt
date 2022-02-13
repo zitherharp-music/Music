@@ -1,4 +1,4 @@
-package com.zitherharp.music
+package com.zitherharp.music.core
 
 enum class Language {
     VIETNAMESE,

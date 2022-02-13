@@ -1,8 +1,7 @@
 package com.zitherharp.music.model
 
-import com.zitherharp.music.Language
+import com.zitherharp.music.core.Language
 import com.zitherharp.music.core.Youtube
-import com.zitherharp.music.model.Short.Companion.getShorts
 
 class Audio(id: String, val artistId: String): Youtube(id) {
 

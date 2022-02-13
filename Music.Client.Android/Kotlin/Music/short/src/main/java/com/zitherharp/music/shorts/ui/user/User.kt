@@ -2,6 +2,8 @@ package com.zitherharp.music.shorts.ui.user
 
 import android.content.Context
 import com.zitherharp.music.R
+import com.zitherharp.music.core.Spreadsheet.Companion.EMPTY_CHAR
+import com.zitherharp.music.core.Spreadsheet.Companion.SPLIT_CHAR
 import java.util.*
 
 data class User(val context: Context) {
@@ -22,15 +24,35 @@ data class User(val context: Context) {
         const val ARTIST_ID = "userArtistId"
     }
 
-    fun rename(name: String) {
+    fun add(key: String, value: String) {
+        val item = preferences.getString(key, null)
         preferences.edit().apply {
-            putString(NAME, name)
+            if (!item.isNullOrEmpty()) {
+                putString(key, item + value + SPLIT_CHAR)
+            } else {
+                putString(key, value + SPLIT_CHAR)
+            }
         }.apply()
     }
 
-    fun put(key: String, value: String) {
+    fun remove(key: String, value: String) {
+        val item = preferences.getString(key, null)
+        preferences.edit().apply {
+            if (!item.isNullOrEmpty()) {
+                putString(key, item.replace(value + SPLIT_CHAR, EMPTY_CHAR))
+            }
+        }.apply()
+    }
+
+    fun edit(key: String, value: String) {
         preferences.edit().apply {
             putString(key, value)
+        }.apply()
+    }
+
+    fun clear(key: String) {
+        preferences.edit().apply {
+            putString(key, null)
         }.apply()
     }
 }

@@ -20,9 +20,11 @@ import com.zitherharp.music.shorts.ui.artist.ArtistListFragment
 import com.zitherharp.music.shorts.ui.audio.AudioListFragment
 import com.zitherharp.music.shorts.ui.shorts.ShortGridFragment
 import com.zitherharp.music.ui.adapter.FragmentStateAdapter
+import com.zitherharp.music.ui.fragment.EmptyFragment
 
 class UserDetailFragment: Fragment() {
     private lateinit var binding: UserDetailFragmentBinding
+    private lateinit var user: User
     private lateinit var shorts: List<Short>
     private lateinit var audios: List<Audio>
     private lateinit var artists: List<Artist>
@@ -33,8 +35,9 @@ class UserDetailFragment: Fragment() {
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        user = User(view.context)
         with(binding) {
-            User(view.context).run {
+            with(user) {
                 userId.text = String.format("ID: $id")
                 userName.text = name
                 shorts = shortId.getShorts()
@@ -53,7 +56,7 @@ class UserDetailFragment: Fragment() {
                                 run {
                                     val newName = editText.text.toString()
                                     if (newName.isNotBlank()) {
-                                        rename(newName)
+                                        edit(User.NAME, newName)
                                         userName.text = newName
                                         Toast.makeText(context, "Đổi tên thành công", Toast.LENGTH_SHORT).show()
                                     } else {
@@ -76,11 +79,11 @@ class UserDetailFragment: Fragment() {
     inner class UserDetailAdapter(fragment: Fragment, tabNames: Array<String>): FragmentStateAdapter(fragment, tabNames) {
         override fun createFragment(position: Int): Fragment {
             when (position) {
-                0 -> return AudioListFragment(audios)
-                1 -> return ShortGridFragment(shorts)
-                2 -> return ArtistListFragment(artists)
+                0 -> if (audios.isNotEmpty()) return AudioListFragment(audios) else EmptyFragment()
+                1 -> if (shorts.isNotEmpty()) return ShortGridFragment(shorts) else EmptyFragment()
+                2 -> if (artists.isNotEmpty()) return ArtistListFragment(artists) else EmptyFragment()
             }
-            TODO("Index $position out of bounds for ${tabNames.size}")
+            return EmptyFragment()
         }
     }
 }

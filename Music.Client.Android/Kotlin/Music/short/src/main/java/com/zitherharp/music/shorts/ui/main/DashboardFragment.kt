@@ -1,4 +1,4 @@
-package com.zitherharp.music.shorts.ui.dashboard
+package com.zitherharp.music.shorts.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.zitherharp.music.shorts.databinding.FragmentDashboardBinding
+import com.zitherharp.music.shorts.ui.dashboard.DashboardViewModel
 
 class DashboardFragment : Fragment() {
 

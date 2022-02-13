@@ -25,13 +25,9 @@ class ShortFullscreenFragment(): Fragment() {
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        with(binding) {
-            if (shorts.isNotEmpty()) {
-                shortList.adapter = ShortFullscreenAdapter(activity as AppCompatActivity, shorts)
-                PagerSnapHelper().attachToRecyclerView(shortList)
-            } else {
-                status.text = getString(R.string.empty)
-            }
+        with(binding.shortList) {
+            PagerSnapHelper().attachToRecyclerView(this)
+            adapter = ShortFullscreenAdapter(activity as AppCompatActivity, shorts)
         }
     }
 }

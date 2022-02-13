@@ -5,17 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.zitherharp.music.R
 import com.zitherharp.music.model.Audio
 import com.zitherharp.music.shorts.databinding.AudioListFragmentBinding
 
-class AudioListDialog: BottomSheetDialogFragment {
+class AudioListDialog(): BottomSheetDialogFragment() {
     private lateinit var binding: AudioListFragmentBinding
     private var audios: List<Audio> = ArrayList()
 
-    constructor(): super()
-
-    constructor(audios: List<Audio>): super() {
+    constructor(audios: List<Audio>): this() {
         this.audios = audios
     }
 
@@ -25,12 +22,8 @@ class AudioListDialog: BottomSheetDialogFragment {
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        with(binding) {
-            if (audios.isNotEmpty()) {
-                audioList.adapter = AudioListAdapter(view.context, audios)
-            } else {
-                status.text = getString(R.string.empty)
-            }
+        with(binding.audioList) {
+            adapter = AudioListAdapter(view.context, audios)
         }
     }
 }

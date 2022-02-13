@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.zitherharp.music.Extension.setImageUrl
-import com.zitherharp.music.Language
+import com.zitherharp.music.core.Language
 import com.zitherharp.music.core.Youtube
 import com.zitherharp.music.model.Audio
 import com.zitherharp.music.shorts.databinding.AudioListContentBinding

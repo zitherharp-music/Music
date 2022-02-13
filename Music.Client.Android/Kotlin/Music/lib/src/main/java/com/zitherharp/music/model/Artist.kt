@@ -1,8 +1,7 @@
 package com.zitherharp.music.model
 
-import com.zitherharp.music.Language
+import com.zitherharp.music.core.Language
 import com.zitherharp.music.core.QQMusic
-import com.zitherharp.music.model.Short.Companion.getShorts
 
 class Artist(id: String): QQMusic(id) {
 
@@ -27,15 +26,15 @@ class Artist(id: String): QQMusic(id) {
         }
 
         fun String?.getArtists(): List<Artist> {
-            return if (this != null && this != EMPTY_CHAR) {
-                val artists = ArrayList<Artist>()
+            val artists = ArrayList<Artist>()
+            if (!this.isNullOrBlank()) {
                 for (id in split(SPLIT_CHAR)) {
-                    artists.add(repository[id]!!)
+                    repository[id]?.let {
+                        artists.add(it)
+                    }
                 }
-                artists
-            } else {
-                emptyList()
             }
+            return artists
         }
     }
 

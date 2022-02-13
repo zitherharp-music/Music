@@ -7,18 +7,18 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.zitherharp.music.shorts.ui.home.HomeFragment"
+        android:name="com.zitherharp.music.shorts.ui.main.HomeFragment"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_explore"
-        android:name="com.zitherharp.music.shorts.ui.dashboard.DashboardFragment"
+        android:name="com.zitherharp.music.shorts.ui.main.DashboardFragment"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notification"
-        android:name="com.zitherharp.music.shorts.ui.notifications.NotificationsFragment"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.zitherharp.music.shorts.ui.main.NotificationFragment"
+        tools:layout="@layout/notification_fragment" />
 
     <fragment
         android:id="@+id/navigation_user"

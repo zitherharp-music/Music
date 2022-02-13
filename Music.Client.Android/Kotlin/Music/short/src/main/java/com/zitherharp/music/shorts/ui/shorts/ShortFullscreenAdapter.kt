@@ -9,7 +9,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstan
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.zitherharp.music.Extension.setImageUrl
-import com.zitherharp.music.Language
+import com.zitherharp.music.core.Language
 import com.zitherharp.music.core.QQMusic
 import com.zitherharp.music.core.Spreadsheet.Companion.getName
 import com.zitherharp.music.model.Audio.Companion.toString
@@ -80,11 +80,13 @@ class ShortFullscreenAdapter(private val activity: AppCompatActivity,
                 }
                 with(favouriteButton) {
                     User(context).run {
-                        if (!shortId!!.contains(short.id)) {
-                            setImageResource(com.zitherharp.music.shorts.R.drawable.ic_short_favorite_border_24)
-                        } else {
-                            setImageResource(com.zitherharp.music.shorts.R.drawable.ic_short_favorite_24)
+                        shortId?.let {
+                            if (!it.contains(short.id)) {
+                                setImageResource(com.zitherharp.music.shorts.R.drawable.ic_short_favorite_border_24)
+                            } else {
+                                setImageResource(com.zitherharp.music.shorts.R.drawable.ic_short_favorite_24)
 
+                            }
                         }
                     }
                 }

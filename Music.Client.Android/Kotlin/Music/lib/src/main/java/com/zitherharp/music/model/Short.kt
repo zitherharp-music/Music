@@ -54,15 +54,15 @@ class Short(id: String,
         }
 
         fun String?.getShorts(): List<Short> {
-            return if (this != null && this != EMPTY_CHAR) {
-                val shorts = ArrayList<Short>()
+            val shorts = ArrayList<Short>()
+            if (!this.isNullOrBlank()) {
                 for (id in split(SPLIT_CHAR)) {
-                    shorts.add(repository[id]!!)
+                    repository[id]?.let {
+                        shorts.add(it)
+                    }
                 }
-                shorts
-            } else {
-                emptyList()
             }
+            return shorts
         }
     }
 }

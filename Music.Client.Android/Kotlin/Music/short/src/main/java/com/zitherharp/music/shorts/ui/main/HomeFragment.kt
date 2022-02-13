@@ -1,4 +1,4 @@
-package com.zitherharp.music.shorts.ui.home
+package com.zitherharp.music.shorts.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.zitherharp.music.model.Short
+import com.zitherharp.music.model.Short.Companion.getShorts
+import com.zitherharp.music.R
 import com.zitherharp.music.shorts.databinding.FragmentHomeBinding
 import com.zitherharp.music.shorts.ui.shorts.ShortFullscreenFragment
+import com.zitherharp.music.shorts.ui.user.User
 import com.zitherharp.music.ui.adapter.FragmentStateAdapter
+import com.zitherharp.music.ui.fragment.EmptyFragment
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -24,18 +28,21 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with (binding) {
             HomeAdapter(this@HomeFragment,
-                arrayOf("Theo dõi", "Đề xuất")).attach(tabLayout, viewPager, 1)
+                arrayOf(getString(R.string.follow), getString(R.string.recommend)))
+                .attach(tabLayout, viewPager, 1)
         }
     }
 
-    inner class HomeAdapter(fragment: Fragment,
-                            tabNames: Array<String>): FragmentStateAdapter(fragment, tabNames) {
+    inner class HomeAdapter(fragment: Fragment, tabNames: Array<String>): FragmentStateAdapter(fragment, tabNames) {
         override fun createFragment(position: Int): Fragment {
             when (position) {
-                0 -> return ShortFullscreenFragment(Short.repository.values.drop(120))
+                0 -> {
+                    val shorts = User(context).artistId.getShorts()
+                    if (shorts.isNotEmpty()) return ShortFullscreenFragment(shorts) else EmptyFragment()
+                }
                 1 -> return ShortFullscreenFragment(Short.repository.values.shuffled().subList(0, 50))
             }
-            TODO("Index $position out of bounds for ${tabNames.size}")
+            return EmptyFragment()
         }
     }
 }
