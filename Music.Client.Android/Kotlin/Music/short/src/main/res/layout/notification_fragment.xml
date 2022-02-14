@@ -2,18 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/user_tab_layout"
+        android:id="@+id/notification_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tab_layout_height"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/user_view_pager"
+        android:id="@+id/notification_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/tab_layout_height"/>

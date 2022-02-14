@@ -31,7 +31,6 @@ class ShortFullscreenAdapter(private val activity: AppCompatActivity,
         val artistImage = binding.artistImage
         val artistName = binding.artistName
         val audioName = binding.audioName
-        val shortName = binding.shortName
         val favouriteButton = binding.favouriteButton
         val commentButton = binding.commentButton
         val shareButton = binding.shareButton
@@ -54,7 +53,6 @@ class ShortFullscreenAdapter(private val activity: AppCompatActivity,
                                 if (hasFocus) youTubePlayer.play() else youTubePlayer.pause()
                             }
                             youTubePlayer.loadVideo(short.id, 0F)
-                            youTubePlayer.pause()
                         }
                         override fun onStateChange(youTubePlayer: YouTubePlayer,
                                                    state: PlayerConstants.PlayerState) {

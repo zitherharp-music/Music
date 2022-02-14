@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.zitherharp.music.Extension.copyToClipboard
 import com.zitherharp.music.model.Artist
 import com.zitherharp.music.model.Artist.Companion.getArtists
 import com.zitherharp.music.model.Audio
@@ -38,12 +39,17 @@ class UserDetailFragment: Fragment() {
         user = User(view.context)
         with(binding) {
             with(user) {
-                userId.text = String.format("ID: $id")
-                userName.text = name
                 shorts = shortId.getShorts()
                 audios = audioId.getAudios()
                 artists = artistId.getArtists()
+                with(userId) {
+                    text = String.format("ID: ${user.id}")
+                    setOnClickListener {
+                        it.copyToClipboard(this.text.toString())
+                    }
+                }
                 with (userName) {
+                    text = name
                     setOnClickListener {
                         val editText = EditText(context).apply {
                             hint = name

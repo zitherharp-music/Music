@@ -2,9 +2,14 @@ package com.zitherharp.music.shorts.ui.user
 
 import android.content.Context
 import com.zitherharp.music.R
+import com.zitherharp.music.core.Spreadsheet
 import com.zitherharp.music.core.Spreadsheet.Companion.EMPTY_CHAR
 import com.zitherharp.music.core.Spreadsheet.Companion.SPLIT_CHAR
+import com.zitherharp.music.model.Artist
+import com.zitherharp.music.model.Audio
+import com.zitherharp.music.model.Short
 import java.util.*
+import kotlin.reflect.typeOf
 
 data class User(val context: Context) {
     private val preferences =
@@ -23,6 +28,9 @@ data class User(val context: Context) {
         const val AUDIO_ID = "userAudioId"
         const val ARTIST_ID = "userArtistId"
     }
+
+    fun contains(key: String, value: String) =
+        preferences.getString(key, null)?.contains(value) ?: false
 
     fun add(key: String, value: String) {
         val item = preferences.getString(key, null)

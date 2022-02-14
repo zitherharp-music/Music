@@ -18,12 +18,10 @@ class ShortFullscreenActivity: AppCompatActivity() {
         val shortPosition = intent.getIntExtra(ShortFullscreenActivity::class.simpleName, 0)
         with(binding) {
             setContentView(root)
-            if (shorts.isNotEmpty()) {
-                shortList.adapter = ShortFullscreenAdapter(this@ShortFullscreenActivity, shorts)
-                shortList.scrollToPosition(shortPosition)
-                PagerSnapHelper().attachToRecyclerView(shortList)
-            } else {
-                status.text = getString(R.string.empty)
+            with(shortList) {
+                PagerSnapHelper().attachToRecyclerView(this)
+                adapter = ShortFullscreenAdapter(this@ShortFullscreenActivity, shorts)
+                scrollToPosition(shortPosition)
             }
         }
     }

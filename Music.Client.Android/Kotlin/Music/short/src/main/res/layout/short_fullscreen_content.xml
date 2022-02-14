@@ -14,7 +14,6 @@
             android:id="@+id/short_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
     </FrameLayout>
 
     <RelativeLayout
@@ -22,39 +21,35 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-        <LinearLayout
+        <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/activity_vertical_margin">
+            android:layout_marginEnd="60dp"
+            android:paddingVertical="@dimen/activity_vertical_margin">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/artist_name"
-                android:singleLine="true"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin"
-                android:textStyle="bold"
-                android:textColor="@color/short_app_color"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/short_name"
-                android:singleLine="true"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
+            <TableRow android:paddingBottom="@dimen/activity_horizontal_margin">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_audio_song_24"
+                    android:src="@drawable/ic_short_artist_24"
+                    android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                    android:contentDescription="@string/audio"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/artist_name"
+                    android:textColor="@color/white"
+                    android:singleLine="true"
+                    android:text="@string/artist"/>
+            </TableRow>
+
+            <TableRow>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_short_audio_24"
                     android:paddingHorizontal="@dimen/activity_horizontal_margin"
                     android:contentDescription="@string/audio"/>
 
@@ -62,17 +57,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/audio_name"
-                    android:layout_marginEnd="60dp"
                     android:textColor="@color/white"
                     android:singleLine="true"
-                    android:ellipsize="marquee"
-                    android:marqueeRepeatLimit="marquee_forever"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:scrollHorizontally="true"
-                    android:text="@string/fab_transformation_scrim_behavior"/>
-            </LinearLayout>
-        </LinearLayout>
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:text="@string/audio"/>
+            </TableRow>
+        </TableLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -87,14 +81,13 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                app:cardCornerRadius="40dp"
+                app:cardCornerRadius="20dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin">
 
                 <ImageView
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     android:id="@+id/artist_image"
-                    android:scaleType="centerCrop"
                     android:src="@mipmap/ic_short_launcher_round"
                     android:contentDescription="@string/artist" />
 

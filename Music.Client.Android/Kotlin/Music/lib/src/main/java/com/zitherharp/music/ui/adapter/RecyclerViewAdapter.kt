@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zitherharp.music.core.Spreadsheet
 
 abstract class RecyclerViewAdapter<VH>(private val context: Context,
-                                   private val items: List<Spreadsheet>):
+                                       private val items: List<Spreadsheet>):
     RecyclerView.Adapter<VH>() where VH: RecyclerView.ViewHolder {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
