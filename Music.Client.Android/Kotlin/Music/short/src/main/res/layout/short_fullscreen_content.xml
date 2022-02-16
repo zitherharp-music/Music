@@ -5,16 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/short_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/short_fullscreen_view">
-
-        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-            android:id="@+id/short_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </FrameLayout>
+        android:layout_height="match_parent"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -105,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/favourite_count"
-                android:text="24"
+                android:text="0"
                 android:textColor="@color/white"/>
 
             <ImageButton
@@ -120,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/comment_count"
-                android:text="12"
+                android:text="0"
                 android:textColor="@color/white"/>
 
             <ImageButton

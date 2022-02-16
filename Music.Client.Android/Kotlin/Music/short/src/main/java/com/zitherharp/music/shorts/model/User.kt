@@ -1,15 +1,10 @@
-package com.zitherharp.music.shorts.ui.user
+package com.zitherharp.music.shorts.model
 
 import android.content.Context
 import com.zitherharp.music.R
-import com.zitherharp.music.core.Spreadsheet
 import com.zitherharp.music.core.Spreadsheet.Companion.EMPTY_CHAR
 import com.zitherharp.music.core.Spreadsheet.Companion.SPLIT_CHAR
-import com.zitherharp.music.model.Artist
-import com.zitherharp.music.model.Audio
-import com.zitherharp.music.model.Short
 import java.util.*
-import kotlin.reflect.typeOf
 
 data class User(val context: Context) {
     private val preferences =

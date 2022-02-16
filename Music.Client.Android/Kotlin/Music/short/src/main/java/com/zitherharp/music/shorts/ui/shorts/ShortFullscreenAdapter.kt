@@ -1,6 +1,5 @@
 package com.zitherharp.music.shorts.ui.shorts
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -15,11 +14,12 @@ import com.zitherharp.music.core.Spreadsheet.Companion.getName
 import com.zitherharp.music.model.Audio.Companion.toString
 import com.zitherharp.music.model.Short
 import com.zitherharp.music.shorts.databinding.ShortFullscreenContentBinding
+import com.zitherharp.music.shorts.extension.Extension.onArtistDetailActivity
+import com.zitherharp.music.shorts.extension.Extension.onAudioDetailActivity
+import com.zitherharp.music.shorts.extension.Extension.onFavourite
+import com.zitherharp.music.shorts.extension.Extension.onShare
+import com.zitherharp.music.shorts.model.User
 import com.zitherharp.music.ui.adapter.RecyclerViewAdapter
-import com.zitherharp.music.shorts.Extension.onArtistClickListener
-import com.zitherharp.music.shorts.Extension.onAudioClickListener
-import com.zitherharp.music.R
-import com.zitherharp.music.shorts.ui.user.User
 
 class ShortFullscreenAdapter(private val activity: AppCompatActivity,
                              private val shorts: List<Short>):
@@ -44,60 +44,39 @@ class ShortFullscreenAdapter(private val activity: AppCompatActivity,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
             val short = shorts[position]
-            with(short) {
-                with(shortView) {
-                    activity.lifecycle.addObserver(this)
-                    addYouTubePlayerListener(object: AbstractYouTubePlayerListener() {
-                        override fun onReady(youTubePlayer: YouTubePlayer) {
-                            setOnFocusChangeListener { _, hasFocus ->
-                                if (hasFocus) youTubePlayer.play() else youTubePlayer.pause()
-                            }
-                            youTubePlayer.loadVideo(short.id, 0F)
-                        }
-                        override fun onStateChange(youTubePlayer: YouTubePlayer,
-                                                   state: PlayerConstants.PlayerState) {
-                            if (state == PlayerConstants.PlayerState.ENDED) {
-                                youTubePlayer.play()
-                            }
-                        }
-                    })
-                }
-                with(artistImage) {
-                    setImageUrl(getArtists().first().getImageUrl(QQMusic.Image.SMALL))
-                    setOnClickListener { context.onArtistClickListener(activity.supportFragmentManager, getArtists()) }
-                }
-                with(artistName) {
-                    text = getArtists().getName(Language.VIETNAMESE)
-                    setOnClickListener { context.onArtistClickListener(activity.supportFragmentManager, getArtists()) }
-                }
-                with(audioName) {
-                    isSelected = true
-                    text = if (getAudios().isNotEmpty())
-                        getAudios().toString(Language.VIETNAMESE) else "Bài hát của ${artistName.text}"
-                    setOnClickListener { context.onAudioClickListener(activity.supportFragmentManager, getAudios()) }
-                }
-                with(favouriteButton) {
-                    User(context).run {
-                        shortId?.let {
-                            if (!it.contains(short.id)) {
-                                setImageResource(com.zitherharp.music.shorts.R.drawable.ic_short_favorite_border_24)
-                            } else {
-                                setImageResource(com.zitherharp.music.shorts.R.drawable.ic_short_favorite_24)
-
-                            }
+            val audios = short.getAudios()
+            val artists = short.getArtists()
+            with(shortView) {
+                activity.lifecycle.addObserver(this)
+                addYouTubePlayerListener(object: AbstractYouTubePlayerListener() {
+                    override fun onReady(youTubePlayer: YouTubePlayer) {
+                        youTubePlayer.loadVideo(short.id, 0F)
+                        youTubePlayer.pause()
+                    }
+                    override fun onStateChange(youTubePlayer: YouTubePlayer,
+                                               state: PlayerConstants.PlayerState) {
+                        if (state == PlayerConstants.PlayerState.ENDED) {
+                            youTubePlayer.play()
                         }
                     }
-                }
-                with(shareButton) {
-                    setOnClickListener { _ ->
-                        context.startActivity(Intent.createChooser(
-                            Intent(Intent.ACTION_SEND).apply {
-                                type = "text/plain"
-                                putExtra(Intent.EXTRA_TEXT, getShareUrl())
-                            }, context.getString(R.string.share)))
-                    }
-                }
+                })
             }
+            with(artistImage) {
+                setImageUrl(artists.first().getImageUrl(QQMusic.Image.SMALL))
+                onArtistDetailActivity(activity.supportFragmentManager, artists)
+            }
+            with(artistName) {
+                text = artists.getName(Language.VIETNAMESE)
+                onArtistDetailActivity(activity.supportFragmentManager, artists)
+            }
+            with(audioName) {
+                isSelected = true
+                text = if (audios.isNotEmpty())
+                    audios.toString(Language.VIETNAMESE) else "Bài hát của ${artistName.text}"
+            }
+            audioName.onAudioDetailActivity(activity.supportFragmentManager, audios)
+            favouriteButton.onFavourite(User.SHORT_ID, short.id)
+            shareButton.onShare(short)
         }
     }
 }

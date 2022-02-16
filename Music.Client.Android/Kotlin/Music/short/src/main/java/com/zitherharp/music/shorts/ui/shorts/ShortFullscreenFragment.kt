@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.PagerSnapHelper
-import com.zitherharp.music.R
 import com.zitherharp.music.model.Short
 import com.zitherharp.music.shorts.databinding.ShortFullscreenFragmentBinding
 
@@ -26,8 +25,8 @@ class ShortFullscreenFragment(): Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding.shortList) {
-            PagerSnapHelper().attachToRecyclerView(this)
             adapter = ShortFullscreenAdapter(activity as AppCompatActivity, shorts)
+            PagerSnapHelper().attachToRecyclerView(this)
         }
     }
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.zitherharp.music.model.Audio
+import com.zitherharp.music.R
 import com.zitherharp.music.shorts.databinding.AudioListFragmentBinding
 
 class AudioListFragment(): Fragment() {
@@ -22,8 +23,12 @@ class AudioListFragment(): Fragment() {
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        with(binding.audioList) {
-            adapter = AudioListAdapter(view.context, audios)
+        with(binding) {
+            if (audios.isNotEmpty()) {
+                audioList.adapter = AudioListAdapter(view.context, audios)
+            } else {
+                status.text = getString(R.string.empty)
+            }
         }
     }
 }

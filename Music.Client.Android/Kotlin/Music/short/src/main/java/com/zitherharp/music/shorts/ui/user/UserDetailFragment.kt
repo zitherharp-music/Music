@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.zitherharp.music.Extension.copyToClipboard
 import com.zitherharp.music.model.Artist
 import com.zitherharp.music.model.Artist.Companion.getArtists
 import com.zitherharp.music.model.Audio
@@ -17,6 +16,8 @@ import com.zitherharp.music.model.Short
 import com.zitherharp.music.model.Short.Companion.getShorts
 import com.zitherharp.music.R
 import com.zitherharp.music.shorts.databinding.UserDetailFragmentBinding
+import com.zitherharp.music.shorts.extension.Extension.copyToClipboard
+import com.zitherharp.music.shorts.model.User
 import com.zitherharp.music.shorts.ui.artist.ArtistListFragment
 import com.zitherharp.music.shorts.ui.audio.AudioListFragment
 import com.zitherharp.music.shorts.ui.shorts.ShortGridFragment
@@ -44,19 +45,17 @@ class UserDetailFragment: Fragment() {
                 artists = artistId.getArtists()
                 with(userId) {
                     text = String.format("ID: ${user.id}")
-                    setOnClickListener {
-                        it.copyToClipboard(this.text.toString())
-                    }
+                    setOnClickListener { copyToClipboard() }
                 }
                 with (userName) {
                     text = name
                     setOnClickListener {
                         val editText = EditText(context).apply {
-                            hint = name
+                            hint = user.artistId
                         }
                         AlertDialog.Builder(context).apply {
                             setView(editText)
-                            setMessage("Đổi tên người dùng")
+                            setTitle("Đổi tên người dùng")
                             setNegativeButton(getString(R.string.cancel)) { dlg, _ -> dlg.cancel() }
                             setPositiveButton(getString(R.string.save)) { _, _ ->
                                 run {
@@ -74,22 +73,13 @@ class UserDetailFragment: Fragment() {
                     }
                 }
             }
-            UserDetailAdapter(this@UserDetailFragment,
-                arrayOf("${getString(R.string.audio)} ${audios.size}",
-                    "${getString(R.string.shorts)} ${shorts.size}",
-                    "${getString(R.string.artist)} ${artists.size}"))
+            FragmentStateAdapter(this@UserDetailFragment,
+                HashMap<String, Fragment>().apply {
+                    put("${getString(R.string.shorts)} ${shorts.size}", ShortGridFragment(shorts))
+                    put("${getString(R.string.audio)} ${audios.size}", AudioListFragment(audios))
+                    put("${getString(R.string.artist)} ${artists.size}", ArtistListFragment(artists))
+                })
                 .attach(userTabLayout, userViewPager, 1)
-        }
-    }
-
-    inner class UserDetailAdapter(fragment: Fragment, tabNames: Array<String>): FragmentStateAdapter(fragment, tabNames) {
-        override fun createFragment(position: Int): Fragment {
-            when (position) {
-                0 -> if (audios.isNotEmpty()) return AudioListFragment(audios) else EmptyFragment()
-                1 -> if (shorts.isNotEmpty()) return ShortGridFragment(shorts) else EmptyFragment()
-                2 -> if (artists.isNotEmpty()) return ArtistListFragment(artists) else EmptyFragment()
-            }
-            return EmptyFragment()
         }
     }
 }

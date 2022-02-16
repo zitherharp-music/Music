@@ -1,4 +1,4 @@
-package com.zitherharp.music.shorts.ui.notifications
+package com.zitherharp.music.shorts.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,4 +10,6 @@ class NotificationsViewModel : ViewModel() {
         value = "This is notifications Fragment"
     }
     val text: LiveData<String> = _text
+
+
 }

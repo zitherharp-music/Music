@@ -19,17 +19,7 @@ class NotificationFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
-            NotificationAdapter(this@NotificationFragment,
-                arrayOf("Cập nhật"))
-                .attach(notificationTabLayout, notificationViewPager)
-        }
-    }
 
-    inner class NotificationAdapter(fragment: Fragment, tabNames: Array<String>): FragmentStateAdapter(fragment, tabNames) {
-        override fun createFragment(position: Int): Fragment {
-            when (position) {
-            }
-            return EmptyFragment()
         }
     }
 }

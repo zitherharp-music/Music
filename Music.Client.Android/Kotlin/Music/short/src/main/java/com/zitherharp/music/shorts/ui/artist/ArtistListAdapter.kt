@@ -33,7 +33,7 @@ class ArtistListAdapter(private val context: Context,
             with(artists[position]) {
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, ArtistDetailActivity::class.java).apply {
-                        putExtra(ArtistDetailActivity::class.simpleName, id)
+                        putExtra(ArtistDetailActivity::class.java.name, id)
                     })
                 }
                 artistImage.setImageUrl(getImageUrl(QQMusic.Image.SMALL))

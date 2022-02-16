@@ -12,9 +12,9 @@ import kotlinx.coroutines.*
 
 @DelicateCoroutinesApi
 abstract class LauncherActivity: AppCompatActivity() {
+    private var isFirstLoad = true
     private lateinit var appIcon: ImageView
     private lateinit var appBackground: CoordinatorLayout
-    private var isFirstLoad = true
 
     protected abstract fun onPrepare()
     protected abstract fun onLaunch()
