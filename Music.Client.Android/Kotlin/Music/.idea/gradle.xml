@@ -10,7 +10,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/audio" />
             <option value="$PROJECT_DIR$/lib" />
+            <option value="$PROJECT_DIR$/photo" />
             <option value="$PROJECT_DIR$/short" />
           </set>
         </option>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="audio_app_color">#3FE1F4</color>
     <color name="short_app_color">#FEAFC7</color>
+    <color name="photo_app_color">#B83EBA</color>
 </resources>

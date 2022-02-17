@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "Music"
 include ':short'
 include ':lib'
+include ':audio'
+include ':photo'

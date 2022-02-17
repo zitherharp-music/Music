@@ -18,8 +18,8 @@ class LauncherActivity: LauncherActivity() {
     }
 
     override fun onPrepare() {
-        Audio.repository
         Artist.repository
+        Audio.repository
         Short.repository
     }
 

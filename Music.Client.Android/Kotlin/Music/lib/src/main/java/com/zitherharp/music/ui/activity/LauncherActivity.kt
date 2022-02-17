@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.zitherharp.music.Extension.isNetworkConnected
 import com.zitherharp.music.R
+import com.zitherharp.music.model.Audio
+import com.zitherharp.music.model.Photo
 import com.zitherharp.music.model.Short
 import kotlinx.coroutines.*
 
@@ -31,6 +33,14 @@ abstract class LauncherActivity: AppCompatActivity() {
 
     protected fun onBind(appName: String) {
         when (appName) {
+            Audio::class.java.name -> {
+                appIcon.setImageResource(R.mipmap.ic_audio_launcher)
+                appBackground.setBackgroundResource(R.color.audio_app_color)
+            }
+            Photo::class.java.name -> {
+                appIcon.setImageResource(R.mipmap.ic_photo_launcher)
+                appBackground.setBackgroundResource(R.color.photo_app_color)
+            }
             Short::class.java.name -> {
                 appIcon.setImageResource(R.mipmap.ic_short_launcher)
                 appBackground.setBackgroundResource(R.color.short_app_color)

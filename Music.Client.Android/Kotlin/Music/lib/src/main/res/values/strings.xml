@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="music_app_name">Zither Harp Music</string>
+    <string name="audio_app_name">Zither Harp Music: Audio</string>
+    <string name="photo_app_name">Zither Harp Music: Photo</string>
     <string name="short_app_name">Zither Harp Music: Short</string>
     <string name="no_connection">Không có kết nối</string>
     <string name="no_information">Không có thông tin</string>

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.zitherharp.music.model.Short
 import com.zitherharp.music.model.Short.Companion.getShorts
-import com.zitherharp.music.R
 import com.zitherharp.music.shorts.databinding.FragmentHomeBinding
 import com.zitherharp.music.shorts.ui.shorts.ShortFullscreenFragment
 import com.zitherharp.music.shorts.model.User
