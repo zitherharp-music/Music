@@ -12,7 +12,7 @@ class Artist(id: String): QQMusic(id) {
         val repository: MutableMap<String, Artist> = HashMap()
 
         init {
-            val jsonValues = getJsonValues(Artist::class.simpleName)
+            val jsonValues = getJsonValues(Artist::class.java.simpleName)
             for (i in 0 until jsonValues.length()) {
                 jsonValue = jsonValues.getJSONArray(i)
                 repository[jsonValue.requireString(ID)] = Artist(

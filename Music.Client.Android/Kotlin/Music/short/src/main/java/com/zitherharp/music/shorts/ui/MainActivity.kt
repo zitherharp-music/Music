@@ -1,4 +1,4 @@
-package com.zitherharp.music.shorts.ui.main
+package com.zitherharp.music.shorts.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

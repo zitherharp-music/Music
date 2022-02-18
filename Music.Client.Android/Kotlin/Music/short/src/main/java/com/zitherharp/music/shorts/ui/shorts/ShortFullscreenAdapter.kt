@@ -19,6 +19,7 @@ import com.zitherharp.music.shorts.extension.Extension.onAudioDetailActivity
 import com.zitherharp.music.shorts.extension.Extension.onFavourite
 import com.zitherharp.music.shorts.extension.Extension.onShare
 import com.zitherharp.music.shorts.model.User
+import com.zitherharp.music.shorts.ui.comment.CommentListDialog
 import com.zitherharp.music.ui.adapter.RecyclerViewAdapter
 
 class ShortFullscreenAdapter(private val activity: AppCompatActivity,
@@ -77,6 +78,9 @@ class ShortFullscreenAdapter(private val activity: AppCompatActivity,
             audioName.onAudioDetailActivity(activity.supportFragmentManager, audios)
             favouriteButton.onFavourite(User.SHORT_ID, short.id)
             shareButton.onShare(short)
+            commentButton.setOnClickListener {
+                CommentListDialog().showNow(activity.supportFragmentManager, CommentListDialog::class.java.name)
+            }
         }
     }
 }

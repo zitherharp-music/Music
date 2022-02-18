@@ -1,4 +1,4 @@
-package com.zitherharp.music.shorts
+package com.zitherharp.music.shorts.explore
 
 import androidx.lifecycle.ViewModel
 

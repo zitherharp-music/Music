@@ -25,7 +25,7 @@ abstract class Spreadsheet(val id: String) {
 
         lateinit var jsonValue: JSONArray
 
-        fun getJsonValues(name: String?): JSONArray {
+        fun getJsonValues(name: String): JSONArray {
             val url = "https://sheets.googleapis.com/v4/spreadsheets/" +
                     "1znQOtTDJz0UqDs0uB2MQZV3wN0l_J0TrU44d9chH2SI/values/" +
                     "$name?key=AIzaSyAD91OiEeWRoqhsw0peq94qg5joZe47r_s"
@@ -34,7 +34,7 @@ abstract class Spreadsheet(val id: String) {
             return jsonObject.getJSONArray("values")
         }
 
-        fun JSONArray.requireInt(index: Int): Int = try { getInt(index) } catch (e: Exception) { 0 }
+        //fun JSONArray.requireInt(index: Int): Int = try { getInt(index) } catch (e: Exception) { 0 }
         fun JSONArray.requireString(index: Int): String = try { getString(index) } catch (e: Exception) { EMPTY_CHAR }
 
         fun List<Spreadsheet>.getIds(): String {
