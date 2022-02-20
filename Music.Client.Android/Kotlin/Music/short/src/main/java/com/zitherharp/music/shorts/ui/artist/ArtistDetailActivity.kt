@@ -38,12 +38,24 @@ class ArtistDetailActivity: AppCompatActivity() {
             artistImage.onImage(artist)
             artistDescription.onDescription(artist)
             favouriteArtist.onFavourite(User.ARTIST_ID, artist.id)
-            FragmentStateAdapter(this@ArtistDetailActivity,
-                HashMap<String, Fragment>().apply {
-                    put("${getString(com.zitherharp.music.R.string.audio)} ${audios.size}", AudioListFragment(audios))
-                    put("${getString(com.zitherharp.music.R.string.shorts)} ${shorts.size}", ShortGridFragment(shorts))
-                })
+            ArtistDetailAdapter(this@ArtistDetailActivity,
+                arrayOf("${getString(com.zitherharp.music.R.string.audio)} ${audios.size}",
+                    "${getString(com.zitherharp.music.R.string.shorts)} ${shorts.size}"))
                 .attach(artistTabLayout, artistViewPager, 1)
+        }
+    }
+
+    inner class ArtistDetailAdapter(fragmentActivity: ArtistDetailActivity,
+                                    tabNames: Array<String>): FragmentStateAdapter(fragmentActivity, tabNames) {
+        private val audioFragment = if (audios.isNotEmpty()) AudioListFragment(audios) else EmptyFragment()
+        private val shortFragment = if (shorts.isNotEmpty()) ShortGridFragment(shorts) else EmptyFragment()
+
+        override fun createFragment(position: Int): Fragment {
+            when (position) {
+                0 -> return audioFragment
+                1 -> return shortFragment
+            }
+            return super.createFragment(position)
         }
     }
 }

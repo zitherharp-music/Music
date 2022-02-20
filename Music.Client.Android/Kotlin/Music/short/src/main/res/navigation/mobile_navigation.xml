@@ -9,17 +9,17 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.zitherharp.music.shorts.ui.main.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/home_main_fragment" />
 
     <fragment
         android:id="@+id/navigation_explore"
-        android:name="com.zitherharp.music.shorts.ui.main.DashboardFragment"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.zitherharp.music.shorts.ui.main.ExploreFragment"
+        tools:layout="@layout/explore_main_fragment" />
 
     <fragment
         android:id="@+id/navigation_notification"
         android:name="com.zitherharp.music.shorts.ui.main.NotificationFragment"
-        tools:layout="@layout/notification_fragment" />
+        tools:layout="@layout/notification_main_fragment" />
 
     <fragment
         android:id="@+id/navigation_user"

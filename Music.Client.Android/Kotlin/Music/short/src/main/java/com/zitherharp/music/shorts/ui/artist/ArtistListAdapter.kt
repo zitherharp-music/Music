@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.zitherharp.music.Extension.setImageUrl
 import com.zitherharp.music.core.Language
 import com.zitherharp.music.core.QQMusic
@@ -14,21 +13,14 @@ import com.zitherharp.music.ui.adapter.RecyclerViewAdapter
 
 class ArtistListAdapter(private val context: Context,
                         private val artists: List<Artist>):
-    RecyclerViewAdapter<ArtistListAdapter.ViewHolder>(context, artists) {
-
-    inner class ViewHolder(binding: ArtistListContentBinding):
-        RecyclerView.ViewHolder(binding.root) {
-        val artistImage = binding.artistImage
-        val artistChineseName = binding.artistChineseName
-        val artistVietnameseName = binding.artistVietnameseName
-    }
+    RecyclerViewAdapter<ArtistListContent>(context, artists) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(
+        ArtistListContent(
             ArtistListContentBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ArtistListContent, position: Int) {
         with(holder) {
             with(artists[position]) {
                 itemView.setOnClickListener {
@@ -36,9 +28,9 @@ class ArtistListAdapter(private val context: Context,
                         putExtra(ArtistDetailActivity::class.java.name, id)
                     })
                 }
-                artistImage.setImageUrl(getImageUrl(QQMusic.Image.SMALL))
-                artistChineseName.text = getName(Language.CHINESE)
-                artistVietnameseName.text = getName(Language.VIETNAMESE)
+                image.setImageUrl(getImageUrl(QQMusic.Image.SMALL))
+                title.text = getName(Language.VIETNAMESE)
+                subtitle.text = getName(Language.CHINESE)
             }
         }
     }

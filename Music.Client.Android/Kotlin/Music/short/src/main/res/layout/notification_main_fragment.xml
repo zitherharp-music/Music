@@ -15,6 +15,6 @@
         android:id="@+id/notification_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/tab_layout_height"/>
+        android:layout_marginVertical="@dimen/tab_layout_height"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

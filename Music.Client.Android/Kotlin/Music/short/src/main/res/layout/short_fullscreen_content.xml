@@ -8,7 +8,11 @@
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:id="@+id/short_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:isScrollContainer="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -7,21 +7,24 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zitherharp.music.core.Spreadsheet
-import com.zitherharp.music.shorts.databinding.CommentListDialogBinding
+import com.zitherharp.music.shorts.databinding.CommentListFragmentBinding
 
 class CommentListDialog: BottomSheetDialogFragment() {
-    private lateinit var binding: CommentListDialogBinding
+    private lateinit var binding: CommentListFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-        CommentListDialogBinding.inflate(inflater, container, false).apply {
+        CommentListFragmentBinding.inflate(inflater, container, false).apply {
             binding = this
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
-            sendComment.setOnClickListener {
-                commentBox.setText(Spreadsheet.EMPTY_CHAR)
-                Toast.makeText(it.context, "Không thể bình luận", Toast.LENGTH_SHORT).show()
+            with(commentBar) {
+                sendComment.setOnClickListener {
+                    dismiss()
+                    commentBox.setText(Spreadsheet.EMPTY_CHAR)
+                    Toast.makeText(it.context, "Bình luận thành công", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

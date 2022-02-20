@@ -4,34 +4,23 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.zitherharp.music.Extension.setImageUrl
 import com.zitherharp.music.core.Spreadsheet.Companion.getIds
 import com.zitherharp.music.core.Youtube
 import com.zitherharp.music.model.Short
 import com.zitherharp.music.shorts.databinding.ShortGridContentBinding
+import com.zitherharp.music.ui.adapter.RecyclerViewAdapter
 
 class ShortGridAdapter(private val context: Context,
                        private val shorts: List<Short>):
-    RecyclerView.Adapter<ShortGridAdapter.ViewHolder>() {
-
-    inner class ViewHolder(binding: ShortGridContentBinding):
-        RecyclerView.ViewHolder(binding.root) {
-        val shortImage = binding.shortImage
-    }
-
-    override fun getItemId(position: Int) = position.toLong()
-
-    override fun getItemViewType(position: Int) = position
-
-    override fun getItemCount() = shorts.size
+    RecyclerViewAdapter<ShortGridContent>(context, shorts) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(
+        ShortGridContent(
             ShortGridContentBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ShortGridContent, position: Int) {
         with(holder) {
             itemView.setOnClickListener {
                 context.startActivity(Intent(context, ShortFullscreenActivity::class.java).apply {
@@ -39,8 +28,8 @@ class ShortGridAdapter(private val context: Context,
                     putExtra(ShortFullscreenActivity::class.qualifiedName, shorts.getIds())
                 })
             }
-            with(shorts[position]) {
-                shortImage.setImageUrl(getImageUrl(Youtube.Image.HQDEFAULT))
+            shorts[position].run {
+                image.setImageUrl(getImageUrl(Youtube.Image.HQDEFAULT))
             }
         }
     }

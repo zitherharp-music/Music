@@ -17,9 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity"/>
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"/>
         <activity android:name=".ui.audio.AudioDetailActivity"/>
         <activity android:name=".ui.artist.ArtistDetailActivity"/>
         <activity android:name=".ui.shorts.ShortFullscreenActivity"/>
+        <activity android:name=".ui.comment.CommentListActivity"/>
     </application>
 </manifest>

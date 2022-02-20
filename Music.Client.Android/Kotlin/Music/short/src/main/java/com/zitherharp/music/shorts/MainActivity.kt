@@ -1,4 +1,4 @@
-package com.zitherharp.music.shorts.ui
+package com.zitherharp.music.shorts
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,11 +6,12 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.zitherharp.music.shorts.R
-import com.zitherharp.music.shorts.databinding.ActivityMainBinding
+import com.zitherharp.music.shorts.databinding.MainActivityBinding
+import com.zitherharp.music.shorts.model.User
 
 class MainActivity: AppCompatActivity() {
-    private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private val binding: MainActivityBinding by lazy { MainActivityBinding.inflate(layoutInflater) }
+    val currentUser: User by lazy { User(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

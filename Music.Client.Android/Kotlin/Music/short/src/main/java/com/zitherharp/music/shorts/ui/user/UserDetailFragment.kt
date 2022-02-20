@@ -15,9 +15,11 @@ import com.zitherharp.music.model.Audio.Companion.getAudios
 import com.zitherharp.music.model.Short
 import com.zitherharp.music.model.Short.Companion.getShorts
 import com.zitherharp.music.R
+import com.zitherharp.music.shorts.MainActivity
 import com.zitherharp.music.shorts.databinding.UserDetailFragmentBinding
 import com.zitherharp.music.shorts.extension.Extension.copyToClipboard
 import com.zitherharp.music.shorts.model.User
+import com.zitherharp.music.shorts.ui.artist.ArtistDetailActivity
 import com.zitherharp.music.shorts.ui.artist.ArtistListFragment
 import com.zitherharp.music.shorts.ui.audio.AudioListFragment
 import com.zitherharp.music.shorts.ui.shorts.ShortGridFragment
@@ -37,7 +39,7 @@ class UserDetailFragment: Fragment() {
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        user = User(view.context)
+        user = (activity as MainActivity).currentUser
         with(binding) {
             with(user) {
                 shorts = shortId.getShorts()
@@ -73,13 +75,27 @@ class UserDetailFragment: Fragment() {
                     }
                 }
             }
-            FragmentStateAdapter(this@UserDetailFragment,
-                HashMap<String, Fragment>().apply {
-                    put("${getString(R.string.shorts)} ${shorts.size}", ShortGridFragment(shorts))
-                    put("${getString(R.string.audio)} ${audios.size}", AudioListFragment(audios))
-                    put("${getString(R.string.artist)} ${artists.size}", ArtistListFragment(artists))
-                })
+            UserDetailAdapter(this@UserDetailFragment,
+                arrayOf("${getString(R.string.audio)} ${audios.size}",
+                    "${getString(R.string.shorts)} ${shorts.size}",
+                    "${getString(R.string.artist)} ${artists.size}"))
                 .attach(userTabLayout, userViewPager, 1)
+        }
+    }
+
+    inner class UserDetailAdapter(fragment: UserDetailFragment,
+                                  tabNames: Array<String>): FragmentStateAdapter(fragment, tabNames) {
+        private val audioFragment = if (audios.isNotEmpty()) AudioListFragment(audios) else EmptyFragment()
+        private val shortFragment = if (shorts.isNotEmpty()) ShortGridFragment(shorts) else EmptyFragment()
+        private val artistFragment = if (artists.isNotEmpty()) ArtistListFragment(artists) else EmptyFragment()
+
+        override fun createFragment(position: Int): Fragment {
+            when (position) {
+                0 -> return audioFragment
+                1 -> return shortFragment
+                2 -> return artistFragment
+            }
+            return super.createFragment(position)
         }
     }
 }

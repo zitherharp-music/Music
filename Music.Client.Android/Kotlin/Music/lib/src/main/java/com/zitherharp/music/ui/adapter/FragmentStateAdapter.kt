@@ -8,23 +8,18 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-class FragmentStateAdapter: FragmentStateAdapter {
+abstract class FragmentStateAdapter: FragmentStateAdapter {
     private var context: Context
-    private var tabNames: List<String>
-    private var fragments: List<Fragment>
+    private var tabNames: Array<String>
 
-    constructor(fragment: Fragment,
-                fragmentStates: MutableMap<String, Fragment>): super(fragment) {
+    constructor(fragment: Fragment, tabNames: Array<String>): super(fragment) {
         this.context = fragment.requireContext()
-        this.tabNames = fragmentStates.keys.toList()
-        this.fragments = fragmentStates.values.toList()
+        this.tabNames = tabNames
     }
 
-    constructor(fragmentActivity: FragmentActivity,
-                fragmentStates: MutableMap<String, Fragment>): super(fragmentActivity) {
+    constructor(fragmentActivity: FragmentActivity, tabNames: Array<String>): super(fragmentActivity) {
         this.context = fragmentActivity.baseContext
-        this.tabNames = fragmentStates.keys.toList()
-        this.fragments = fragmentStates.values.toList()
+        this.tabNames = tabNames
     }
 
     override fun getItemId(position: Int) = position.toLong()
@@ -33,7 +28,9 @@ class FragmentStateAdapter: FragmentStateAdapter {
 
     override fun getItemCount() = tabNames.size
 
-    override fun createFragment(position: Int) = fragments[position]
+    override fun createFragment(position: Int): Fragment {
+        TODO("Index $position out of bounds for length ${tabNames.size}")
+    }
 
     fun attach(tabLayout: TabLayout, viewPager: ViewPager2, tabSelectedIndex: Int = 0) {
         tabLayout.apply {
