@@ -42,13 +42,17 @@ class NotificationFragment: Fragment() {
 
     inner class NotificationMainAdapter(fragment: NotificationFragment,
                                         tabNames: Array<String>): FragmentStateAdapter(fragment, tabNames) {
+        private val audioFragment = AudioListFragment(Audio.repository.values
+            .sortedByDescending { audio -> audio.getShorts().size }.subList(0, 15))
+        private val shortFragment = ShortGridFragment(Short.repository.values.shuffled().subList(0, 15))
+        private val artistFragment = ArtistListFragment(Artist.repository.values
+            .sortedByDescending { artist -> artist.getShorts().size }.subList(0, 15))
+
         override fun createFragment(position: Int): Fragment {
             when (position) {
-                0 -> return AudioListFragment(Audio.repository.values
-                    .sortedByDescending { audio -> audio.getShorts().size }.subList(0, 10))
-                1 -> return ShortGridFragment(Short.repository.values.shuffled().subList(0, 12))
-                2 -> return ArtistListFragment(Artist.repository.values
-                    .sortedByDescending { artist -> artist.getShorts().size }.subList(0, 10))
+                0 -> return audioFragment
+                1 -> return shortFragment
+                2 -> return artistFragment
             }
             return super.createFragment(position)
         }
