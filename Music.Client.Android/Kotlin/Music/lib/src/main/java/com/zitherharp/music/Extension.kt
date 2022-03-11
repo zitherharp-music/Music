@@ -1,14 +1,12 @@
 package com.zitherharp.music
 
-import android.app.AlertDialog
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.BitmapFactory
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import com.zitherharp.music.model.Music
+import com.zitherharp.music.model.Music.Resource.getColor
 import kotlinx.coroutines.*
 import java.net.URL
 
@@ -20,10 +18,17 @@ object Extension {
     fun ImageView.setImageUrl(url: String) {
         GlobalScope.launch(Dispatchers.IO) {
             val image = BitmapFactory.decodeStream(
-                URL(url).openConnection().getInputStream())
+                URL(url).openConnection().apply { useCaches = true }.getInputStream())
             withContext(Dispatchers.Main) {
                 setImageBitmap(image)
             }
+        }
+    }
+
+    fun ImageView.setColorDrawable(music: Music) {
+        DrawableCompat.wrap(drawable).run {
+            DrawableCompat.setTint(this, ContextCompat.getColor(context, music.getColor()))
+            setImageDrawable(this)
         }
     }
 }

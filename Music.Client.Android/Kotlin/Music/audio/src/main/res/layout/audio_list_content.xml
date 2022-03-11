@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:id="@+id/audio_image"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_short_launcher"
+            android:src="@mipmap/ic_audio_launcher"
             android:contentDescription="@string/audio" />
 
     </androidx.cardview.widget.CardView>

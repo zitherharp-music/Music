@@ -3,7 +3,6 @@ package com.zitherharp.music.photo
 import android.content.Intent
 import android.os.Bundle
 import com.zitherharp.music.model.Artist
-import com.zitherharp.music.model.Audio
 import com.zitherharp.music.model.Photo
 import com.zitherharp.music.ui.activity.LauncherActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -18,7 +17,7 @@ class LauncherActivity: LauncherActivity() {
 
     override fun onPrepare() {
         Artist.repository
-        Audio.repository
+        Photo.repository
     }
 
     override fun onLaunch() {

@@ -53,7 +53,7 @@ abstract class LauncherActivity: AppCompatActivity() {
         if (!isFirstLoad) return
         if (isNetworkConnected()) {
             isFirstLoad = false
-            GlobalScope.launch {
+            GlobalScope.launch(Dispatchers.IO) {
                 onPrepare()
                 withContext(Dispatchers.IO) {
                     onLaunch()

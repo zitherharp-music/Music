@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.zitherharp.music.Extension.setImageUrl
 import com.zitherharp.music.audio.databinding.AudioListContentBinding
 import com.zitherharp.music.core.Language
@@ -23,11 +24,13 @@ class AudioListAdapter(private val context: Context,
     override fun onBindViewHolder(holder: AudioListContent, position: Int) {
         with(holder) {
             audios[position].run {
-//                itemView.setOnClickListener {
-//                    context.startActivity(Intent(it.context, AudioDetailActivity::class.java).apply {
-//                        putExtra(AudioDetailActivity::class.java.name, id)
-//                    })
-//                }
+                itemView.setOnClickListener {
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(
+                        Intent("audioPlayer").apply {
+                            putExtra("audioId", id)
+                            putExtra("audioPosition", 0f)
+                    })
+                }
                 image.setImageUrl(getImageUrl(Youtube.Image.MQDEFAULT))
                 title.text = getName(Language.VIETNAMESE)
                 subtitle.text = getName(Language.CHINESE)

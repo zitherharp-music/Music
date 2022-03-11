@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.zitherharp.music.photo.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:name="com.zitherharp.music.photo.ui.main.MainHomeFragment"
+        android:label="@string/photo_app_name"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.zitherharp.music.photo.ui.dashboard.DashboardFragment"
+        android:name="com.zitherharp.music.photo.ui.main.MainExplorerFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/main_explorer_fragment" />
 
     <fragment
         android:id="@+id/navigation_notifications"

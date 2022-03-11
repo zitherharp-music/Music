@@ -23,6 +23,9 @@
             android:theme="@style/Theme.Music.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan">
         </activity>
+        <service
+            android:name=".ui.audio.AudioPlayerService"
+            android:enabled="true"
+            android:foregroundServiceType="mediaPlayback"/>
     </application>
-
 </manifest>

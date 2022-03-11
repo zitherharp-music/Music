@@ -5,11 +5,11 @@ import org.json.JSONObject
 import java.net.URL
 
 abstract class Spreadsheet(val id: String) {
-    private lateinit var vietnameseName: String
-    private lateinit var chineseName: String
+    protected lateinit var chineseName: String
+    protected lateinit var vietnameseName: String
 
-    private lateinit var vietnameseDescription: String
-    private lateinit var chineseDescription: String
+    protected lateinit var chineseDescription: String
+    protected lateinit var vietnameseDescription: String
 
     companion object {
         const val EMPTY_CHAR = ""
@@ -34,13 +34,13 @@ abstract class Spreadsheet(val id: String) {
             return jsonObject.getJSONArray("values")
         }
 
-        //fun JSONArray.requireInt(index: Int): Int = try { getInt(index) } catch (e: Exception) { 0 }
+        fun JSONArray.requireInt(index: Int): Int = try { getInt(index) } catch (e: Exception) { 0 }
         fun JSONArray.requireString(index: Int): String = try { getString(index) } catch (e: Exception) { EMPTY_CHAR }
 
-        fun List<Spreadsheet>.getIds(): String {
-            var ids = EMPTY_CHAR
-            forEach { ids += it.id + SPLIT_CHAR }
-            return ids.removeSuffix(SPLIT_CHAR)
+        fun List<Spreadsheet>.getId(): String {
+            var id = EMPTY_CHAR
+            forEach { id += it.id + SPLIT_CHAR }
+            return id.removeSuffix(SPLIT_CHAR)
         }
 
         fun List<Spreadsheet>.getName(language: Language): String {
@@ -55,31 +55,13 @@ abstract class Spreadsheet(val id: String) {
         }
     }
 
-    fun setName(language: Language, name: String) {
-        when (language) {
-            Language.CHINESE -> chineseName = name
-            Language.VIETNAMESE -> vietnameseName = name
-        }
+    fun getName(language: Language) = when (language) {
+        Language.CHINESE -> chineseName
+        Language.VIETNAMESE -> vietnameseName
     }
 
-    fun setDescription(language: Language, description: String) {
-        when (language) {
-            Language.CHINESE -> chineseDescription = description
-            Language.VIETNAMESE -> vietnameseDescription = description
-        }
-    }
-
-    fun getName(language: Language): String {
-        return when (language) {
-            Language.CHINESE -> chineseName
-            Language.VIETNAMESE -> vietnameseName
-        }
-    }
-
-    fun getDescription(language: Language): String {
-        return when (language) {
-            Language.CHINESE -> chineseDescription
-            Language.VIETNAMESE -> vietnameseDescription
-        }
+    fun getDescription(language: Language) = when (language) {
+        Language.CHINESE -> chineseDescription
+        Language.VIETNAMESE -> vietnameseDescription
     }
 }

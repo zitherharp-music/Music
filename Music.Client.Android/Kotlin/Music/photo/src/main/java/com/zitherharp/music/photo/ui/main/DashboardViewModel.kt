@@ -1,4 +1,4 @@
-package com.zitherharp.music.photo.ui.dashboard
+package com.zitherharp.music.photo.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

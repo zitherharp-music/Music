@@ -17,24 +17,24 @@ class Audio(id: String, val artistId: String): Youtube(id) {
                 repository[jsonValue.requireString(ID)] = Audio(
                     jsonValue.requireString(ID),
                     jsonValue.requireString(ARTIST_ID)).apply {
-                        setName(Language.VIETNAMESE, jsonValue.requireString(VIETNAMESE_NAME))
-                        setName(Language.CHINESE, jsonValue.requireString(CHINESE_NAME))
-                        setDescription(Language.VIETNAMESE, jsonValue.requireString(VIETNAMESE_DESCRIPTION))
-                        setDescription(Language.CHINESE, jsonValue.requireString(CHINESE_DESCRIPTION))
+                        chineseName = jsonValue.requireString(CHINESE_NAME)
+                        vietnameseName = jsonValue.requireString(VIETNAMESE_NAME)
+                        chineseDescription = jsonValue.requireString(CHINESE_DESCRIPTION)
+                        vietnameseDescription = jsonValue.requireString(VIETNAMESE_DESCRIPTION)
                 }
             }
         }
 
         fun String?.getAudios(): List<Audio> {
-            return if (this != null && this != EMPTY_CHAR) {
-                val audios = ArrayList<Audio>()
+            val audios = ArrayList<Audio>()
+            if (!isNullOrBlank()) {
                 for (id in split(SPLIT_CHAR)) {
-                    audios.add(repository[id]!!)
+                    repository[id]?.let {
+                        audios.add(it)
+                    }
                 }
-                audios
-            } else {
-                emptyList()
             }
+            return audios
         }
 
         fun List<Audio>.toString(language: Language): String {

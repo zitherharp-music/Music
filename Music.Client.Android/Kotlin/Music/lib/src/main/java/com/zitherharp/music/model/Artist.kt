@@ -1,12 +1,11 @@
 package com.zitherharp.music.model
 
-import com.zitherharp.music.core.Language
 import com.zitherharp.music.core.QQMusic
 
 class Artist(id: String): QQMusic(id) {
 
     override fun getImageUrl(image: Image) =
-        "https://y.qq.com/music/photo_new/T001R${image.size}x${image.size}M000$id.jpg"
+        "https://y.qq.com/music/photo_new/T001R${image.pixel}x${image.pixel}M000$id.jpg"
 
     companion object {
         val repository: MutableMap<String, Artist> = HashMap()
@@ -17,17 +16,17 @@ class Artist(id: String): QQMusic(id) {
                 jsonValue = jsonValues.getJSONArray(i)
                 repository[jsonValue.requireString(ID)] = Artist(
                     jsonValue.requireString(ID)).apply {
-                        setName(Language.VIETNAMESE, jsonValue.requireString(VIETNAMESE_NAME))
-                        setName(Language.CHINESE, jsonValue.requireString(CHINESE_NAME))
-                        setDescription(Language.VIETNAMESE, jsonValue.requireString(VIETNAMESE_DESCRIPTION))
-                        setDescription(Language.CHINESE, jsonValue.requireString(CHINESE_DESCRIPTION))
+                        chineseName = jsonValue.requireString(CHINESE_NAME)
+                        vietnameseName = jsonValue.requireString(VIETNAMESE_NAME)
+                        chineseDescription = jsonValue.requireString(CHINESE_DESCRIPTION)
+                        vietnameseDescription = jsonValue.requireString(VIETNAMESE_DESCRIPTION)
                 }
             }
         }
 
         fun String?.getArtists(): List<Artist> {
             val artists = ArrayList<Artist>()
-            if (!this.isNullOrBlank()) {
+            if (!isNullOrBlank()) {
                 for (id in split(SPLIT_CHAR)) {
                     repository[id]?.let {
                         artists.add(it)
