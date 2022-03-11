@@ -24,7 +24,7 @@ class AudioListFragment(): Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
-            audioList.adapter = AudioListAdapter(view.context, Audio.repository.values.toList().subList(0, 15))
+            audioList.adapter = AudioListAdapter(view.context, Audio.repository.values.toList().subList(0, 25))
         }
     }
 }

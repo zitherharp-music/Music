@@ -5,7 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.zitherharp.music.Extension.setImageUrl
-import com.zitherharp.music.core.Spreadsheet.Companion.getIds
+import com.zitherharp.music.core.Spreadsheet.Companion.getId
 import com.zitherharp.music.core.Youtube
 import com.zitherharp.music.model.Short
 import com.zitherharp.music.shorts.databinding.ShortGridContentBinding
@@ -25,7 +25,7 @@ class ShortGridAdapter(private val context: Context,
             itemView.setOnClickListener {
                 context.startActivity(Intent(context, ShortFullscreenActivity::class.java).apply {
                     putExtra(ShortFullscreenActivity::class.simpleName, position)
-                    putExtra(ShortFullscreenActivity::class.qualifiedName, shorts.getIds())
+                    putExtra(ShortFullscreenActivity::class.qualifiedName, shorts.getId())
                 })
             }
             shorts[position].run {

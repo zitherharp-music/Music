@@ -1,43 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text_home"
+    <com.google.android.material.chip.ChipGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:text="@string/photo_app_name"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/photo_filter_view"
+        app:singleLine="true"
+        app:singleSelection="true"
+        app:selectionRequired="true"
+        android:paddingHorizontal="@dimen/activity_horizontal_margin">
 
-    <androidx.recyclerview.widget.RecyclerView
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Theme.Music.Photo.ChipFilter"
+            android:checked="true"
+            android:text="@string/all"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Theme.Music.Photo.ChipFilter"
+            android:text="@string/artist"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Theme.Music.Photo.ChipFilter"
+            android:text="@string/album"/>
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/artist_stories"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/text_home"/>
+        android:id="@+id/photo_refresh_view">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:id="@+id/split_action_bar"
-        android:background="@color/black"
-        android:layout_marginVertical="@dimen/activity_vertical_margin"
-        app:layout_constraintTop_toBottomOf="@id/artist_stories"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/photo_recycler_view"
+            tools:listitem="@layout/photo_grid_content"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/artist_photos"
-        app:layout_constraintTop_toBottomOf="@id/split_action_bar"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
+
