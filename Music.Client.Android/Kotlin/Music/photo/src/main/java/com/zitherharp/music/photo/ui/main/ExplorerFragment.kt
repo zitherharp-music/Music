@@ -9,14 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.zitherharp.music.model.Artist
 import com.zitherharp.music.photo.R
-import com.zitherharp.music.photo.databinding.MainExplorerFragmentBinding
+import com.zitherharp.music.photo.databinding.ExplorerFragmentBinding
 import com.zitherharp.music.photo.ui.artist.ArtistGridAdapter
 
-class MainExplorerFragment: Fragment() {
-    private lateinit var binding: MainExplorerFragmentBinding
+class ExplorerFragment: Fragment() {
+    private lateinit var binding: ExplorerFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-        MainExplorerFragmentBinding.inflate(inflater, container, false).apply {
+        ExplorerFragmentBinding.inflate(inflater, container, false).apply {
             binding = this
         }.root
 

@@ -9,16 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.zitherharp.music.model.Photo
-import com.zitherharp.music.photo.databinding.FragmentHomeBinding
+import com.zitherharp.music.photo.databinding.HomeFragmentBinding
 import com.zitherharp.music.photo.ui.photo.PhotoGridAdapter
 
-class MainHomeFragment: Fragment() {
-    private lateinit var binding: FragmentHomeBinding
+class HomeFragment: Fragment() {
+    private lateinit var binding: HomeFragmentBinding
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?) =
-        FragmentHomeBinding.inflate(inflater, container, false).apply {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+        HomeFragmentBinding.inflate(inflater, container, false).apply {
             binding = this
         }.root
 
@@ -27,9 +25,9 @@ class MainHomeFragment: Fragment() {
             val context = activity as AppCompatActivity
             photoRefreshView.setOnRefreshListener {
                 photoRefreshView.isRefreshing = false
-                photoRecyclerView.adapter = PhotoGridAdapter(context, Photo.repository.values.shuffled())
+                //photoRecyclerView.adapter = PhotoGridAdapter(context, Photo.repository.values.shuffled())
             }
-            photoRecyclerView.adapter = PhotoGridAdapter(context, Photo.repository.values.toList())
+            photoRecyclerView.adapter = PhotoGridAdapter(context, Photo.repository.values.shuffled())
             photoRecyclerView.layoutManager = StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
         }
     }

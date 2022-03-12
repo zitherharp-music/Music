@@ -18,7 +18,7 @@
             android:exported="false"
             android:theme="@style/Theme.Music.Fullscreen" />
         <activity
-            android:name=".SecondActivity"
+            android:name=".ui.artist.ArtistDetailActivity"
             android:exported="false" />
         <activity
             android:name=".LauncherActivity"

@@ -8,6 +8,7 @@ import androidx.core.graphics.drawable.DrawableCompat
 import com.zitherharp.music.model.Music
 import com.zitherharp.music.model.Music.Resource.getColor
 import kotlinx.coroutines.*
+import java.io.FileNotFoundException
 import java.net.URL
 
 @DelicateCoroutinesApi
@@ -17,10 +18,14 @@ object Extension {
 
     fun ImageView.setImageUrl(url: String) {
         GlobalScope.launch(Dispatchers.IO) {
-            val image = BitmapFactory.decodeStream(
-                URL(url).openConnection().apply { useCaches = true }.getInputStream())
-            withContext(Dispatchers.Main) {
-                setImageBitmap(image)
+            try {
+                val image = BitmapFactory.decodeStream(
+                    URL(url).openConnection().apply { useCaches = true }.getInputStream())
+                withContext(Dispatchers.Main) {
+                    setImageBitmap(image)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }

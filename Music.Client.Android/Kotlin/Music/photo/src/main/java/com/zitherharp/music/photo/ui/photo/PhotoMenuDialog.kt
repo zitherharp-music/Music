@@ -21,6 +21,9 @@ class PhotoMenuDialog: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         with(binding) {
             Photo.repository[tag]?.let { photo ->
+                favouriteView.setOnClickListener {
+
+                }
                 downloadView.setOnClickListener {
 
                 }
@@ -30,9 +33,6 @@ class PhotoMenuDialog: BottomSheetDialogFragment() {
                             type = "text/plain"
                             putExtra(Intent.EXTRA_TEXT, photo.getImageUrl(Pinterest.Image.ORIGINALS))
                         }, getString(com.zitherharp.music.R.string.share)))
-                }
-                blockView.setOnClickListener {
-
                 }
             }
         }

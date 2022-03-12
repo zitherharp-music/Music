@@ -9,7 +9,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.zitherharp.music.Extension.setImageUrl
 import com.zitherharp.music.core.Pinterest
 import com.zitherharp.music.core.QQMusic
-import com.zitherharp.music.core.Spreadsheet.Companion.getId
 import com.zitherharp.music.model.Photo
 import com.zitherharp.music.photo.databinding.PhotoGridContentBinding
 import com.zitherharp.music.ui.adapter.RecyclerViewAdapter
@@ -17,8 +16,6 @@ import com.zitherharp.music.ui.adapter.RecyclerViewAdapter
 class PhotoGridAdapter(private val activity: AppCompatActivity,
                        private val photos: List<Photo>):
     RecyclerViewAdapter<PhotoGridContent>(activity, photos) {
-
-    private val photoIds = photos.getId()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         PhotoGridContent(
@@ -28,27 +25,37 @@ class PhotoGridAdapter(private val activity: AppCompatActivity,
     override fun onBindViewHolder(holder: PhotoGridContent, position: Int) {
         with(holder) {
             val photo = photos[position]
-            itemView.run {
-                setOnClickListener {
-                    context.startActivity(Intent(context, PhotoDetailActivity::class.java).apply {
-                        putExtra(PhotoDetailActivity::class.simpleName, photoIds)
-                        putExtra(PhotoDetailActivity::class.qualifiedName, position)
-                    })
+            fun onVisible() {
+                itemView.run {
+                    setOnClickListener {
+                        context.startActivity(Intent(context, PhotoDetailActivity::class.java).apply {
+                            putExtra(PhotoDetailActivity::class.simpleName, photo.id)
+                        })
+                    }
+                    setOnLongClickListener {
+                        PhotoMenuDialog().showNow(activity.supportFragmentManager, photo.id)
+                        it.isEnabled
+                    }
                 }
-                setOnLongClickListener {
-                    PhotoMenuDialog().showNow(activity.supportFragmentManager, photo.id)
-                    true
-                }
+                photoImage.visibility = View.VISIBLE
+                photoVisibilityButton.setImageResource(com.zitherharp.music.R.drawable.ic_invisible)
             }
-            photoImage.setImageUrl(photo.getImageUrl(Pinterest.Image.SMALL))
+            fun onInvisible() {
+                itemView.setOnClickListener(null)
+                itemView.setOnLongClickListener(null)
+                photoImage.visibility = View.GONE
+                photoVisibilityButton.setImageResource(com.zitherharp.music.R.drawable.ic_visible)
+            }
+            onVisible()
             artistImage.setImageUrl(photo.getArtists().first().getImageUrl(QQMusic.Image.SMALL))
-            actionButton.setOnClickListener {
+            photoImage.setImageUrl(photo.getImageUrl(Pinterest.Image.SMALL))
+            photoVisibilityButton.setOnClickListener {
                 if (photoImage.visibility == View.VISIBLE) {
-                    photoImage.visibility = View.GONE
-                    Snackbar.make(it, "Đã lưu!", Snackbar.LENGTH_SHORT).show()
+                    onInvisible()
+                    Snackbar.make(it, "Đã ẩn", Snackbar.LENGTH_SHORT).setAction(
+                        activity.getString(com.zitherharp.music.R.string.undo)) { onVisible() }.show()
                 } else {
-                    photoImage.visibility = View.VISIBLE
-                    actionButton.setImageResource(com.zitherharp.music.R.drawable.ic_favourite_line_24)
+                    onVisible()
                 }
             }
         }

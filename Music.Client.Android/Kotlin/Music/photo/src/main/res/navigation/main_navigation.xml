@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@+id/navigation_main_home">
+
+    <fragment
+        android:id="@+id/navigation_main_home"
+        android:name="com.zitherharp.music.photo.ui.main.HomeFragment"
+        tools:layout="@layout/home_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_main_explorer"
+        android:name="com.zitherharp.music.photo.ui.main.ExplorerFragment"
+        tools:layout="@layout/explorer_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_main_search"
+        android:name="com.zitherharp.music.photo.ui.search.SearchFragment"
+        tools:layout="@layout/search_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_main_notification"
+        android:name="com.zitherharp.music.photo.ui.notifications.NotificationsFragment"
+        tools:layout="@layout/notification_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_main_user"
+        android:name="com.zitherharp.music.photo.ui.user.UserFragment"
+        tools:layout="@layout/user_fragment" />
+</navigation>

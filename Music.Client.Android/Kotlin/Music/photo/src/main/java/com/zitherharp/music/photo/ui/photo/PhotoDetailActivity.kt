@@ -20,6 +20,7 @@ class PhotoDetailActivity: AppCompatActivity() {
         with(binding) {
             setContentView(root)
             Photo.repository[intent.getStringExtra(PhotoDetailActivity::class.simpleName)]?.let {
+                // TODO: Photo
                 photoImage.setImageUrl(it.getImageUrl(Pinterest.Image.LARGE))
                 photoImage.setOnClickListener { _ ->
                     startActivity(Intent(this@PhotoDetailActivity, PhotoFullscreenActivity::class.java).apply {

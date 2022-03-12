@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,11 +18,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/photo_image"
+                android:id="@+id/artist_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/ic_photo_launcher" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -78,7 +79,7 @@
                         android:layout_height="match_parent">
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/artist_image"
+                            android:id="@+id/photo_image"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
                             android:src="@mipmap/ic_photo_launcher_round"
@@ -93,7 +94,7 @@
                             android:orientation="vertical"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/artist_image"
+                            app:layout_constraintStart_toEndOf="@id/photo_image"
                             app:layout_constraintEnd_toStartOf="@id/artist_detail_button">
 
                             <androidx.appcompat.widget.AppCompatTextView

@@ -28,7 +28,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/artist_vietnamese_name"
-                android:maxLines="1"
                 android:gravity="center"
                 android:text="@string/vietnamese"
                 android:textStyle="bold" />
@@ -38,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/artist_chinese_name"
                 android:gravity="center"
-                android:maxLines="1"
-                android:hint="@string/chinese" />
+                android:text="@string/chinese" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

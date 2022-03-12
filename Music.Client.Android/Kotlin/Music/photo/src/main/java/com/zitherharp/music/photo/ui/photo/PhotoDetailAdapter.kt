@@ -39,6 +39,7 @@ class PhotoDetailAdapter(private val activity: PhotoDetailActivity,
             photoVietnameseName.text = photo.getName(Language.VIETNAMESE).ifEmpty {
                 activity.getString(com.zitherharp.music.R.string.no_information)
             }
+
             photoRecyclerView.adapter = PhotoGridAdapter(activity, Photo.repository.values.shuffled())
             photoRecyclerView.layoutManager = StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
             photoMenuButton.setOnClickListener {

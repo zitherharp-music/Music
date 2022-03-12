@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.zitherharp.music.photo.FirstFragment"
+        android:name="com.zitherharp.music.photo.ui.main.MainNotificationFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/photo_detail_content">
 
@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.zitherharp.music.photo.SecondFragment"
+        android:name="com.zitherharp.music.photo.ui.user.UserFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/search_fragment">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

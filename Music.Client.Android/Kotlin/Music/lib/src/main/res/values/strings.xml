@@ -14,6 +14,7 @@
     <string name="photo">Photo</string>
     <string name="shorts">Short</string>
     <string name="video">Video</string>
+    <string name="search">Tìm kiếm</string>
     <string name="home">Trang chủ</string>
     <string name="explore">Khám phá</string>
     <string name="notification">Thông báo</string>
@@ -24,6 +25,8 @@
     <string name="recommend">Đề xuất</string>
     <string name="relate">Liên quan</string>
     <string name="use">Sử dụng</string>
+    <string name="undo">Hoàn tác</string>
+    <string name="suggest">Gợi ý</string>
     <string name="comment">Bình luận</string>
     <string name="close">Đóng</string>
     <string name="cancel">Huỷ</string>
